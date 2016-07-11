@@ -1,0 +1,313 @@
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 300;
+}
+
+body{
+  background-color: #F5EFE6;
+  color: #545454;
+  font-family: 'Open Sans', sans-serif;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+html{
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.row{
+  height: 100%;
+}
+
+.container{
+  background: #fff;
+  margin-top: 50px;
+}
+
+.main{
+  min-height: 100%;
+  padding-bottom: 200px;
+  border: 1px solid;
+}
+
+nav.top{
+  padding: 10px 0 0 0;
+  background: #a84c10;
+}
+
+nav.top a{
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+nav.top a:focus{
+  outline:0;
+}
+
+nav.top .brand{
+  color: #E0E0E2;
+  font-size: 18px;
+  text-align: center;
+  font-weight: 100;
+  letter-spacing: 5px;
+}
+
+ul.top-nav{
+  list-style: none;
+  float: right;
+}
+
+nav.top ul.top-nav li.dropdown ul li{
+  float: left;
+  padding-left: 5px;
+}
+
+nav.top ul.top-nav li.dropdown ul li a{
+  color: #787878;
+}
+
+nav.top ul.top-nav li.dropdown ul li.divider{
+  width: 100%;
+}
+
+nav.top ul.top-nav li{
+  float: left;
+  padding-left: 50px;
+}
+
+nav.top ul.top-nav li a{
+  color: #fff;
+}
+
+.page-header{
+  border-bottom: 1px solid #BFBFBF;
+}
+
+.page-header h1, h2, h3{
+  font-size: 22px;
+}
+
+.actions{
+  text-align: right;
+  padding: 0 0 10px 0;
+}
+
+.panel-body{
+  padding: 40px;
+}
+
+.alert{
+  margin-top: 10px;
+}
+
+.occupations-details{
+  font-size: 18px;
+}
+
+.between-input{
+  text-align: center;
+}
+
+.row-group-user{
+  cursor: pointer;
+}
+
+.role-row{
+  cursor: pointer;
+}
+
+#group-user-component .group-active{
+  background: #03A9F4;
+  color: #fff;
+  font-weight: bold;
+}
+
+.delete-harbor{
+  width: 10px;
+}
+
+.row-harbor-line{
+  cursor: move;
+}
+
+a.delete-harbor-line{
+  color: #5D5D5D;
+  display: none;
+}
+.panel-show .table-label {
+  width: 100px;
+  white-space: nowrap;
+  text-align: right;
+}
+
+.panel-show .table thead {
+  background-color: #545454;
+  color: white;
+}
+
+.panel-show .table thead a.sortable {
+  background-color: #545454;
+  color: white;
+}
+
+.page-header h1.actions {
+  display: inline-block;
+}
+
+footer {
+  background-color: #545454;
+  color: #f0f0f0;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+}
+
+footer a {
+  color: #b8b8b8;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+footer .container {
+  background-color: inherit;
+}
+
+.wrapper{
+  min-height: 100%;
+  position: relative;
+}
+
+.logo{
+  height: 60px;
+  margin-top: 32px;
+  margin-bottom: 0px;
+}
+
+.img-footer{
+  float: right;
+  width: 50%;
+}
+
+span.status-tag {
+  margin-left: 5px;
+}
+.search-form {
+  margin: 15px 10px 0 0;
+}
+
+.search-form .input-search {
+  margin: 0 5px 0 0;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+  -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+       -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+          transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+.panel-user-group{
+  width: 50%;
+}
+
+.panel-features {
+  width: 40%;
+}
+
+.form-inline label {
+  margin-left: 15px;
+}
+
+.panel-routes {
+  width: 60%;
+}
+
+.list-button{
+  width: 10px;
+}
+
+.logo-pa-gov{
+  height: 60px;
+  margin-top: 32px;
+  margin-bottom: 0px;
+}
+
+.logo-prodiga{
+  height: 50px;
+  margin-left: 15px;
+  vertical-align: bottom;
+}
+
+.popover{
+    max-width: 100%;
+}
+input.file{
+  padding: 80px;
+}
+
+.item-list{
+  cursor: pointer;
+}
+
+.progress-label{
+  text-align: left;
+  padding-left: 10px;
+}
+
+.radio{
+  width: 100px;
+  height: 50px
+}
+
+.progress{
+  margin-left: 0px;
+  margin-bottom: 0px;
+}
+
+#new_comment {
+  margin-top: 20px;
+}
+
+.area-assinatura{
+  padding: 70px;
+}
+
+.data-assinatura{
+  float: left
+}
+
+footer .copyright {
+  padding: 10px 0 10px 30px;
+  width: 100%;
+}
+
+.dropdown-user{
+  color: #fff;
+  cursor: pointer;
+  background: #BC6834;
+  padding: 4px 10px 4px 10px;
+}
+
+.dropdown-action{
+  cursor: pointer;
+  background: #F5F5F5;
+  padding: 10px 20px 10px 20px;
+}
+
+ul.dropdown-menu li{
+  display: block;
+  width: 100%;
+  list-style: none;
+}

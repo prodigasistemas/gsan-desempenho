@@ -1,0 +1,56 @@
+.sidebar {
+  position: absolute;
+  /*top: 51px;*/
+  left: 0;
+  z-index: 1000;
+  display: none;
+  padding: 0;
+  overflow-x: hidden;
+  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+    -webkit-box-shadow: 2px 0px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 2px 0px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: 2px 0px 5px 0px rgba(0,0,0,0.75);
+  background: #FFFFFF;
+}
+
+ul.nav-sidebar{
+  padding: 0;
+  border: none;
+}
+
+ul.nav-sidebar .sidebar-label{
+  color: #787878;
+  padding: 30px 0 10px 20px;
+  font-weight: bold;
+  /*border-bottom: 1px solid #DDDDDD;*/
+}
+
+ul.nav-sidebar li a {
+  color: #787878;
+  padding: 10px;
+  font-size: 14px;
+  /*border-bottom: 1px solid #DDDDDD;*/
+}
+
+ul.nav-sidebar li a:hover{
+  background: #DDDDDD;
+}
+
+ul.nav-sidebar li a:active{
+  background: #DDDDDD;
+}
+
+ul.nav-sidebar li a:visited{
+  background: #DDDDDD;
+}
+
+ul.nav-sidebar li a i{
+  padding: 0 8px 0 8px;
+}
+
+.top-sidebar{
+  background-color: #DDDDDD;
+  color: #787878;
+  padding: 20px;
+  font-weight: bold;
+}
