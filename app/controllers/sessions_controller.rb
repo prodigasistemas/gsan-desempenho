@@ -3,17 +3,23 @@ class SessionsController < ApplicationController
   layout 'home'
 
   def new
-    @user = {username:"user@mail.com", password:"123"}
+    @usuario = Usuario.new
   end
 
   def create
-    @user = login(params[:username], params[:password])
+    @usuario = Usuario.new usuario_params
 
-    if @user
+    if @usuario.login
       redirect_to(root_path, notice: 'Bem vindo!')
     else
       flash[:alert] = "Login ou senha inválidos"
       render :new
     end
+  end
+
+  protected
+
+  def usuario_params
+    params.require(:usuario).permit(:nome_usuario, :senha)
   end
 end
