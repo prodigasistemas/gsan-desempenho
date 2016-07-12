@@ -33,3 +33,11 @@
 .signin-form fieldset {
   margin: 20px 0 20px 0;
 }
+
+.input-lg {
+  margin-bottom: 10px;
+}
+
+.container {
+  background-color: rgba(7, 7, 8, 0.31);
+}
