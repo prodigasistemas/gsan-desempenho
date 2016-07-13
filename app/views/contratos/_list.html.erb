@@ -1,0 +1,20 @@
+<table class="table table-hover table-striped">
+  <thead>
+    <tr>
+      <th>Número</th>
+      <th>Vigência Inicial</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% smart_listing.collection.each do |contrato| %>
+      <tr class="item-list" data-item-id="<%= contrato.id %>" data-show-item="contratos/<%= contrato.id %>">
+        <td><%= contrato.numero_contrato %></td>
+        <td><%= contrato.vigencia_inicial %></td>
+      </tr>
+    <% end %>
+    <% if smart_listing.empty? %>
+      <tr><th><center>Nenhum registro encontrado</center></th></tr>
+    <% end %>
+  </tbody>
+</table>
+<%= smart_listing.paginate %>
