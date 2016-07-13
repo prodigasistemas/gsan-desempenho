@@ -10,6 +10,7 @@ class SessionsController < ApplicationController
     @usuario = Usuario.new usuario_params
 
     if @usuario.login
+      usuario_autenticado(@usuario)
       redirect_to(root_path, notice: 'Bem vindo!')
     else
       flash[:alert] = "Login ou senha inválidos"
