@@ -7,8 +7,8 @@
   </thead>
   <tbody>
     <% smart_listing.collection.each do |contrato| %>
-      <tr class="item-list" data-item-id="<%= contrato.id %>" data-show-item="contratos/<%= contrato.id %>">
-        <td><%= contrato.numero_contrato %></td>
+      <tr class="item-list" data-item-id="<%= contrato.id %>" data-show-item="contratos">
+        <td><%= contrato.numero %></td>
         <td><%= contrato.vigencia_inicial %></td>
       </tr>
     <% end %>

@@ -15,3 +15,4 @@
 //= require turbolinks
 //= require bootstrap
 //= require smart_listing
+//= require jquery.mask

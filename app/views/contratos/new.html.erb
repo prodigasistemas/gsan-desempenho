@@ -1,1 +1,10 @@
-new.html.erb
+<div class="page-header">
+  <%= build_breadcrumb [
+    { title: "Contratos", link: contratos_path(@contrato) },
+    { title: "Novo Contrato", active: true }
+  ] %>
+
+  <h1>Contrato</h1>
+</div>
+
+<%= render "form", edit: false %>
