@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  skip_before_action :acesso_restrito, only: [:new, :create]
+
   layout 'home'
 
   def new
@@ -14,6 +16,12 @@ class SessionsController < ApplicationController
       flash[:alert] = "Login ou senha inválidos"
       render :new
     end
+  end
+
+  def destroy
+    limpar_sessao
+
+    redirect_to(new_session_path, notice: "Logout efetuado com sucesso!")
   end
 
   protected
