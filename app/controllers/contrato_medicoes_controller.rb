@@ -17,11 +17,12 @@ class ContratoMedicoesController < ApplicationController
   end
 
   def new
-    @contrato = ContratoMedicao.new
+    @contrato_medicao = ContratoMedicao.new
     @empresas = [Empresa.new(id: 1, nome: "Apple")]
   end
 
   def edit
-    @contrato = ContratoMedicao.find(params[:id])
+    @contrato_medicao = ContratoMedicao.find(params[:id])
+    @empresas = [Empresa.new(id: 1, nome: "Apple")]
   end
 end
