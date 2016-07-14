@@ -10,8 +10,8 @@ class ContratoMedicoesController < ApplicationController
                                   contratos,
                                   partial: 'contrato_medicoes/list',
                                   sort_attributes: [[:numero, "contratos.numero"]],
-                                   #                [:client_name, "clients.name"]],
 
+                                   #                [:client_name, "clients.name"]],
 
                                   default_sort: {numero: "asc"}
   end
