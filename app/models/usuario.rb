@@ -14,13 +14,14 @@ class Usuario < API::Model
 
   def login!(params={})
     if params.nil? and autenticar.nil?
+      @errors = ActiveModel::Errors.new(self)
       @errors[:nome_usuario] << "Nome de usuário ou Senha inválido"
       @errors[:senha] << "Nome de usuário ou Senha inválido"
 
       raise "Autenticação Inválida"
     else
-      @id = params[:id]
-      @nome = params[:nome]
+      @id = params["id"]
+      @nome = params["nome"]
     end
   end
 

@@ -3,12 +3,12 @@ module API
     include ActiveModel::Model
     extend ActiveModel::Naming
     include API::Base
+    extend API::Integracao::Dados
 
     attr_reader :errors
 
     def initialize(attributes={})
       super
-      @errors = ActiveModel::Errors.new(self)
     end
 
     def read_attribute_for_validation(attr)

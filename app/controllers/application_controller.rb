@@ -5,14 +5,22 @@ class ApplicationController < ActionController::Base
 
   def usuario_autenticado(usuario)
     session.clear
-    session[:usuario] = usuario.id
+    session[:usuario_id] = usuario.id
   end
 
   def usuario_logado
     if session[:usuario_id]
-       Usuario.find { |u| u.id == session[:usuario_id] }
+       Usuario.find session[:usuario_id]
     else
       nil
+    end
+  end
+
+  def resticted_access
+    if session[:usuario_id]
+      @usuario_logado = usuario_logado
+    else
+      redirect_to(new_session_path, alert: "Efetue seu login no GSAN")
     end
   end
 end
