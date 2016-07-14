@@ -8,7 +8,9 @@ module API
           json = JSON.parse(response.body)
 
           json["usuario"]
-        rescue
+        rescue RestClient::Unauthorized
+          nil
+        else
           raise "Falha na comunicação com a API"
         end
       end

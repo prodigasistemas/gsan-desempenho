@@ -19,19 +19,21 @@ describe Usuario do
   context 'invalid authentication' do
     let(:usuario) { Usuario.new usuario_invalido }
 
-    it {
-      expect_any_instance_of(Usuario).to receive(:request).twice
+    before do
+      expect_any_instance_of(Usuario).to receive(:request).at_least(:once).times
                                              .with(:autenticacao, usuario_invalido)
                                              .and_return(nil)
+    end
+
+    it {
       expect(usuario.login).to be false
     }
 
     it 'messages' do
-      expect_any_instance_of(Usuario).to receive(:request).twice
-                                             .with(:autenticacao, usuario_invalido)
-                                             .and_return(nil)
       usuario.login
       expect(usuario.errors.messages).to_not be_empty
+      expect(usuario.errors.messages[:nome_usuario].first).to eq "Nome de usuário ou Senha inválido"
+      expect(usuario.errors.messages[:senha].first).to eq "Nome de usuário ou Senha inválido"
     end
 
     it 'exception message' do

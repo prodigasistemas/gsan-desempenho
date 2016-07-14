@@ -8,7 +8,9 @@ module API
           json = JSON.parse(response.body)
 
           self.new json["usuario"]
-        rescue
+        rescue RestClient::NotFound
+          nil
+        else
           raise "Falha na comunicação com a API"
         end
       end
