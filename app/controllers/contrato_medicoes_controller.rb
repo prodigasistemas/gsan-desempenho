@@ -1,14 +1,14 @@
-class ContratosController < ApplicationController
+class ContratoMedicoesController < ApplicationController
   include SmartListing::Helper::ControllerExtensions
   helper  SmartListing::Helper
 
   def index
-    contratos = [Contrato.new(id:"1", numero: "123", vigencia_inicial:"12/07/2016")]
+    contratos = [ContratoMedicao.new(id:"1", numero: "123", vigencia_inicial:"12/07/2016")]
 
     contratos = contratos.filter(params[:filter]) if params[:filter].present?
-    @contratos = smart_listing_create :contratos,
+    @contratos = smart_listing_create :contrato_medicoes,
                                   contratos,
-                                  partial: 'contratos/list',
+                                  partial: 'contrato_medicoes/list',
                                   sort_attributes: [[:numero_contrato, "contratos.numero_contrato"]],
                                    #                [:client_name, "clients.name"]],
 
@@ -17,7 +17,11 @@ class ContratosController < ApplicationController
   end
 
   def new
-    @contrato = Contrato.new
+    @contrato = ContratoMedicao.new
     @empresas = [Empresa.new(id: 1, nome: "Apple")]
+  end
+
+  def edit
+    @contrato = ContratoMedicao.find(params[:id])
   end
 end
