@@ -8,4 +8,5 @@ class Empresa
     super
     @errors = ActiveModel::Errors.new(self)
   end
+
 end

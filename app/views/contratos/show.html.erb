@@ -2,11 +2,11 @@
 
   <%= build_breadcrumb [
     { title: "Contratos", link: contratos_path },
-    { title: @contrato.numero_contrato, active: true }
+    { title: @contrato.numero, active: true }
   ] %>
 </div>
 
-<%= build_action_header(@contrato.numero_contrato, [@contrato]) %>
+<%= build_action_header(@contrato.numero, [@contrato]) %>
 
 <div class="panel panel-show">
   <table class="table">
@@ -17,7 +17,7 @@
       </tr>
       <tr>
         <%= table_label "Número do contrato" %>
-        <td><%= @contrato.numero_contrato %></td>
+        <td><%= @contrato.numero %></td>
       </tr>
       <tr>
         <%= table_label "Vigência incial" %>

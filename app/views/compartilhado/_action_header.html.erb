@@ -9,7 +9,7 @@
         </div>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
           <li>
-            <%= link_to send(edit_path, *models) do %>
+            <%= link_to send(edit_path, models.map(&:id)) do %>
               <i class="fa fa-pencil-square-o"></i> Editar
             <% end %>
           </li>

@@ -9,11 +9,11 @@ class ContratoMedicoesController < ApplicationController
     @contratos = smart_listing_create :contrato_medicoes,
                                   contratos,
                                   partial: 'contrato_medicoes/list',
-                                  sort_attributes: [[:numero_contrato, "contratos.numero_contrato"]],
+                                  sort_attributes: [[:numero, "contratos.numero"]],
                                    #                [:client_name, "clients.name"]],
 
 
-                                  default_sort: {numero_contrato: "asc"}
+                                  default_sort: {numero: "asc"}
   end
 
   def new
