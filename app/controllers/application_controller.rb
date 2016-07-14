@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
 
   def usuario_autenticado(usuario)
     return nil unless usuario.valid?
+
     limpar_sessao
     session[:usuario_id] = usuario.id
   end
