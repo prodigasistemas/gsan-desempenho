@@ -5,7 +5,7 @@
         <%= image_tag "logomarca.png", alt: "Cosanpa", align: "center", height: 60 %>
         <h1><font color="#fff">GSAN</font></h1>
         <div class="inner-wrapper">
-          <%= form_for @usuario, url: sessions_path, html: { class: 'form-horizontal' } do |f| %>
+          <%= form_for @usuario, url: session_path, html: { class: 'form-horizontal' } do |f| %>
             <%= f.label :nome_usuario, class: "sr-only" %>
             <%= f.text_field :nome_usuario, class: "form-control input-lg", placeholder: "nome", required: true, autofocus: true %>
 
