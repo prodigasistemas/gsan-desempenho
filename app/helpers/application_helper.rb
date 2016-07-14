@@ -18,6 +18,26 @@ module ApplicationHelper
     end
   end
 
+  def build_action_header(name="", models)
+    edit_path = "edit_"
+    destroy_path = ""
+
+    models.each do |model|
+      edit_path += "#{model.class.to_s.underscore}_"
+      destroy_path += "#{model.class.to_s.underscore}_"
+    end
+    edit_path += "path"
+    destroy_path += "path"
+
+    render 'compartilhado/action_header', name: name, models: models, edit_path: edit_path, destroy_path: destroy_path
+  end
+
+  def table_label(label)
+    content_tag :td, class: "table-label" do
+      content_tag :strong, label
+    end
+  end
+
   private
   def button_search
     button_tag :submit, class: "btn", disabled: true do

@@ -25,4 +25,11 @@ class ContratoMedicoesController < ApplicationController
     @contrato_medicao = ContratoMedicao.find(params[:id])
     @empresas = [Empresa.new(id: 1, nome: "Apple")]
   end
+
+  def show
+    @contrato = ContratoMedicao.find(params[:id])
+  end
+
+  def destroy
+  end
 end
