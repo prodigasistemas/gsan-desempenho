@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  before_action :resticted_access
+  before_action :acesso_restrito
 
   def index
   end

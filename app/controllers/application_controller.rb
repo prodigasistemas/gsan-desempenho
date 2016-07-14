@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def resticted_access
+  def acesso_restrito
     if session[:usuario_id]
       @usuario_logado = usuario_logado
     else
