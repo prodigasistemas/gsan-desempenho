@@ -3,7 +3,8 @@ module API
     module Dados
       def find(id)
         begin
-          resource = self.name.downcase.pluralize
+          resource = self.name.underscore.pluralize
+
           response = RestClient.get "#{API::Base::URL_BASE}/#{resource}/#{id}"
           json = JSON.parse(response.body)
 
