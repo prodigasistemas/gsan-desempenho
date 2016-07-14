@@ -1,20 +1,11 @@
-class Usuario
-  include ActiveModel::Model
-  extend ActiveModel::Naming
-
-  attr_accessor :nome_usuario, :senha
-  attr_reader :errors
-
-  def initialize(attributes={})
-    super
-    @errors = ActiveModel::Errors.new(self)
-  end
+class Usuario < API::Model
+  attr_accessor :id, :nome, :nome_usuario, :senha
 
   def login
-    response = ApiRestClient.new.request :autenticacao, nome_usuario: nome_usuario, senha: senha
+    usuario = autenticar
 
     begin
-      login!(response)
+      login!(usuario)
       true
     rescue
       false
@@ -22,23 +13,21 @@ class Usuario
   end
 
   def login!(params={})
-    return unless params.nil?
+    if params.nil? and autenticar.nil?
+      @errors = ActiveModel::Errors.new(self)
+      @errors[:nome_usuario] << "Nome de usuário ou Senha inválido"
+      @errors[:senha] << "Nome de usuário ou Senha inválido"
 
-    @errors[:nome_usuario] << "Nome de usuário ou Senha inválido"
-    @errors[:senha] << "Nome de usuário ou Senha inválido"
-
-    raise "Autenticação Inválida"
+      raise "Autenticação Inválida"
+    else
+      @id = params["id"]
+      @nome = params["nome"]
+    end
   end
 
-  def read_attribute_for_validation(attr)
-    send(attr)
-  end
+  private
 
-  def self.human_attribute_name(attr, options = {})
-    attr
-  end
-
-  def self.lookup_ancestors
-    [self]
+  def autenticar
+    request(:autenticacao, nome_usuario: nome_usuario, senha: senha)
   end
 end
