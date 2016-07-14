@@ -5,7 +5,7 @@ module API
     include API::Base
     extend API::Integracao::Dados
 
-    attr_reader :errors
+    attr_accessor :errors
 
     def initialize(attributes={})
       super
@@ -21,6 +21,11 @@ module API
 
     def self.lookup_ancestors
       [self]
+    end
+
+    def valid?
+      return true if errors.nil?
+      false
     end
   end
 end

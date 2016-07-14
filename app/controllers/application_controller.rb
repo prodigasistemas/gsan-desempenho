@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def usuario_autenticado(usuario)
+    return nil unless usuario.valid?
     session.clear
     session[:usuario_id] = usuario.id
   end
