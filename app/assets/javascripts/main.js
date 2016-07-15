@@ -18,4 +18,17 @@ $(function(){
       });
     }
   });
+
+  $(document).ready(function(){
+    $('.datepicker').datepicker({
+      autoclose: true,
+      todayBtn: true,
+      todayBtn: "linked",
+      todayHighlight: true,
+      startDate: new Date(),
+      pickerPosition: "bottom-left",
+      format: 'dd/mm/yyyy',
+      language: 'pt-BR'
+    });
+  });
 });
