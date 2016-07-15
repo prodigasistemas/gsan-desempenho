@@ -3,7 +3,7 @@ module API
     include ActiveModel::Model
     extend ActiveModel::Naming
     include API::Base
-    extend API::Integracao::Dados
+    include API::Integracao::Dados
 
     attr_accessor :errors
 
@@ -26,6 +26,10 @@ module API
     def valid?
       return true if errors.nil?
       false
+    end
+
+    def attributes
+      self.as_json.except("id")
     end
   end
 end
