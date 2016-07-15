@@ -17,6 +17,10 @@ module API
         rescue RestClient::UnprocessableEntity => e
           entidade = self.class.new
           entidade.errors = ActiveModel::Errors.new(entidade)
+          errors = JSON.parse(e.response)
+          errors["errors"].each do |key, messages|
+            messages.each { |message| entidade.errors[key] << message }
+          end
           entidade
         rescue RestClient::ResourceNotFound => e
           false
@@ -47,6 +51,10 @@ module API
           rescue RestClient::UnprocessableEntity => e
             entidade = self.new
             entidade.errors = ActiveModel::Errors.new(entidade)
+            errors = JSON.parse(e.response)
+            errors["errors"].each do |key, messages|
+              messages.each { |message| entidade.errors[key] << message }
+            end
             entidade
           end
         end
