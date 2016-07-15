@@ -1,6 +1,19 @@
 module API
   module Integracao
     module Dados
+      def create(params={})
+        begin
+          resource_params = {}
+          resource_params[self::RESOURCE_NAME] = params
+          json = post_request [], resource_params
+          self.new json["entidade"]
+        rescue RestClient::UnprocessableEntity => e
+          entidade = self.new
+          entidade.errors = ActiveModel::Errors.new(entidade)
+          entidade
+        end
+      end
+
       def all
         begin
           json = get_request
@@ -25,10 +38,15 @@ module API
         JSON.parse(response.body)
       end
 
+      def post_request(path=[], params={})
+        response = RestClient.post build_url(path), params
+        JSON.parse(response.body)
+      end
+
       private
 
       def build_url(path)
-        resource = self.name.downcase.pluralize
+        resource = self.pluralize_resource_name || self::RESOURCE_NAME
         url_base = "#{API::Base::URL_BASE}/#{resource}"
 
         path.each { |item| url_base.concat "/#{item}" }
