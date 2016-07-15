@@ -49,17 +49,22 @@ class ContratoMedicoesController < ApplicationController
   end
 
   def destroy
+    @contrato_medicao = ContratoMedicao.find(params[:id])
+
+    if @contract.destroy
+      redirect_to contrato_medicoes_path, notice: 'Contrato destivado com sucesso'
+    end
   end
 
   private
 
   def contrato_medicao_params
     params.require(:contrato_medicao).permit(
-      :id, 
-      :numero, 
+      :id,
+      :numero,
       :vigencia_inicial,
       :vigencia_final, :data_assinatura,
-      :empresa_id, 
+      :empresa_id,
       :atualizado_em
     )
   end
