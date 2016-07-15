@@ -12,9 +12,7 @@ module API
         return unless self.id
 
         begin
-          resource_params = {}
-          resource_params[self.resource_name] = self.attributes
-          json = put [self.id], resource_params
+          json = put [self.id], params
           self.class.new json["entidade"]
         rescue RestClient::UnprocessableEntity => e
           entidade = self.class.new
@@ -44,9 +42,7 @@ module API
 
         def create(params={})
           begin
-            resource_params = {}
-            resource_params[self.resource_name] = params
-            json = post [], resource_params
+            json = post [], params
             self.new json["entidade"]
           rescue RestClient::UnprocessableEntity => e
             entidade = self.new
