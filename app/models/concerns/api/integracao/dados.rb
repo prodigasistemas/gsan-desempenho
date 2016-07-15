@@ -4,40 +4,8 @@ module API
       extend ActiveSupport::Concern
       include API::Integracao::Requisicao
 
-      module ClassMethods
-        include API::Integracao::Requisicao
-
-        def create(params={})
-          begin
-            resource_params = {}
-            resource_params[self.name.underscore.downcase] = params
-            json = post_request [], resource_params
-            self.new json["entidade"]
-          rescue RestClient::UnprocessableEntity => e
-            entidade = self.new
-            entidade.errors = ActiveModel::Errors.new(entidade)
-            entidade
-          end
-        end
-
-        def all
-          begin
-            json = get_request
-            entidades = json["entidades"]
-            entidades.map {|entidade| self.new entidade }
-          rescue RestClient::ResourceNotFound
-            []
-          end
-        end
-
-        def find(id)
-          begin
-            json = get_request([id])
-            self.new json["entidade"]
-          rescue RestClient::ResourceNotFound
-            nil
-          end
-        end
+      def self.included(base)
+        base.extend(ClassMethods)
       end
 
       def update(params={})
@@ -45,8 +13,8 @@ module API
 
         begin
           resource_params = {}
-          resource_params[self.name.underscore.downcase] = self.attributes
-          json = put_request [self.id], resource_params
+          resource_params[self.resource_name] = self.attributes
+          json = put [self.id], resource_params
           self.new json["entidade"]
         rescue RestClient::UnprocessableEntity => e
           entidade = self.new
@@ -61,7 +29,7 @@ module API
         return unless self.id
 
         begin
-          delete_request [self.id]
+          delete [self.id]
         rescue RestClient::UnprocessableEntity => e
           entidade = self.new
           entidade.errors = ActiveModel::Errors.new(entidade)
@@ -71,25 +39,40 @@ module API
         end
       end
 
-      def get_request(path=[])
-        response = RestClient.get build_url(path)
-        JSON.parse(response.body)
-      end
+      module ClassMethods
+        include API::Integracao::Requisicao
 
-      def post_request(path=[], params={})
-        response = RestClient.post build_url(path), params
-        JSON.parse(response.body)
-      end
+        def create(params={})
+          begin
+            resource_params = {}
+            resource_params[self.resource_name] = params
+            json = post [], resource_params
+            self.new json["entidade"]
+          rescue RestClient::UnprocessableEntity => e
+            entidade = self.new
+            entidade.errors = ActiveModel::Errors.new(entidade)
+            entidade
+          end
+        end
 
-      private
+        def all
+          begin
+            json = get
+            entidades = json["entidades"]
+            entidades.map {|entidade| self.new entidade }
+          rescue RestClient::ResourceNotFound
+            []
+          end
+        end
 
-      def build_url(path)
-        resource = self.name.underscore.pluralize
-        url_base = "#{API::Base::URL_BASE}/#{resource}"
-
-        path.each { |item| url_base.concat "/#{item}" }
-
-        url_base
+        def find(id)
+          begin
+            json = get([id])
+            self.new json["entidade"]
+          rescue RestClient::ResourceNotFound
+            nil
+          end
+        end
       end
     end
   end
