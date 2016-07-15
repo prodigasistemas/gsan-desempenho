@@ -31,5 +31,9 @@ module API
     def attributes
       self.as_json.except("id")
     end
+
+    def resource_name
+      self.class.name.underscore.downcase
+    end
   end
 end
