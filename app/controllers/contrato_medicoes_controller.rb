@@ -3,7 +3,7 @@ class ContratoMedicoesController < ApplicationController
   helper  SmartListing::Helper
 
   def index
-    contratos = [ContratoMedicao.new(id:"1", numero: "123", vigencia_inicial:"12/07/2016")]
+    contratos = ContratoMedicao.all
 
     contratos = contratos.filter(params[:filter]) if params[:filter].present?
     @contratos = smart_listing_create :contrato_medicoes,

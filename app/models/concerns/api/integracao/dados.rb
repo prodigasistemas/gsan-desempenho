@@ -6,6 +6,7 @@ module API
           json = get_request
           entidades = json["entidades"]
           entidades.map {|entidade| self.new entidade }
+          
         rescue RestClient::ResourceNotFound
           []
         end
