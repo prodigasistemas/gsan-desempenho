@@ -15,9 +15,9 @@ module API
           resource_params = {}
           resource_params[self.resource_name] = self.attributes
           json = put [self.id], resource_params
-          self.new json["entidade"]
+          self.class.new json["entidade"]
         rescue RestClient::UnprocessableEntity => e
-          entidade = self.new
+          entidade = self.class.new
           entidade.errors = ActiveModel::Errors.new(entidade)
           entidade
         rescue RestClient::ResourceNotFound => e
@@ -31,7 +31,7 @@ module API
         begin
           delete [self.id]
         rescue RestClient::UnprocessableEntity => e
-          entidade = self.new
+          entidade = self.class.new
           entidade.errors = ActiveModel::Errors.new(entidade)
           entidade
         rescue RestClient::ResourceNotFound => e
