@@ -24,7 +24,7 @@ module API
       def build_url(path)
         klass = self.is_a?(Class) ? self : self.class
 
-        resource = klass.pluralize_resource_name || klass::RESOURCE_NAME
+        resource = klass.name.underscore.pluralize
         url_base = "#{API::Base::URL_BASE}/#{resource}"
 
         path.each { |item| url_base.concat "/#{item}" }

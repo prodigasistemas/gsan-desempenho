@@ -10,7 +10,7 @@ module API
         def create(params={})
           begin
             resource_params = {}
-            resource_params[self::RESOURCE_NAME] = params
+            resource_params[self.name.underscore.downcase] = params
             json = post_request [], resource_params
             self.new json["entidade"]
           rescue RestClient::UnprocessableEntity => e
@@ -45,7 +45,7 @@ module API
 
         begin
           resource_params = {}
-          resource_params[self.class::RESOURCE_NAME] = self.attributes
+          resource_params[self.name.underscore.downcase] = self.attributes
           json = put_request [self.id], resource_params
           self.new json["entidade"]
         rescue RestClient::UnprocessableEntity => e
