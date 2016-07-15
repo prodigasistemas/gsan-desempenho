@@ -61,8 +61,7 @@ module API
         return unless self.id
 
         begin
-          json = delete_request [self.id]
-          self.new json["entidade"]
+          delete_request [self.id]
         rescue RestClient::UnprocessableEntity => e
           entidade = self.new
           entidade.errors = ActiveModel::Errors.new(entidade)
