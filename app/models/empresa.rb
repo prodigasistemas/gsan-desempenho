@@ -1,12 +1,3 @@
-class Empresa
-  include ActiveModel::Model
-  extend ActiveModel::Naming
-
+class Empresa < API::Model
   attr_accessor :id, :nome
-
-  def initialize(attributes={})
-    super
-    @errors = ActiveModel::Errors.new(self)
-  end
-
 end

@@ -1,5 +1,20 @@
 module ApplicationHelper
 
+  def gsan_form_for(model, options = {}, &block)
+    if model.id.present?
+      method = :patch
+      action = :update
+    else
+      method = :post
+      action = :create
+    end
+
+    options[:method] = method
+    options[:url] = { action: action }
+
+    form_for(model, options, &block)
+  end
+
   def build_breadcrumb(paths)
     breadcrumbs = [{ title: "Inicio", link: root_path }]
     breadcrumbs += paths

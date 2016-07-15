@@ -3,7 +3,7 @@
     <h3 class="panel-title">Formulário de Contrato</h3>
   </div>
 
-  <%= form_for(@contrato_medicao, html: { class: 'form-horizontal' }) do |f| %>
+  <%= gsan_form_for(@contrato_medicao, html: { class: 'form-horizontal' }) do |f| %>
     <div class="panel-body">
 
       <div class="form-group">
@@ -16,7 +16,7 @@
       <div class="form-group">
         <label for="contrato_empresa" class="col-sm-2 control-label">Empresa:</label>
         <div class="col-sm-6">
-          <%= collection_select(:empresa, :empresa_id, @empresas, :id, :nome, {}, { class: "form-control", id: "contrato_empresa" }) %>
+          <%= collection_select(:contrato_medicao, :empresa_id, @empresas, :id, :nome, {}, { class: "form-control", id: "contrato_empresa" }) %>
         </div>
       </div>
 
