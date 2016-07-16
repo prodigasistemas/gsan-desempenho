@@ -51,8 +51,10 @@ class ContratoMedicoesController < ApplicationController
   def destroy
     @contrato_medicao = ContratoMedicao.find(params[:id])
 
-    if @contract.destroy
+    if @contrato_medicao.destroy
       redirect_to contrato_medicoes_path, notice: 'Contrato destivado com sucesso'
+    else
+      redirect_to contrato_medicao_path(@contrato_medicao.id), notice: 'Não foi possível remover o contrato'
     end
   end
 
