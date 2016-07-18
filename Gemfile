@@ -21,6 +21,7 @@ gem 'rest-client'
 group :development, :test do
   gem 'pry'
   gem 'dotenv-rails'
+  gem 'factory_girl_rails'
 end
 
 group :development do
