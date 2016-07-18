@@ -54,7 +54,9 @@ module API
 
         def create(params={})
           begin
-            json = post [], params
+            request_params = {}
+            request_params[self.resource_name.singularize] = params
+            json = post [], request_params
             self.new json["entidade"]
           rescue RestClient::UnprocessableEntity => e
             erro = API::Integracao::Requisicao::ExcecaoNaoConcluido.new(self, e)

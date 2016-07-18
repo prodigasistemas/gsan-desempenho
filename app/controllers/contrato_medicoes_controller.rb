@@ -22,7 +22,7 @@ class ContratoMedicoesController < ApplicationController
   end
 
   def create
-    @contrato_medicao = ContratoMedicao.create(params)
+    @contrato_medicao = ContratoMedicao.create(contrato_medicao_params)
 
     if @contrato_medicao.valid?
       redirect_to(contrato_medicoes_path, notice: 'Contrato cadastrado com sucesso')
@@ -39,13 +39,17 @@ class ContratoMedicoesController < ApplicationController
 
   def update
     @contrato_medicao = ContratoMedicao.find(params[:id])
-    if @contrato_medicao.update(params)
+    if @contrato_medicao.update(contrato_medicao_params)
       redirect_to(contrato_medicoes_path, notice: 'Contrato atualizado com sucesso')
     end
   end
 
   def show
     @contrato = ContratoMedicao.find(params[:id])
+    coeficientes = Coeficiente.all
+    @coeficientes = smart_listing_create :coeficientes,
+                                  coeficientes,
+                                  partial: 'coeficientes/list'
   end
 
   def destroy

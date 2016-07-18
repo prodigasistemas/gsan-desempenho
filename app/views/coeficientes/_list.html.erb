@@ -1,0 +1,24 @@
+<table class="table table-hover table-striped">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Contrato</th>
+      <th>Ligação Água</th>
+      <th>Coeficiente</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% smart_listing.collection.each do |coeficiente| %>
+      <tr class="item-list" data-item-id="<%= coeficiente.id %>" data-show-item="coeficientes">
+        <td><%= coeficiente.id %></td>
+        <td><%= coeficiente.contrato_medicao_id %></td>
+        <td><%= coeficiente.ligacao_agua_id %></td>
+        <td><%= coeficiente.coeficiente %></td>
+      </tr>
+    <% end %>
+    <% if smart_listing.empty? %>
+      <tr><th><center>Nenhum registro encontrado</center></th></tr>
+    <% end %>
+  </tbody>
+</table>
+<%= smart_listing.paginate %>
