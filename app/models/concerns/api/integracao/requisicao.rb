@@ -22,9 +22,7 @@ module API
       end
 
       def build_url(path)
-        klass = self.is_a?(Class) ? self : self.class
-
-        resource = klass.resource_name
+        resource = self.resource_name
         url_base = "#{API::Base::URL_BASE}/#{resource}"
 
         path.each { |item| url_base.concat "/#{item}" }

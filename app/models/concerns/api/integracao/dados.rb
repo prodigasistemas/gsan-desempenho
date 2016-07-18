@@ -8,11 +8,25 @@ module API
         base.extend(ClassMethods)
       end
 
+      def save
+        begin
+          params = {}
+          params[self.class.resource_name.singularize] = self.attributes
+          json = post [], params
+          self.class.new json["entidade"]
+        rescue RestClient::UnprocessableEntity => e
+          erro = API::Integracao::Requisicao::ExcecaoNaoConcluido.new(self.class, e)
+          erro.entidade
+        end
+      end
+
       def update(params={})
         return unless self.id
 
         begin
-          json = put [self.id], params
+          request_params = {}
+          request_params[self.class.resource_name.singularize] = params
+          json = put [self.id], request_params
           self.class.new json["entidade"]
         rescue RestClient::UnprocessableEntity => e
           erro = API::Integracao::Requisicao::ExcecaoNaoConcluido.new(self.class, e)
