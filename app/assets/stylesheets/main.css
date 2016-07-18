@@ -322,3 +322,7 @@ ul.dropdown-menu li{
 .field_with_errors select {
   border: 1px solid #A94341;
 }
+
+.error-message{
+  color: #A94341;
+}
