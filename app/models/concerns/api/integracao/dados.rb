@@ -15,13 +15,8 @@ module API
           json = put [self.id], params
           self.class.new json["entidade"]
         rescue RestClient::UnprocessableEntity => e
-          entidade = self.class.new
-          entidade.errors = ActiveModel::Errors.new(entidade)
-          errors = JSON.parse(e.response)
-          errors["errors"].each do |key, messages|
-            messages.each { |message| entidade.errors[key] << message }
-          end
-          entidade
+          erro = API::Integracao::Requisicao::ExcecaoNaoConcluido.new(self.class, e)
+          erro.entidade
         rescue RestClient::ResourceNotFound => e
           false
         end
@@ -33,9 +28,8 @@ module API
         begin
           delete [self.id]
         rescue RestClient::UnprocessableEntity => e
-          entidade = self.class.new
-          entidade.errors = ActiveModel::Errors.new(entidade)
-          entidade
+          erro = API::Integracao::Requisicao::ExcecaoNaoConcluido.new(self.class, e)
+          erro.entidade
         rescue RestClient::ResourceNotFound => e
           false
         end
@@ -49,13 +43,8 @@ module API
             json = post [], params
             self.new json["entidade"]
           rescue RestClient::UnprocessableEntity => e
-            entidade = self.new
-            entidade.errors = ActiveModel::Errors.new(entidade)
-            errors = JSON.parse(e.response)
-            errors["errors"].each do |key, messages|
-              messages.each { |message| entidade.errors[key] << message }
-            end
-            entidade
+            erro = API::Integracao::Requisicao::ExcecaoNaoConcluido.new(self, e)
+            erro.entidade
           end
         end
 
