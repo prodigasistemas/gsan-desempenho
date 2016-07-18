@@ -31,6 +31,13 @@ class ContratoMedicoesController < ApplicationController
     @empresas = Empresa.all
   end
 
+  def update
+    @contrato_medicao = ContratoMedicao.find(params[:id])
+    if @contrato_medicao.update(params)
+      redirect_to(contrato_medicoes_path, notice: 'Contrato atualizado com sucesso')
+    end
+  end
+
   def show
     @contrato = ContratoMedicao.find(params[:id])
   end
