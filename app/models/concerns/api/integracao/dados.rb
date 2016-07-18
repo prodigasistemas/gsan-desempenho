@@ -12,13 +12,15 @@ module API
         return unless self.id
 
         begin
-          resource_params = {}
-          resource_params[self.resource_name] = self.attributes
-          json = put [self.id], resource_params
-          self.new json["entidade"]
+          json = put [self.id], params
+          self.class.new json["entidade"]
         rescue RestClient::UnprocessableEntity => e
-          entidade = self.new
+          entidade = self.class.new
           entidade.errors = ActiveModel::Errors.new(entidade)
+          errors = JSON.parse(e.response)
+          errors["errors"].each do |key, messages|
+            messages.each { |message| entidade.errors[key] << message }
+          end
           entidade
         rescue RestClient::ResourceNotFound => e
           false
@@ -31,7 +33,7 @@ module API
         begin
           delete [self.id]
         rescue RestClient::UnprocessableEntity => e
-          entidade = self.new
+          entidade = self.class.new
           entidade.errors = ActiveModel::Errors.new(entidade)
           entidade
         rescue RestClient::ResourceNotFound => e
@@ -44,13 +46,15 @@ module API
 
         def create(params={})
           begin
-            resource_params = {}
-            resource_params[self.resource_name] = params
-            json = post [], resource_params
+            json = post [], params
             self.new json["entidade"]
           rescue RestClient::UnprocessableEntity => e
             entidade = self.new
             entidade.errors = ActiveModel::Errors.new(entidade)
+            errors = JSON.parse(e.response)
+            errors["errors"].each do |key, messages|
+              messages.each { |message| entidade.errors[key] << message }
+            end
             entidade
           end
         end
