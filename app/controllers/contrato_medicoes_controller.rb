@@ -22,8 +22,14 @@ class ContratoMedicoesController < ApplicationController
   end
 
   def create
-    @contrato_medicao = ContratoMedicao.post_request([], params)
-    redirect_to(contrato_medicoes_path, notice: 'Contrato cadastrado com sucesso')
+    @contrato_medicao = ContratoMedicao.create(params)
+
+    if @contrato_medicao.valid?
+      redirect_to(contrato_medicoes_path, notice: 'Contrato cadastrado com sucesso')
+    else
+      @empresas = Empresa.all
+      render :new
+    end
   end
 
   def edit
@@ -43,17 +49,24 @@ class ContratoMedicoesController < ApplicationController
   end
 
   def destroy
+    @contrato_medicao = ContratoMedicao.find(params[:id])
+
+    if @contrato_medicao.destroy
+      redirect_to contrato_medicoes_path, notice: 'Contrato destivado com sucesso'
+    else
+      redirect_to contrato_medicao_path(@contrato_medicao.id), notice: 'Não foi possível remover o contrato'
+    end
   end
 
   private
 
   def contrato_medicao_params
     params.require(:contrato_medicao).permit(
-      :id, 
-      :numero, 
+      :id,
+      :numero,
       :vigencia_inicial,
       :vigencia_final, :data_assinatura,
-      :empresa_id, 
+      :empresa_id,
       :atualizado_em
     )
   end

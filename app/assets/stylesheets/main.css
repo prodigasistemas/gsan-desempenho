@@ -310,3 +310,19 @@ ul.dropdown-menu li{
   width: 100%;
   list-style: none;
 }
+
+.error_explanation{
+  color: #A94341;
+}
+
+.field_with_errors input[type='text'] {
+  border: 1px solid #A94341;
+}
+
+.field_with_errors select {
+  border: 1px solid #A94341;
+}
+
+.error-message{
+  color: #A94341;
+}

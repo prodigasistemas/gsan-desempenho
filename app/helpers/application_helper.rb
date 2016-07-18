@@ -53,6 +53,14 @@ module ApplicationHelper
     end
   end
 
+  def show_errors(object, field_name)
+    if object.errors.present?
+      if !object.errors.messages[field_name].blank?
+        object.errors.messages[field_name].join(", ")
+      end
+    end
+  end
+
   private
   def button_search
     button_tag :submit, class: "btn", disabled: true do
