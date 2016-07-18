@@ -6,8 +6,20 @@
   <%= gsan_form_for(@contrato_medicao, html: { class: 'form-horizontal' }) do |f| %>
     <div class="panel-body">
 
+      <% if @contrato_medicao.errors.present? %>
+        <div class="error_explanation">
+          <h2> Foram encontrados <%= pluralize(@contrato_medicao.errors.count, "erro") %> ao tentar enviar o fomulário:</h2>
+       
+          <ul>
+          <% @contrato_medicao.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
       <div class="form-group">
-        <label for="contrato_numero" class="col-sm-2 control-label">Número:</label>
+        <label for="contrato_numero" class="col-sm-2 control-label">Número: *</label>
         <div class="col-sm-2">
           <%= f.text_field :numero, class: "form-control", id: "contrato_numero" %>
         </div>
@@ -21,7 +33,7 @@
       </div>
 
       <div class="form-group">
-        <label for="contrato_vigencia_inicial" class="col-sm-2 control-label">Vigência Inicial:</label>
+        <label for="contrato_vigencia_inicial" class="col-sm-2 control-label">Vigência Inicial: *</label>
         <div class="col-sm-2">
           <%= f.text_field :vigencia_inicial, class: "form-control date-br datepicker", id: "contrato_vigencia_inicial" %>
         </div>

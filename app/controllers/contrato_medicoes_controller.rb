@@ -22,8 +22,14 @@ class ContratoMedicoesController < ApplicationController
   end
 
   def create
-    @contrato_medicao = ContratoMedicao.post_request([], params)
-    redirect_to(contrato_medicoes_path, notice: 'Contrato cadastrado com sucesso')
+    @contrato_medicao = ContratoMedicao.create(params)
+
+    if @contrato_medicao.valid?
+      redirect_to(contrato_medicoes_path, notice: 'Contrato cadastrado com sucesso')
+    else
+      @empresas = Empresa.all
+      render :new
+    end
   end
 
   def edit
