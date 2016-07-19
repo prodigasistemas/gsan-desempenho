@@ -17,9 +17,9 @@ describe ContratoMedicao do
 
   context '#create' do
     it {
-      params = {contrato_medicao: subject.attributes}
+      params = subject.attributes
       expect(ContratoMedicao).to receive(:post)
-                                  .with([], params)
+                                  .with([], { "contrato_medicao" => params })
                                   .and_return(get_response_json({entidade: subject.attributes}))
       expect(ContratoMedicao.create(params).numero).to eq(subject.numero)
     }
@@ -28,7 +28,7 @@ describe ContratoMedicao do
       # faltar mockar o retorno da api, por enquanto esse teste tá batendo na api de fato
       params = {contrato_medicao: subject.attributes}
       expect(ContratoMedicao.create(params).valid?).to be false
-      expect(ContratoMedicao.create(params).errors.messages[:numero].first).to eq "translation missing: pt-BR.activerecord.errors.models.contrato_medicao.attributes.numero.taken"
+      expect(ContratoMedicao.create(params).errors.messages[:numero].first).to eq "é obrigatório"
     end
   end
 
