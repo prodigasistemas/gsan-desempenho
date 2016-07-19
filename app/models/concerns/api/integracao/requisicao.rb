@@ -1,8 +1,13 @@
 module API
   module Integracao
     module Requisicao
-      def get(path=[])
-        response = RestClient.get build_url(path)
+      def get(path=[], params = {})
+        if params.any?
+          response = RestClient.get filter_url + params.to_query
+        else
+          response = RestClient.get build_url(path)
+        end
+
         JSON.parse(response.body)
       end
 
@@ -28,6 +33,10 @@ module API
         path.each { |item| url_base.concat "/#{item}" }
 
         url_base
+      end
+
+      def filter_url
+        "#{API::Base::URL_BASE}/filtros?"
       end
 
       class ExcecaoNaoConcluido < StandardError
