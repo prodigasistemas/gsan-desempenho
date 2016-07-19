@@ -8,20 +8,29 @@ module API
         base.extend(ClassMethods)
       end
 
+      def save
+        begin
+          params = {}
+          params[self.class.resource_name.singularize] = self.attributes
+          json = post [], params
+          self.class.new json["entidade"]
+        rescue RestClient::UnprocessableEntity => e
+          erro = API::Integracao::Requisicao::ExcecaoNaoConcluido.new(self.class, e)
+          erro.entidade
+        end
+      end
+
       def update(params={})
         return unless self.id
 
         begin
-          json = put [self.id], params
+          request_params = {}
+          request_params[self.class.resource_name.singularize] = params
+          json = put [self.id], request_params
           self.class.new json["entidade"]
         rescue RestClient::UnprocessableEntity => e
-          entidade = self.class.new
-          entidade.errors = ActiveModel::Errors.new(entidade)
-          errors = JSON.parse(e.response)
-          errors["errors"].each do |key, messages|
-            messages.each { |message| entidade.errors[key] << message }
-          end
-          entidade
+          erro = API::Integracao::Requisicao::ExcecaoNaoConcluido.new(self.class, e)
+          erro.entidade
         rescue RestClient::ResourceNotFound => e
           false
         end
@@ -33,9 +42,8 @@ module API
         begin
           delete [self.id]
         rescue RestClient::UnprocessableEntity => e
-          entidade = self.class.new
-          entidade.errors = ActiveModel::Errors.new(entidade)
-          entidade
+          erro = API::Integracao::Requisicao::ExcecaoNaoConcluido.new(self.class, e)
+          erro.entidade
         rescue RestClient::ResourceNotFound => e
           false
         end
@@ -46,16 +54,13 @@ module API
 
         def create(params={})
           begin
-            json = post [], params
+            request_params = {}
+            request_params[self.resource_name.singularize] = params
+            json = post [], request_params
             self.new json["entidade"]
           rescue RestClient::UnprocessableEntity => e
-            entidade = self.new
-            entidade.errors = ActiveModel::Errors.new(entidade)
-            errors = JSON.parse(e.response)
-            errors["errors"].each do |key, messages|
-              messages.each { |message| entidade.errors[key] << message }
-            end
-            entidade
+            erro = API::Integracao::Requisicao::ExcecaoNaoConcluido.new(self, e)
+            erro.entidade
           end
         end
 

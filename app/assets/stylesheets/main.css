@@ -5,7 +5,7 @@
 }
 
 body{
-  background-color: #FFF;
+  background-color: #0079BF;
   color: #545454;
   font-family: 'Open Sans', sans-serif;
   height: 100%;
@@ -24,7 +24,7 @@ html{
 }
 
 .container{
-  background: #fff;
+  background: #E2E4E6;
   margin-top: 50px;
 }
 
@@ -35,11 +35,11 @@ html{
 
 nav.top{
   padding: 10px 0 0 0;
-  background: #183886;
+  background: #0067A3;
 }
 
 nav.top a{
-  color: #FFFFFF;
+  color: #7FB2D1;
   text-decoration: none;
 }
 
@@ -293,9 +293,9 @@ footer .copyright {
 }
 
 .dropdown-user{
-  color: #fff;
+  color: #7FB2D1;
   cursor: pointer;
-  background: #183886;
+  background: #0067A3;
   padding: 4px 10px 4px 10px;
 }
 
@@ -309,4 +309,20 @@ ul.dropdown-menu li{
   display: block;
   width: 100%;
   list-style: none;
+}
+
+.error_explanation{
+  color: #A94341;
+}
+
+.field_with_errors input[type='text'] {
+  border: 1px solid #A94341;
+}
+
+.field_with_errors select {
+  border: 1px solid #A94341;
+}
+
+.error-message{
+  color: #A94341;
 }

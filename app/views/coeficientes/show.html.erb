@@ -1,0 +1,28 @@
+<div class="page-header">
+  <%= build_breadcrumb [
+    { title: "Contratos", link: contrato_medicoes_path },
+    { title: "Contrato", link: contrato_medicao_path(@contrato_medicao.id) },
+    { title: "Coeficiente", active: true }
+  ] %>
+</div>
+
+<%= build_action_header(@coeficiente.id, [@contrato_medicao, @coeficiente]) %>
+
+<div class="panel panel-show">
+  <table class="table">
+    <tbody>
+      <tr>
+        <%= table_label "Número do contrato" %>
+        <td><%= @contrato_medicao.numero %></td>
+      </tr>
+      <tr>
+        <%= table_label "Ligação de Água" %>
+        <td><%= @coeficiente.ligacao_agua_id %></td>
+      </tr>
+      <tr>
+        <%= table_label "Coeficiente" %>
+        <td><%= @coeficiente.coeficiente %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

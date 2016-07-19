@@ -22,14 +22,36 @@ module API
       end
 
       def build_url(path)
-        klass = self.is_a?(Class) ? self : self.class
-
-        resource = klass.resource_name
+        resource = self.resource_name
         url_base = "#{API::Base::URL_BASE}/#{resource}"
 
         path.each { |item| url_base.concat "/#{item}" }
 
         url_base
+      end
+
+      class ExcecaoNaoConcluido < StandardError
+        def initialize(klass, error)
+          @klass = klass
+          @error = error
+        end
+
+        def message
+          @error.message
+        end
+
+        def entidade
+          entidade = @klass.new
+
+          entidade.errors = ActiveModel::Errors.new(entidade)
+          errors = JSON.parse(@error.response)
+          errors["errors"].each do |key, messages|
+            messages.each { |message| entidade.errors[key] << message }
+          end
+
+          entidade
+        end
+
       end
     end
   end

@@ -1,0 +1,11 @@
+<div class="page-header">
+  <%= build_breadcrumb [
+    { title: "Contratos", link: contrato_medicoes_path },
+    { title: "Contrato", link: contrato_medicoes_path(@contrato_medicao) },
+    { title: "Editar Coeficiente", active: true }
+  ] %>
+
+  <h1>Coeficiente</h1>
+</div>
+
+<%= render "form", edit: true %>

@@ -4,6 +4,7 @@ module API
     extend ActiveModel::Naming
     include API::Base
     include API::Integracao::Dados
+    include API::Integracao::Associacao
 
     attr_accessor :errors
 
@@ -37,7 +38,19 @@ module API
     end
 
     def resource_name
-      self.class.resource_name
+      resource = ""
+      if resource_path
+        resource_path.each do |path|
+          resource << "/#{path.first}"
+          resource << "/#{path.last}" if path.last
+        end
+      end
+
+      "#{resource}/#{self.class.resource_name}"
+    end
+
+    def resource_path
+      nil
     end
   end
 end

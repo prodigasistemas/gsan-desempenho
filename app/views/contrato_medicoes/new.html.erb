@@ -1,0 +1,10 @@
+<div class="page-header">
+  <%= build_breadcrumb [
+    { title: "Contratos", link: contrato_medicoes_path(@contrato_medicao) },
+    { title: "Novo Contrato", active: true }
+  ] %>
+
+  <h1>Contrato</h1>
+</div>
+
+<%= render "form", edit: false %>

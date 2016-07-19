@@ -16,4 +16,5 @@
  *= require sidebar
  *= require sigin
  *= require_self
+ *= require bootstrap-datepicker
  */

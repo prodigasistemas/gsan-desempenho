@@ -16,8 +16,7 @@ module API
       end
 
       def autenticar_usuario(params)
-        response = RestClient.post "#{API::Base::URL_BASE}/autenticacao", login: params[:nome_usuario],
-                                                                senha: params[:senha]
+        response = RestClient.post "#{API::Base::URL_BASE}/autenticacao", params
         json = JSON.parse(response.body)
 
         json["usuario"]

@@ -11,4 +11,5 @@
 // about supported directives.
 //
 //= require vendor
+//= require bootstrap-datepicker
 //= require_tree .
