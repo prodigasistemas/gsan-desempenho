@@ -7,16 +7,18 @@
     <div class="panel-body">
 
       <div class="form-group">
-        <label for="ligacao_agua_id" class="col-sm-2 control-label">Situação da Ligação:</label>
+        <label for="ligacao_agua_id" class="col-sm-2 control-label">Situação da Ligação: *</label>
         <div class="col-sm-6">
           <%= collection_select(:coeficiente, :ligacao_agua_id, @ligacoes_agua, :id, :descricao, {}, { class: "form-control" }) %>
+          <div class="error-message"><%= show_errors(@coeficiente, :ligacao_agua_id) %></div>
         </div>
       </div>
 
       <div class="form-group">
-        <label for="contrato_numero" class="col-sm-2 control-label">Coeficiente:</label>
+        <label for="contrato_numero" class="col-sm-2 control-label">Coeficiente: *</label>
         <div class="col-sm-2">
           <%= f.text_field :coeficiente, class: "form-control" %>
+          <div class="error-message"><%= show_errors(@coeficiente, :coeficiente) %></div>
         </div>
       </div>
     </div>

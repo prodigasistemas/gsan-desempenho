@@ -18,14 +18,14 @@ class CoeficientesController < ApplicationController
 
   def create
     coeficiente = Coeficiente.new coeficiente_params.merge(contrato_medicao_id: params[:contrato_medicao_id])
-    @contrato = ContratoMedicao.find params[:contrato_medicao_id]
+    @contrato_medicao = ContratoMedicao.find params[:contrato_medicao_id]
+    @ligacoes_agua = LigacaoAguaSituacao.all
     @coeficiente = coeficiente.save
 
     if @coeficiente.valid?
-      # alterar o retorno da url
-      redirect_to contrato_medicao_path(@contrato.id), notice: "Coeficiente cadastrado com sucesso"
+      redirect_to contrato_medicao_path(@contrato_medicao.id), notice: "Coeficiente cadastrado com sucesso"
     else
-      flash[:error] = "Erro ao cadastrar coeficiente"
+      flash[:error] = "Não foi possível cadastrar o Coeficiente"
       render :new
     end
   end
