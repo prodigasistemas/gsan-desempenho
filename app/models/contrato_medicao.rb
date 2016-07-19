@@ -4,6 +4,7 @@ class ContratoMedicao < API::Model
                 :vigencia_final, :data_assinatura,
                 :empresa_id, :atualizado_em, :empresa
 
+  belongs_to :empresa
 
   def vigencia_inicial=(vigencia_inicial)
     @vigencia_inicial = vigencia_inicial.to_date

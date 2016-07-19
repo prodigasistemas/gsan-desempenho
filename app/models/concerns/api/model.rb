@@ -4,6 +4,7 @@ module API
     extend ActiveModel::Naming
     include API::Base
     include API::Integracao::Dados
+    include API::Integracao::Associacao
 
     attr_accessor :errors
 
