@@ -6,12 +6,6 @@
   <%= gsan_form_for(@contrato_medicao, html: { class: 'form-horizontal' }) do |f| %>
     <div class="panel-body">
 
-      <% if @contrato_medicao.errors.present? %>
-        <div class="error_explanation">
-          <h2> Foram encontrados <%= pluralize(@contrato_medicao.errors.count, "erro") %> ao tentar enviar o fomulário:</h2>
-        </div>
-      <% end %>
-
       <div class="form-group">
         <label for="contrato_numero" class="col-sm-2 control-label">Número: *</label>
         <div class="col-sm-2">

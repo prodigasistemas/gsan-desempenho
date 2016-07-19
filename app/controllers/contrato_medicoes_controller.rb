@@ -28,6 +28,7 @@ class ContratoMedicoesController < ApplicationController
       redirect_to(contrato_medicoes_path, notice: 'Contrato cadastrado com sucesso')
     else
       @empresas = Empresa.all
+      flash[:error] = "Não foi possível cadastrar o Contrato de Medição"
       render :new
     end
   end
