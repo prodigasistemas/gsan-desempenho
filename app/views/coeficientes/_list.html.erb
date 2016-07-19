@@ -9,7 +9,7 @@
   </thead>
   <tbody>
     <% smart_listing.collection.each do |coeficiente| %>
-      <tr class="item-list" data-item-id="<%= coeficiente.id %>" data-show-item="coeficientes">
+      <tr class="item-list" data-item-id="<%= coeficiente.id %>" data-show-item="contrato_medicoes/<%= coeficiente.contrato_medicao.id %>/coeficientes">
         <td><%= coeficiente.id %></td>
         <td><%= coeficiente.contrato_medicao_id %></td>
         <td><%= coeficiente.ligacao_agua_id %></td>

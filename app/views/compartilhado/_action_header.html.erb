@@ -9,7 +9,8 @@
         </div>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
           <li>
-            <%= link_to send(edit_path, models.map(&:id)) do %>
+            <% models_id = models.map(&:id) %>
+            <%= link_to send(edit_path, *models_id) do %>
               <i class="fa fa-pencil-square-o"></i> Editar
             <% end %>
           </li>
@@ -44,7 +45,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-        <%= link_to send(destroy_path, models.last.id), "data-method": "delete", class: "btn btn-danger" do %>
+        <%= link_to send(destroy_path, *models_id), "data-method": "delete", class: "btn btn-danger" do %>
            Confirmar
         <% end -%>
       </div>
