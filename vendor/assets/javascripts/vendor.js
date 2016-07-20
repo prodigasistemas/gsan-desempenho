@@ -16,3 +16,4 @@
 //= require bootstrap
 //= require smart_listing
 //= require jquery.mask
+//= require jquery-ui

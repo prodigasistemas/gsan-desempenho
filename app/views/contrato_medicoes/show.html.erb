@@ -8,6 +8,12 @@
 
 <%= build_action_header(@contrato.numero, [@contrato]) %>
 
+<div class="actions pull-right">
+  <%= link_to contrato_medicao_abrangencias_path(@contrato.id), class: "btn btn-info" do %>
+    Abrangência
+  <% end -%>
+</div>
+
 <div class="panel panel-show">
   <table class="table">
     <tbody>

@@ -1,0 +1,31 @@
+<div class="page-header">
+  <%= build_breadcrumb [
+    { title: "Contratos", link: contrato_medicoes_path },
+    { title: "Contrato", link: contrato_medicao_path(@contrato_medicao.id) },
+    { title: "Nova Abrangência", active: true }
+  ] %>
+
+  <h1>Abrangência</h1>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="form-group">
+      <%= text_field_tag(:localidade, nil, placeholder: "Localidade", class: "form-control") %>
+    </div>
+
+    <div class="form-group">
+      <%= text_field_tag(:setor, nil, placeholder: "Setor", class: "form-control") %>
+    </div>
+
+    <div class="form-group">
+      <%= text_field_tag(:rota, nil, placeholder: "Rota", class: "form-control") %>
+    </div>
+
+    <div class="panel-footer">
+      <%= submit_tag("Pesquisar", class: "btn btn-primary") %>
+    </div>
+  </div>
+</div>
+
+<%= render "form", edit: false %>
