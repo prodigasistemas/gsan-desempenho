@@ -2,9 +2,10 @@ class ContratoMedicao < API::Model
 
   attr_accessor :id, :numero, :vigencia_inicial,
                 :vigencia_final, :data_assinatura,
-                :empresa_id, :atualizado_em, :empresa
+                :empresa_id, :atualizado_em, :empresa, :imoveis
 
   belongs_to :empresa
+  has_many :imoveis
 
   def vigencia_inicial=(vigencia_inicial)
     @vigencia_inicial = vigencia_inicial.to_date

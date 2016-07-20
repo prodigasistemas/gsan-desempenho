@@ -8,17 +8,17 @@
     </tr>
   </thead>
   <tbody>
-    <% smart_listing.collection.each do |contrato| %>
-      <tr class="item-list" data-item-id="<%= contrato.id %>" data-show-item="contrato_medicoes">
+    <% @imoveis.each do |imovel| %>
+      <tr>
         <td><%= imovel.id %></td>
         <td><%= imovel.localidade.nome %></td>
         <td><%= imovel.setor_comercial.nome %></td>
         <td><%= imovel.numero_lote %></td>
       </tr>
+      <input type="hidden" name="abrangencia[imoveis][]" value="<%= imovel.id %>" />
     <% end %>
-    <% if smart_listing.empty? %>
+    <% if @imoveis.empty? %>
       <tr><th><center>Nenhum registro encontrado</center></th></tr>
     <% end %>
   </tbody>
 </table>
-<%= smart_listing.paginate %>

@@ -5,13 +5,13 @@ class AbrangenciasController < ApplicationController
   def index
     @contrato_medicao = ContratoMedicao.find(params[:contrato_medicao_id])
 
-    abrangencias = Abrangencia.all
+    imoveis = @contrato_medicao.imoveis
 
-    abrangencias = abrangencias.filter(params[:filter]) if params[:filter].present?
-    @abrangencias = smart_listing_create :abrangencias,
-                                  abrangencias,
+    imoveis = imoveis.filter(params[:filter]) if params[:filter].present?
+    @imoveis = smart_listing_create :imoveis,
+                                  imoveis,
                                   partial: 'abrangencias/list',
-                                  sort_attributes: [[:numero, "abrangencias.numero"]],
+                                  sort_attributes: [[:numero, "imoveis.numero"]],
 
                                    #                [:client_name, "clients.name"]],
 
@@ -21,5 +21,22 @@ class AbrangenciasController < ApplicationController
   def new
     @contrato_medicao = ContratoMedicao.find(params[:contrato_medicao_id])
     @abrangencia = Abrangencia.new
+
+    if params[:query].present?
+      @imoveis = Imovel.where(params[:query])
+    end
+  end
+
+  def create
+    abrangencia = Abrangencia.new(contrato_medicao_id: params[:contrato_medicao_id])
+    abrangencia.criar(abrangencia_params)
+
+    redirect_to abrangencias_path, notice: "Abrangência criada com sucesso!"
+  end
+
+  private
+
+  def abrangencia_params
+    params.require(:abrangencia).permit(imoveis: [])
   end
 end

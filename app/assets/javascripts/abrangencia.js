@@ -1,33 +1,5 @@
 $(function(){
   var cache = {};
-  
-  // var availableTags = [
-  //     "ActionScript",
-  //     "AppleScript",
-  //     "Asp",
-  //     "BASIC",
-  //     "C",
-  //     "C++",
-  //     "Clojure",
-  //     "COBOL",
-  //     "ColdFusion",
-  //     "Erlang",
-  //     "Fortran",
-  //     "Groovy",
-  //     "Haskell",
-  //     "Java",
-  //     "JavaScript",
-  //     "Lisp",
-  //     "Perl",
-  //     "PHP",
-  //     "Python",
-  //     "Ruby",
-  //     "Scala",
-  //     "Scheme"
-  //   ];
-  //   $( "#localidade" ).autocomplete({
-  //     source: availableTags
-  //   });
 
   $( "#localidade" ).autocomplete({
       minLength: 2,
@@ -38,18 +10,54 @@ $(function(){
           return;
         }
 
-        $.getJSON( BASE_URL + "/localidades", request, function( data, status, xhr ) {
+        request.tipo = "localidade";
+        request.filtros = { termo: term }
+
+        $.getJSON( BASE_URL + "/filtros", request, function( data, status, xhr ) {
           var result = $.map(data.entidades, function (value, key) {
             return {
-              id: value.loca_id,
-              label: value.loca_nmlocalidade,
-              value: value.loca_nmlocalidade
+              id: value.id,
+              label: value.nome,
+              value: value.nome
             };
           });
 
           cache[ term ] = result;
           response( result );
         });
+      },
+      select: function(event, ui){
+        $("#localidade_id").val(ui.item.id)
+      }
+    });
+
+    $( "#setor_comercial" ).autocomplete({
+      minLength: 2,
+      source: function( request, response ) {
+        var term = request.term;
+        if ( term in cache ) {
+          response( cache[ term ] );
+          return;
+        }
+
+        request.tipo = "setor_comercial";
+        request.filtros = { termo: term }
+
+        $.getJSON( BASE_URL + "/filtros", request, function( data, status, xhr ) {
+          var result = $.map(data.entidades, function (value, key) {
+            return {
+              id: value.id,
+              label: value.nome,
+              value: value.nome
+            };
+          });
+
+          cache[ term ] = result;
+          response( result );
+        });
+      },
+      select: function(event, ui){
+        $("#setor_comercial_id").val(ui.item.id)
       }
     });
   });

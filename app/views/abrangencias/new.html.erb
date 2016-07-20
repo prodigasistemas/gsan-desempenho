@@ -9,23 +9,23 @@
 </div>
 
 <div class="panel panel-default">
+  <form>
   <div class="panel-body">
     <div class="form-group">
-      <%= text_field_tag(:localidade, nil, placeholder: "Localidade", class: "form-control") %>
+      <input type="text" name="localidade" id="localidade" placeholder="Localidade" class="form-control" value="" />
+      <input type="hidden" name="query[localidade_id]" id="localidade_id" value="" />
     </div>
 
     <div class="form-group">
-      <%= text_field_tag(:setor, nil, placeholder: "Setor", class: "form-control") %>
-    </div>
-
-    <div class="form-group">
-      <%= text_field_tag(:rota, nil, placeholder: "Rota", class: "form-control") %>
+      <input type="text" name="setor_comercial" id="setor_comercial" placeholder="Setor Comercial" class="form-control" value="" />
+      <input type="hidden" name="query[setor_comercial_id]" id="setor_comercial_id" value="" />
     </div>
 
     <div class="panel-footer">
       <%= submit_tag("Pesquisar", class: "btn btn-primary") %>
     </div>
   </div>
+  </form>
 </div>
 
 <%= render "form", edit: false %>
