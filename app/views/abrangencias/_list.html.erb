@@ -8,11 +8,11 @@
     </tr>
   </thead>
   <tbody>
-    <% smart_listing.collection.each do |contrato| %>
-      <tr class="item-list" data-item-id="<%= contrato.id %>" data-show-item="contrato_medicoes">
+    <% smart_listing.collection.each do |imovel| %>
+      <tr class="item-list" data-item-id="<%= imovel.id %>" data-show-item="imoveis">
         <td><%= imovel.id %></td>
-        <td><%= imovel.localidade.nome %></td>
-        <td><%= imovel.setor_comercial.nome %></td>
+        <td><%= imovel.localidade_id %></td>
+        <td><%= imovel.setor_comercial_id %></td>
         <td><%= imovel.numero_lote %></td>
       </tr>
     <% end %>
