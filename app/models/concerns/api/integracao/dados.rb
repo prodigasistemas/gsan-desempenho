@@ -82,6 +82,21 @@ module API
             nil
           end
         end
+
+        def filter(terms = "")
+          filters = {
+            tipo: self.resource_name,
+            filtros: { termo: terms }
+          }
+
+          begin
+            json = get([], filters)
+            entidades = json["entidades"]
+            entidades.map {|entidade| self.new entidade }
+          rescue RestClient::BadRequest => e
+            []
+          end
+        end
       end
     end
   end
