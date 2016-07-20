@@ -2,6 +2,7 @@
   <thead>
     <tr>
       <th>Id</th>
+      <th>Empresa</th>
       <th>Número</th>
       <th>Vigência Inicial</th>
       <th>Vigência Final</th>
@@ -11,6 +12,7 @@
     <% smart_listing.collection.each do |contrato| %>
       <tr class="item-list" data-item-id="<%= contrato.id %>" data-show-item="contrato_medicoes">
         <td><%= contrato.id %></td>
+        <td><%= contrato.empresa.try(:nome) %></td>
         <td><%= contrato.numero %></td>
         <td><%= contrato.vigencia_inicial %></td>
         <td><%= contrato.vigencia_final %></td>

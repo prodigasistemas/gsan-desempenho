@@ -5,7 +5,7 @@ class ContratoMedicoesController < ApplicationController
   def index
     contratos = ContratoMedicao.all
 
-    contratos = ContratoMedicao.filter(params[:filter]) if params[:filter].present?
+    contratos = ContratoMedicao.filter(params[:filter], includes: [:empresa]) if params[:filter].present?
 
     @contratos = smart_listing_create :contrato_medicoes,
                                   contratos,

@@ -93,10 +93,13 @@ module API
           end
         end
 
-        def filter(terms = "")
+        def filter(terms = "", options = {})
           filters = {
             tipo: self.resource_name,
-            filtros: { termo: terms }
+            filtros: {
+              termo: terms,
+              incluir: options.fetch(:includes, [])
+            }
           }
 
           begin
