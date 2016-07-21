@@ -11,8 +11,8 @@
     <% smart_listing.collection.each do |imovel| %>
       <tr>
         <td><%= imovel.id %></td>
-        <td><%= imovel.localidade_id %></td>
-        <td><%= imovel.setor_comercial_id %></td>
+        <td><%= imovel.localidade.nome %></td>
+        <td><%= imovel.setor_comercial.nome %></td>
         <td><%= imovel.numero_lote %></td>
       </tr>
     <% end %>
