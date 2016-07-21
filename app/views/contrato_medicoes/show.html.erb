@@ -4,15 +4,10 @@
     { title: "Contratos", link: contrato_medicoes_path },
     { title: @contrato.numero, active: true }
   ] %>
+
 </div>
 
 <%= build_action_header(@contrato.numero, [@contrato]) %>
-
-<div class="actions pull-right">
-  <%= link_to contrato_medicao_abrangencias_path(@contrato.id), class: "btn btn-info" do %>
-    Abrangência
-  <% end -%>
-</div>
 
 <div class="panel panel-show">
   <table class="table">
@@ -28,6 +23,12 @@
       <tr>
         <%= table_label "Vigência incial" %>
         <td><%= @contrato.vigencia_inicial %></td>
+      </tr>
+      <tr>
+        <%= table_label "Abrangência" %>
+        <td>
+          <%= link_to "Visualizar", contrato_medicao_abrangencias_path(@contrato.id), class: "btn btn-info" %>
+        </td>
       </tr>
     </tbody>
   </table>
