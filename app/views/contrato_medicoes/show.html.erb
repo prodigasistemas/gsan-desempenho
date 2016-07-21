@@ -2,12 +2,12 @@
 
   <%= build_breadcrumb [
     { title: "Contratos", link: contrato_medicoes_path },
-    { title: @contrato.numero, active: true }
+    { title: "#{@contrato.numero} - #{@contrato.empresa.nome}", active: true }
   ] %>
 
 </div>
 
-<%= build_action_header(@contrato.numero, [@contrato]) %>
+<%= build_action_header("#{@contrato.numero} - #{@contrato.empresa.nome}", [@contrato]) %>
 
 <div class="panel panel-show">
   <table class="table">

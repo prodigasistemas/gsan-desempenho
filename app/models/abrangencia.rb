@@ -8,12 +8,12 @@ class Abrangencia < API::Model
     [["contrato_medicoes", contrato_medicao_id]]
   end
 
-  def criar(params)
+  def definir_abrangencia(params)
     begin
       json = post([], params)
-      self.new json["entidade"]
+      ContratoMedicao.new json["entidade"]
     rescue RestClient::UnprocessableEntity => e
-      erro = API::Integracao::Requisicao::ExcecaoNaoConcluido.new(self, e)
+      erro = API::Integracao::Requisicao::ExcecaoNaoConcluido.new(ContratoMedicao, e)
       erro.entidade
     end
   end

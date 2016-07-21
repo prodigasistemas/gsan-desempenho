@@ -1,14 +1,14 @@
 <div class="page-header">
   <%= build_breadcrumb [
     { title: "Contratos", link: contrato_medicoes_path },
-    { title: "Contrato", link: contrato_medicao_path(@contrato_medicao.id) },
+    { title: "#{@contrato_medicao.numero} - #{@contrato_medicao.empresa.nome}", link: contrato_medicao_path(@contrato_medicao.id) },
     { title: "Abrangências", active: true }
   ] %>
 
   <div class="actions pull-right">
     <%= build_header_button('novo', :abrangencia, new_contrato_medicao_abrangencia_path) %>
   </div>
-  <h1><%= @contrato_medicao.empresa.nome %></h1>
+  <h1><%= "#{@contrato_medicao.numero} - #{@contrato_medicao.empresa.nome}" %></h1>
 </div>
 
 <%= input_search :imoveis %>

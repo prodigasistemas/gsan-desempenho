@@ -29,9 +29,12 @@ class AbrangenciasController < ApplicationController
 
   def create
     abrangencia = Abrangencia.new(contrato_medicao_id: params[:contrato_medicao_id])
-    abrangencia.criar(abrangencia_params)
-
-    redirect_to abrangencias_path, notice: "Abrangência criada com sucesso!"
+    @contrato_medicao = abrangencia.definir_abrangencia(abrangencia_params)
+    if @contrato_medicao
+      redirect_to contrato_medicao_abrangencias_path(@contrato_medicao.id), notice: "Abrangência criada com sucesso!"
+    else
+      render :new
+    end
   end
 
   private

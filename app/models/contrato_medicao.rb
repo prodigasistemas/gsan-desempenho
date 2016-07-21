@@ -18,5 +18,4 @@ class ContratoMedicao < API::Model
   def data_assinatura=(data_assinatura)
     @data_assinatura = data_assinatura.to_date
   end
-
 end
