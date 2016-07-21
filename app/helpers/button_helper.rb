@@ -33,6 +33,10 @@ module ButtonHelper
     "fa fa-plus"
   end
 
+  def adicionar
+    "fa fa-plus"
+  end
+
   def remover
     "fa fa-close"
   end

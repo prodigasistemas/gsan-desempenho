@@ -48,9 +48,9 @@ class ContratoMedicoesController < ApplicationController
 
   def show
     @contrato = ContratoMedicao.find(params[:id])
-    coeficientes = Coeficiente.all
+    @coeficientes = @contrato.coeficientes
     @coeficientes = smart_listing_create :coeficientes,
-                                  coeficientes,
+                                  @coeficientes,
                                   partial: 'coeficientes/list'
   end
 
