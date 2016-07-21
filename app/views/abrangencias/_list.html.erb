@@ -1,7 +1,6 @@
 <table class="table table-hover table-striped">
   <thead>
     <tr>
-      <th>Id</th>
       <th>Localidade</th>
       <th>Setor Comercial</th>
       <th>Número do Lote</th>
@@ -10,7 +9,6 @@
   <tbody>
     <% smart_listing.collection.each do |imovel| %>
       <tr>
-        <td><%= imovel.id %></td>
         <td><%= imovel.localidade.nome %></td>
         <td><%= imovel.setor_comercial.nome %></td>
         <td><%= imovel.numero_lote %></td>
