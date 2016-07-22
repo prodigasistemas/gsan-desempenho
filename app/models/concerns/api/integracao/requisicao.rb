@@ -11,6 +11,12 @@ module API
         JSON.parse(response.body)
       end
 
+      def get_relations(path=[], params = {})
+        response = RestClient.get relations_url + params.to_query
+
+        JSON.parse(response.body)
+      end
+
       def get_with_params(path=[], params = {})
         query = { query: params }
         response = RestClient.get build_url(path) + "?" + query.to_query
@@ -44,6 +50,10 @@ module API
 
       def filter_url
         "#{API::Base::URL_BASE}/filtros?"
+      end
+
+      def relations_url
+        "#{API::Base::URL_BASE}/associacoes?"
       end
 
       class ExcecaoNaoConcluido < StandardError
