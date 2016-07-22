@@ -20,7 +20,6 @@ class Abrangencia < API::Model
 
   def redefinir_abrangencia
     begin
-      binding.pry
       json = delete([:redefinir])
       ContratoMedicao.new json["entidade"]
     rescue RestClient::UnprocessableEntity => e
