@@ -7,7 +7,10 @@ module API
         def has_many relations
           instance_eval do
             define_method("#{relations}") do
-              return [] unless attrs = self.attributes[relations.to_s]
+              attrs = self.attributes[relations.to_s]
+              attrs = fetch_lazy(relations) if attrs.blank?
+
+              return [] if attrs.blank?
 
               attrs.map do |relation|
                 relations.to_s.classify.constantize.new(relation)
@@ -19,7 +22,10 @@ module API
         def belongs_to relation
           instance_eval do
             define_method("#{relation}") do
-              return unless attrs = self.attributes[relation.to_s]
+              attrs = self.attributes[relation.to_s]
+              attrs = fetch_lazy(relation) if attrs.blank?
+
+              return if attrs.blank?
 
               relation.to_s.classify.constantize.new(attrs)
             end

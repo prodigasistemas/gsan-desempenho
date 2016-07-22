@@ -49,6 +49,22 @@ module API
         end
       end
 
+      def fetch_lazy relation
+        begin
+          params = {
+            objeto: self.class.name.underscore,
+            objeto_id: self.id,
+            associacao: relation
+          }
+
+          json = get_relations([], params)
+
+          json["entidade"] || json["entidades"]
+        rescue RestClient::ResourceNotFound
+          nil
+        end
+      end
+
       module ClassMethods
         include API::Integracao::Requisicao
 
