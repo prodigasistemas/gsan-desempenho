@@ -6,7 +6,6 @@
       <th>Vigência Inicial</th>
       <th>Vigência Final</th>
       <th>Qtd. Imóveis</th>
-      <th>Localidades</th>
     </tr>
   </thead>
   <tbody>
@@ -17,7 +16,6 @@
         <td><%= contrato.vigencia_inicial %></td>
         <td><%= contrato.vigencia_final %></td>
         <td><%= contrato.imoveis.size %></td>
-        <td><%= contrato.localidades.join(",") %></td>
       </tr>
     <% end %>
     <% if smart_listing.empty? %>

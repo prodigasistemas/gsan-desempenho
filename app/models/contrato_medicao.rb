@@ -19,13 +19,4 @@ class ContratoMedicao < API::Model
   def data_assinatura=(data_assinatura)
     @data_assinatura = data_assinatura.to_date
   end
-
-  def localidades
-    if imoveis.any?
-      locais = imoveis.map(&:localidade)
-      locais.map(&:nome).uniq!
-    else
-      []
-    end
-  end
 end
