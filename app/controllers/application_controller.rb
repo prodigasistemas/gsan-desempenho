@@ -25,9 +25,10 @@ class ApplicationController < ActionController::Base
   def acesso_restrito
     if session[:usuario_id]
       @usuario_logado = usuario_logado
-    else
-      redirect_to(new_session_path, alert: "Efetue seu login no GSAN")
+      return @usuario_logado unless @usuario_logado.nil?
     end
+    session.clear
+    redirect_to(new_session_path, alert: "Efetue seu login no GSAN")
   end
 
   def limpar_sessao

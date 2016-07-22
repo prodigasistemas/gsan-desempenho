@@ -2,11 +2,12 @@
 
   <%= build_breadcrumb [
     { title: "Contratos", link: contrato_medicoes_path },
-    { title: @contrato.numero, active: true }
+    { title: "#{@contrato.numero} - #{@contrato.empresa.nome}", active: true }
   ] %>
+
 </div>
 
-<%= build_action_header(@contrato.numero, [@contrato]) %>
+<%= build_action_header("#{@contrato.numero} - #{@contrato.empresa.nome}", [@contrato]) %>
 
 <div class="panel panel-show">
   <table class="table">
@@ -22,6 +23,17 @@
       <tr>
         <%= table_label "Vigência incial" %>
         <td><%= @contrato.vigencia_inicial %></td>
+      </tr>
+      <tr>
+        <%= table_label "Abrangência" %>
+        <td>
+          <%= link_to "Visualizar", contrato_medicao_abrangencias_path(@contrato.id), class: "btn btn-info" %>
+          <%= link_to "Redefinir", redefinir_contrato_medicao_abrangencias_path(@contrato.id), method: :delete, class: "btn btn-danger" %>
+        </td>
+      </tr>
+      <tr>
+        <%= table_label "Total de Imóveis" %>
+        <td><%= @contrato.imoveis.size %></td>
       </tr>
     </tbody>
   </table>

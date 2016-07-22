@@ -11,6 +11,13 @@ module API
         JSON.parse(response.body)
       end
 
+      def get_with_params(path=[], params = {})
+        query = { query: params }
+        response = RestClient.get build_url(path) + "?" + query.to_query
+
+        JSON.parse(response.body)
+      end
+
       def post(path=[], params={})
         response = RestClient.post build_url(path), params
         JSON.parse(response.body)

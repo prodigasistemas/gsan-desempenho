@@ -74,6 +74,16 @@ module API
           end
         end
 
+        def where(params={})
+          begin
+            json = get_with_params([], params)
+            entidades = json["entidades"]
+            entidades.map {|entidade| self.new entidade }
+          rescue RestClient::ResourceNotFound
+            []
+          end
+        end
+
         def find(id)
           begin
             json = get([id])

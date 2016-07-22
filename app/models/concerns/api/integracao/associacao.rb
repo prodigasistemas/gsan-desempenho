@@ -10,7 +10,7 @@ module API
               return [] unless attrs = self.attributes[relations.to_s]
 
               attrs.map do |relation|
-                relations.classify.constantize.new(relation)
+                relations.to_s.classify.constantize.new(relation)
               end
             end
           end

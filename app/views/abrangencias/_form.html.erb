@@ -1,0 +1,19 @@
+<% if @imoveis.present?  %>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Formulário de Abrangência</h3>
+  </div>
+
+  <%= gsan_form_for(@abrangencia, html: { class: 'form-horizontal' }) do |f| %>
+    <div class="panel-body">
+
+      <%= render 'imoveis' %>
+
+    </div>
+
+     <div class="panel-footer">
+      <%= f.submit "Adicionar", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>
+<% end %>
