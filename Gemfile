@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
-
-gem 'rails', '4.2.5'
+gem 'rails', '4.2.7'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 
@@ -10,21 +9,19 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'bootstrap-datepicker-rails'
-gem 'sdoc', '~> 0.4.0', group: :doc
-
-# Use Unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
 
 gem 'rest-client'
+gem 'dotenv-rails'
 
 group :development, :test do
-  gem 'pry'
-  gem 'dotenv-rails'
+  gem 'pry-rails'
   gem 'awesome_print', require: 'ap'
   gem 'factory_girl_rails'
+  gem 'rspec-rails', '~> 3.0'
+  gem 'capistrano'
+  gem 'capistrano-rvm'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
 end
 
 group :development do
@@ -34,8 +31,10 @@ group :development do
 end
 
 group :test do
-  gem 'rspec-rails', '~> 3.0'
   gem 'rspec-mocks'
   gem 'shoulda-matchers', '~> 3.1'
 end
 
+group :production do
+  gem 'unicorn'
+end
