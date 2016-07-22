@@ -4,7 +4,10 @@ Rails.application.routes.draw do
 
   resources :contrato_medicoes do
     resources :coeficientes, except: [:index]
-    resources :abrangencias
+    resources :abrangencias, except: [:destroy]
+    resource :abrangencias, only: :none do
+      delete :redefinir
+    end
   end
   resource :session, only: [:new, :create, :destroy]
 end

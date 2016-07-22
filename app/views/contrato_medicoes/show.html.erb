@@ -28,7 +28,16 @@
         <%= table_label "Abrangência" %>
         <td>
           <%= link_to "Visualizar", contrato_medicao_abrangencias_path(@contrato.id), class: "btn btn-info" %>
+          <%= link_to "Redefinir", redefinir_contrato_medicao_abrangencias_path(@contrato.id), method: :delete, class: "btn btn-danger" %>
         </td>
+      </tr>
+      <tr>
+        <%= table_label "Total de Imóveis" %>
+        <td><%= @contrato.imoveis.size %></td>
+      </tr>
+      <tr>
+        <%= table_label "Localidades" %>
+        <td><%= @contrato.localidades.join(",") %></td>
       </tr>
     </tbody>
   </table>

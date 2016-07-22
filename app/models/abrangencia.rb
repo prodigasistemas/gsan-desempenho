@@ -17,4 +17,15 @@ class Abrangencia < API::Model
       erro.entidade
     end
   end
+
+  def redefinir_abrangencia
+    begin
+      binding.pry
+      json = delete([:redefinir])
+      ContratoMedicao.new json["entidade"]
+    rescue RestClient::UnprocessableEntity => e
+      erro = API::Integracao::Requisicao::ExcecaoNaoConcluido.new(ContratoMedicao, e)
+      erro.entidade
+    end
+  end
 end

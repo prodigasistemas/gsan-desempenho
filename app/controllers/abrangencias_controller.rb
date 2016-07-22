@@ -30,10 +30,20 @@ class AbrangenciasController < ApplicationController
   def create
     abrangencia = Abrangencia.new(contrato_medicao_id: params[:contrato_medicao_id])
     @contrato_medicao = abrangencia.definir_abrangencia(abrangencia_params)
-    if @contrato_medicao
+    if @contrato_medicao.valid?
       redirect_to contrato_medicao_abrangencias_path(@contrato_medicao.id), notice: "Abrangência criada com sucesso!"
     else
       render :new
+    end
+  end
+
+  def redefinir
+    abrangencia = Abrangencia.new(contrato_medicao_id: params[:contrato_medicao_id])
+    @contrato_medicao = abrangencia.redefinir_abrangencia
+    if @contrato_medicao.valid?
+      redirect_to contrato_medicao_path(@contrato_medicao.id), notice: "Todos os imóveis foram removidos!"
+    else
+      redirect_to contrato_medicao_abrangencias_path(@contrato_medicao.id), notice: "Não foi possível remover os imóveis!"
     end
   end
 
