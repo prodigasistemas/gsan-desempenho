@@ -13,7 +13,7 @@
         <td><%= @contrato.numero %></td>
         <td><%= @contrato.empresa.nome %></td>
         <td><%= coeficiente.ligacao_agua_situacao.descricao %></td>
-        <td><%= coeficiente.coeficiente %></td>
+        <td><%= number_with_precision(coeficiente.coeficiente, :precision => 1, separator: ',') %></td>
       </tr>
     <% end %>
     <% if smart_listing.empty? %>

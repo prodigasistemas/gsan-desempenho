@@ -17,7 +17,7 @@
       <div class="form-group">
         <label for="contrato_numero" class="col-sm-2 control-label">Coeficiente: *</label>
         <div class="col-sm-2">
-          <%= f.text_field :coeficiente, class: "form-control" %>
+          <%= f.text_field :coeficiente, class: "form-control decimal" %>
           <div class="error-message"><%= show_errors(@coeficiente, :coeficiente) %></div>
         </div>
       </div>
