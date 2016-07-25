@@ -12,9 +12,6 @@ class AbrangenciasController < ApplicationController
                                   imoveis,
                                   partial: 'abrangencias/list',
                                   sort_attributes: [[:numero, "imoveis.numero"]],
-
-                                   #                [:client_name, "clients.name"]],
-
                                   default_sort: {numero: "asc"}
   end
 
@@ -44,6 +41,18 @@ class AbrangenciasController < ApplicationController
       redirect_to contrato_medicao_path(@contrato_medicao.id), notice: "Todos os imóveis foram removidos!"
     else
       redirect_to contrato_medicao_abrangencias_path(@contrato_medicao.id), notice: "Não foi possível remover os imóveis!"
+    end
+  end
+
+  def destroy
+    @contrato_medicao = ContratoMedicao.find params[:contrato_medicao_id]
+    abrangencia = Abrangencia.find_by(imovel_id: params[:imovel_id], contrato_medicao_id: @contrato_medicao.id).first
+
+    if abrangencia.destroy
+      redirect_to contrato_medicao_abrangencias_path(@contrato_medicao.id), notice: "Imóvel foi removido da abrangência com sucesso"
+    else
+      flash[:error] = "Não foi possível remover o imóvel da abrangência"
+      render :index
     end
   end
 

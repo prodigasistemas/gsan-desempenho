@@ -41,9 +41,11 @@ module API
 
         begin
           delete [self.id]
+          true
         rescue RestClient::UnprocessableEntity => e
           erro = API::Integracao::Requisicao::ExcecaoNaoConcluido.new(self.class, e)
           erro.entidade
+          false
         rescue RestClient::ResourceNotFound => e
           false
         end
@@ -90,9 +92,9 @@ module API
           end
         end
 
-        def where(params={})
+        def where(path=[], params={})
           begin
-            json = get_with_params([], params)
+            json = get_with_params(path, params)
             entidades = json["entidades"]
             entidades.map {|entidade| self.new entidade }
           rescue RestClient::ResourceNotFound
@@ -107,6 +109,10 @@ module API
           rescue RestClient::ResourceNotFound
             nil
           end
+        end
+
+        def find_by(params={})
+          where(["search"], params)
         end
 
         def filter(terms = "", options = {})

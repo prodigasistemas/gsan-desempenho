@@ -13,7 +13,6 @@ module API
 
       def get_relations(path=[], params = {})
         response = RestClient.get relations_url + params.to_query
-
         JSON.parse(response.body)
       end
 

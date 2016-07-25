@@ -5,6 +5,7 @@
       <th>Localidade</th>
       <th>Setor Comercial</th>
       <th>Número do Lote</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -14,6 +15,11 @@
         <td><%= imovel.localidade.nome %></td>
         <td><%= imovel.setor_comercial.nome %></td>
         <td><%= imovel.numero_lote %></td>
+        <td>
+          <%= link_to contrato_medicao_imovel_abrangencia_path(@contrato_medicao.id, imovel.id), method: :delete, data: {confirm: "Você deseja remover esse imóvel da abrangência?"} do %>
+            <i class="fa fa-remove"></i>
+          <% end %>
+        </td>
       </tr>
     <% end %>
     <% if smart_listing.empty? %>
