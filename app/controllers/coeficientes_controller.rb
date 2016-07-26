@@ -1,6 +1,7 @@
 class CoeficientesController < ApplicationController
   def show
     @coeficiente = Coeficiente.find params[:id]
+
     @contrato_medicao = ContratoMedicao.find params[:contrato_medicao_id]
   end
 
@@ -20,6 +21,8 @@ class CoeficientesController < ApplicationController
     coeficiente = Coeficiente.new coeficiente_params.merge(contrato_medicao_id: params[:contrato_medicao_id])
     @contrato_medicao = ContratoMedicao.find params[:contrato_medicao_id]
     @ligacoes_agua = LigacaoAguaSituacao.all
+
+    coeficiente.usuario_id = @usuario_logado.id
     @coeficiente = coeficiente.save
 
     if @coeficiente.valid?
@@ -32,9 +35,10 @@ class CoeficientesController < ApplicationController
 
   def update
     coeficiente = Coeficiente.find params[:id]
-    coeficiente = coeficiente.update coeficiente_params.merge(contrato_medicao_id: params[:contrato_medicao_id])
+
+    coeficiente = coeficiente.update coeficiente_params.merge(contrato_medicao_id: params[:contrato_medicao_id], usuario_id: @usuario_logado.id)
     if coeficiente.valid?
-      redirect_to contrato_medicoes_path, notice: "Coeficiente atualizado com sucesso"
+      redirect_to contrato_medicao_path(coeficiente.contrato_medicao_id), notice: "Coeficiente atualizado com sucesso"
     else
       flash[:error] = "Erro ao atualizar coeficiente"
       render :edit
