@@ -1,17 +1,13 @@
 <table class="table table-hover table-striped">
   <thead>
     <tr>
-      <th>Contrato</th>
-      <th>Empresa</th>
-      <th>Ligação Água</th>
+      <th>Situação</th>
       <th>Coeficiente</th>
     </tr>
   </thead>
   <tbody>
     <% smart_listing.collection.each do |coeficiente| %>
       <tr class="item-list" data-item-id="<%= coeficiente.id %>" data-show-item="contrato_medicoes/<%= @contrato.id %>/coeficientes">
-        <td><%= @contrato.numero %></td>
-        <td><%= @contrato.empresa.nome %></td>
         <td><%= coeficiente.ligacao_agua_situacao.descricao %></td>
         <td><%= number_with_precision(coeficiente.coeficiente, :precision => 1, separator: ',') %></td>
       </tr>

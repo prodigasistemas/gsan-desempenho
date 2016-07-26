@@ -6,57 +6,68 @@ class CoeficientesController < ApplicationController
   end
 
   def new
+    @coeficientes = []
     @contrato_medicao = ContratoMedicao.find params[:contrato_medicao_id]
     @ligacoes_agua = LigacaoAguaSituacao.all
-    @coeficiente = Coeficiente.new
+
+    redirect_to contrato_medicao_coeficientes_path(@contrato_medicao.id) and return if @contrato_medicao.coeficientes.any?
+
+    @ligacoes_agua.sort_by(&:id).each do |ligacao_agua|
+      @coeficientes << Coeficiente.new(ligacao_agua_situacao: ligacao_agua, ligacao_agua_id: ligacao_agua.id)
+    end
   end
 
   def edit
     @contrato_medicao = ContratoMedicao.find params[:contrato_medicao_id]
-    @ligacoes_agua = LigacaoAguaSituacao.all
-    @coeficiente = Coeficiente.find params[:id]
+    @coeficientes = @contrato_medicao.coeficientes.sort_by(&:ligacao_agua_id)
+
+    redirect_to new_contrato_medicao_coeficiente_path(@contrato_medicao.id) and return if @coeficientes.empty?
   end
 
   def create
-    coeficiente = Coeficiente.new coeficiente_params.merge(contrato_medicao_id: params[:contrato_medicao_id])
     @contrato_medicao = ContratoMedicao.find params[:contrato_medicao_id]
-    @ligacoes_agua = LigacaoAguaSituacao.all
+    coeficiente = Coeficiente.new(contrato_medicao_id: params[:contrato_medicao_id])
 
-    coeficiente.usuario_id = @usuario_logado.id
-    @coeficiente = coeficiente.save
-
-    if @coeficiente.valid?
+    if coeficiente.save(coeficientes: coeficiente_params)
       redirect_to contrato_medicao_path(@contrato_medicao.id), notice: "Coeficiente cadastrado com sucesso"
     else
+      @coeficientes = []
+
+      coeficiente_params.each do |p|
+        @coeficientes << Coeficiente.new(p)
+      end
+
       flash[:error] = "Não foi possível cadastrar o Coeficiente"
       render :new
     end
   end
 
   def update
-    coeficiente = Coeficiente.find params[:id]
+    @contrato_medicao = ContratoMedicao.find params[:contrato_medicao_id]
 
-    coeficiente = coeficiente.update coeficiente_params.merge(contrato_medicao_id: params[:contrato_medicao_id], usuario_id: @usuario_logado.id)
-    if coeficiente.valid?
-      redirect_to contrato_medicao_path(coeficiente.contrato_medicao_id), notice: "Coeficiente atualizado com sucesso"
+    coeficiente_params.each do |coeficiente|
+      @coeficiente = Coeficiente.find coeficiente[:id]
+      @coeficiente = @coeficiente.update coeficiente
+
+      break unless @coeficiente.valid?
+    end
+
+    if @coeficiente.valid?
+      redirect_to contrato_medicao_path(@contrato_medicao.id), notice: "Coeficiente atualizado com sucesso"
     else
-      flash[:error] = "Erro ao atualizar coeficiente"
+      @coeficientes = @contrato_medicao.coeficientes.sort_by(&:ligacao_agua_id)
+
+      flash[:error] = "Erro ao atualizar coeficiente #{@coeficiente.id}"
       render :edit
     end
-  end
-
-  def destroy
-    coeficiente = Coeficiente.find(params[:id])
-    @contrato = ContratoMedicao.find params[:contrato_medicao_id]
-
-    coeficiente.destroy
-
-    redirect_to contrato_medicao_path(@contrato.id), notice: "Coeficiente removido com sucesso"
   end
 
   protected
 
   def coeficiente_params
-    params.require(:coeficiente).permit(:ligacao_agua_id, :coeficiente)
+    params.require(:coeficiente).map do |hash|
+      hash.merge!(contrato_medicao_id: params[:contrato_medicao_id], usuario_id: @usuario_logado.id)
+      ActionController::Parameters.new(hash).permit(:id, :contrato_medicao_id, :ligacao_agua_id, :coeficiente)
+    end
   end
 end
