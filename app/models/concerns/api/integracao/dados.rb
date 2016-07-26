@@ -92,9 +92,9 @@ module API
           end
         end
 
-        def where(path=[], params={})
+        def where(params={})
           begin
-            json = get_with_params(path, params)
+            json = get_with_params([], params)
             entidades = json["entidades"]
             entidades.map {|entidade| self.new entidade }
           rescue RestClient::ResourceNotFound
@@ -109,10 +109,6 @@ module API
           rescue RestClient::ResourceNotFound
             nil
           end
-        end
-
-        def find_by(params={})
-          where(["search"], params)
         end
 
         def filter(terms = "", options = {})
