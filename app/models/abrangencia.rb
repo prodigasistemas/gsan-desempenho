@@ -1,5 +1,5 @@
 class Abrangencia < API::Model
-  attr_accessor :id, :contrato_medicao_id, :imovel_id
+  attr_accessor :id, :contrato_medicao_id, :imovel_id, :criado_em, :atualizado_em
 
   belongs_to :contrato_medicao
   belongs_to :imovel
