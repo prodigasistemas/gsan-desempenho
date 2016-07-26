@@ -46,7 +46,7 @@ class AbrangenciasController < ApplicationController
 
   def destroy
     @contrato_medicao = ContratoMedicao.find params[:contrato_medicao_id]
-    abrangencia = Abrangencia.find_by(imovel_id: params[:imovel_id], contrato_medicao_id: @contrato_medicao.id).first
+    abrangencia = Abrangencia.where(imovel_id: params[:imovel_id], contrato_medicao_id: @contrato_medicao.id).first
 
     if abrangencia.destroy
       redirect_to contrato_medicao_abrangencias_path(@contrato_medicao.id), notice: "Imóvel foi removido da abrangência com sucesso"
