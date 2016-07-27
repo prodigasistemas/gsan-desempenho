@@ -40,7 +40,11 @@
 </div>
 
 <div class="actions pull-right">
-  <%= build_header_button('novo', :coeficiente, new_contrato_medicao_coeficiente_path(@contrato.id)) %>
+  <% if @contrato.coeficientes.empty? %>
+    <%= build_header_button('novo', :coeficiente, new_contrato_medicao_coeficiente_path(@contrato.id)) %>
+  <% else %>
+    <%= build_header_button('editar', :coeficiente, edit_contrato_medicao_coeficientes_path(@contrato.id)) %>
+  <% end %>
 </div>
 <div class="page-header">
   <h1>Coeficientes</h1>

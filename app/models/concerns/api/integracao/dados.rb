@@ -8,10 +8,10 @@ module API
         base.extend(ClassMethods)
       end
 
-      def save
+      def save(attrs = {})
         begin
           params = {}
-          params[self.class.resource_name.singularize] = self.attributes
+          params[self.class.resource_name.singularize] = self.attributes.merge(attrs)
           json = post [], params
           self.class.new json["entidade"]
         rescue RestClient::UnprocessableEntity => e

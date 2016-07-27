@@ -38,6 +38,20 @@ describe ContratoMedicao do
     end
   end
 
+  describe ".iniciar_coeficientes" do
+    let(:ligacoes_agua_1) { LigacaoAguaSituacao.new(id: 1, descricao: "Normal") }
+    let(:ligacoes_agua_2) { LigacaoAguaSituacao.new(id: 2, descricao: "Anormal") }
+
+    let(:ligacoes_agua) do
+      [ligacoes_agua_1, ligacoes_agua_2]
+    end
+
+    it { expect(ContratoMedicao.iniciar_coeficientes(ligacoes_agua).first.ligacao_agua_situacao.id).to eq(ligacoes_agua_1.id) }
+    it { expect(ContratoMedicao.iniciar_coeficientes(ligacoes_agua).first.ligacao_agua_id).to eq(ligacoes_agua_1.id) }
+    it { expect(ContratoMedicao.iniciar_coeficientes(ligacoes_agua).last.ligacao_agua_situacao.id).to eq(ligacoes_agua_2.id) }
+    it { expect(ContratoMedicao.iniciar_coeficientes(ligacoes_agua).last.ligacao_agua_id).to eq(ligacoes_agua_2.id) }
+  end
+
   private
 
   def get_response_json(json)
