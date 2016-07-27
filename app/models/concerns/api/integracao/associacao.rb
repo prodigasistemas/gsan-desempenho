@@ -4,7 +4,7 @@ module API
       extend ActiveSupport::Concern
 
       module ClassMethods
-        def has_many relations
+        def has_many relations, options = {}
           instance_eval do
             define_method("#{relations}") do
               attrs = self.attributes[relations.to_s]
@@ -12,9 +12,15 @@ module API
 
               return [] if attrs.blank?
 
-              attrs.map do |relation|
+              attrs.map! do |relation|
                 relations.to_s.classify.constantize.new(relation)
               end
+
+              if sort_field = options[:order]
+                attrs = attrs.sort_by{ |r| r.send(sort_field) }
+              end
+
+              attrs
             end
           end
         end
