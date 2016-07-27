@@ -6,15 +6,12 @@ class CoeficientesController < ApplicationController
   end
 
   def new
-    @coeficientes = []
     @contrato_medicao = ContratoMedicao.find params[:contrato_medicao_id]
     @ligacoes_agua = LigacaoAguaSituacao.all
 
     redirect_to contrato_medicao_coeficientes_path(@contrato_medicao.id) and return if @contrato_medicao.coeficientes.any?
 
-    @ligacoes_agua.sort_by(&:id).each do |ligacao_agua|
-      @coeficientes << Coeficiente.new(ligacao_agua_situacao: ligacao_agua, ligacao_agua_id: ligacao_agua.id)
-    end
+    @coeficientes = ContratoMedicao.iniciar_coeficientes(@ligacoes_agua)
   end
 
   def edit

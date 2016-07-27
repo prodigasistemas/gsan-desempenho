@@ -8,6 +8,16 @@ class ContratoMedicao < API::Model
   has_many :imoveis
   has_many :coeficientes
 
+  def self.iniciar_coeficientes(ligacoes_agua)
+    @coeficientes = []
+
+    ligacoes_agua.sort_by(&:id).each do |ligacao_agua|
+      @coeficientes << Coeficiente.new(ligacao_agua_situacao: ligacao_agua, ligacao_agua_id: ligacao_agua.id)
+    end
+
+    @coeficientes
+  end
+
   def vigencia_inicial=(vigencia_inicial)
     @vigencia_inicial = vigencia_inicial.to_date
   end
