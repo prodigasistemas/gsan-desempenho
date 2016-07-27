@@ -1,6 +1,20 @@
 $(function(){
   var cache = {};
 
+  $("#matricula").keyup(function(event) {
+    var matricula = $(this).val();
+
+    if(matricula){
+      $( "#localidade" ).attr("disabled", true);
+      $( "#setor_comercial" ).attr("disabled", true);
+    }
+    else{
+      $( "#localidade" ).attr("disabled", false);
+      $( "#setor_comercial" ).attr("disabled", false);
+    }
+
+  });
+
   $( "#localidade" ).autocomplete({
       minLength: 2,
       source: function( request, response ) {
