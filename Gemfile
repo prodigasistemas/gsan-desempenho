@@ -6,7 +6,6 @@ gem 'uglifier', '>= 1.3.0'
 
 gem 'smart_listing'
 gem 'jquery-rails'
-gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'bootstrap-datepicker-rails'
 gem 'rest-client'
