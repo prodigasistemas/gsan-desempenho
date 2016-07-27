@@ -9,7 +9,6 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'bootstrap-datepicker-rails'
-
 gem 'rest-client'
 gem 'dotenv-rails'
 
