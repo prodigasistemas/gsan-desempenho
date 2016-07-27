@@ -1,13 +1,12 @@
 class CoeficientesController < ApplicationController
   def show
     @coeficiente = Coeficiente.find params[:id]
-
-    @contrato_medicao = ContratoMedicao.find params[:contrato_medicao_id]
+    @contrato_medicao = @coeficiente.contrato_medicao
   end
 
   def new
     @contrato_medicao = ContratoMedicao.find params[:contrato_medicao_id]
-    @ligacoes_agua = LigacaoAguaSituacao.all
+    @ligacoes_agua = LigacaoAguaSituacao.sorted
 
     redirect_to contrato_medicao_coeficientes_path(@contrato_medicao.id) and return if @contrato_medicao.coeficientes.any?
 
@@ -16,23 +15,18 @@ class CoeficientesController < ApplicationController
 
   def edit
     @contrato_medicao = ContratoMedicao.find params[:contrato_medicao_id]
-    @coeficientes = @contrato_medicao.coeficientes.sort_by(&:ligacao_agua_id)
+    @coeficientes = @contrato_medicao.coeficientes
 
     redirect_to new_contrato_medicao_coeficiente_path(@contrato_medicao.id) and return if @coeficientes.empty?
   end
 
   def create
     @contrato_medicao = ContratoMedicao.find params[:contrato_medicao_id]
-    coeficiente = Coeficiente.new(contrato_medicao_id: params[:contrato_medicao_id])
 
-    if coeficiente.save(coeficientes: coeficiente_params)
+    if Coeficiente.create(coeficientes: coeficiente_params)
       redirect_to contrato_medicao_path(@contrato_medicao.id), notice: "Coeficiente cadastrado com sucesso"
     else
-      @coeficientes = []
-
-      coeficiente_params.each do |p|
-        @coeficientes << Coeficiente.new(p)
-      end
+      @coeficientes = coeficiente_params.map{ |coeficiente| Coeficiente.new(coeficiente) }
 
       flash[:error] = "Não foi possível cadastrar o Coeficiente"
       render :new
@@ -52,7 +46,7 @@ class CoeficientesController < ApplicationController
     if @coeficiente.valid?
       redirect_to contrato_medicao_path(@contrato_medicao.id), notice: "Coeficiente atualizado com sucesso"
     else
-      @coeficientes = @contrato_medicao.coeficientes.sort_by(&:ligacao_agua_id)
+      @coeficientes = @contrato_medicao.coeficientes
 
       flash[:error] = "Erro ao atualizar coeficiente #{@coeficiente.id}"
       render :edit

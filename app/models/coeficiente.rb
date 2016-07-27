@@ -5,8 +5,4 @@ class Coeficiente < API::Model
   belongs_to :contrato_medicao
   belongs_to :ligacao_agua_situacao
   has_many :historico_coeficientes
-
-  def resource_path
-    [["contrato_medicoes", contrato_medicao_id]]
-  end
 end
