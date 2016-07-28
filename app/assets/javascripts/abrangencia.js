@@ -6,11 +6,9 @@ $(function(){
 
     if(matricula){
       $( "#localidade" ).attr("disabled", true);
-      $( "#setor_comercial" ).attr("disabled", true);
     }
     else{
       $( "#localidade" ).attr("disabled", false);
-      $( "#setor_comercial" ).attr("disabled", false);
     }
 
   });
@@ -41,7 +39,8 @@ $(function(){
         });
       },
       select: function(event, ui){
-        $("#localidade_id").val(ui.item.id)
+        $("#localidade_id").val(ui.item.id);
+        $( "#setor_comercial" ).attr("disabled", false);
       }
     });
 
@@ -54,10 +53,9 @@ $(function(){
           return;
         }
 
-        request.tipo = "setor_comercial";
-        request.filtros = { termo: term }
+        request.filtros = { termo: term, localidade_id: $("#localidade_id").val() }
 
-        $.getJSON( BASE_URL + "/filtros", request, function( data, status, xhr ) {
+        $.getJSON( BASE_URL + "/setor_comercial", request, function( data, status, xhr ) {
           var result = $.map(data.entidades, function (value, key) {
             return {
               id: value.id,
