@@ -13,6 +13,8 @@ gem 'bootstrap-datepicker-rails'
 gem 'rest-client'
 gem 'dotenv-rails'
 
+gem 'logstasher'
+
 group :development, :test do
   gem 'pry-rails'
   gem 'awesome_print', require: 'ap'
@@ -28,6 +30,7 @@ group :development do
   gem 'web-console', '~> 2.0'
   gem 'spring'
   gem 'quiet_assets'
+  gem 'thin'
 end
 
 group :test do
