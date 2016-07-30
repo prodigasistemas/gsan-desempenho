@@ -11,12 +11,14 @@ gem 'bootstrap-datepicker-rails'
 gem 'rest-client'
 gem 'dotenv-rails'
 
+gem 'logstasher'
+
 group :development, :test do
   gem 'pry-rails'
   gem 'awesome_print', require: 'ap'
   gem 'factory_girl_rails'
   gem 'rspec-rails', '~> 3.0'
-  gem 'capistrano'
+  gem 'capistrano', '3.5.0'
   gem 'capistrano-rvm'
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
@@ -26,6 +28,7 @@ group :development do
   gem 'web-console', '~> 2.0'
   gem 'spring'
   gem 'quiet_assets'
+  gem 'thin'
 end
 
 group :test do
