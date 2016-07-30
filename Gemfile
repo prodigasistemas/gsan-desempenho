@@ -20,7 +20,7 @@ group :development, :test do
   gem 'awesome_print', require: 'ap'
   gem 'factory_girl_rails'
   gem 'rspec-rails', '~> 3.0'
-  gem 'capistrano'
+  gem 'capistrano', '3.5.0'
   gem 'capistrano-rvm'
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
