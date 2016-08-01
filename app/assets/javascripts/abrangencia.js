@@ -1,7 +1,26 @@
 $(function(){
-  var cache = {};
+  var cache = {},
+  $matricula = $("#matricula"),
+  $localidade_id = $("#localidade_id"),
+  $setor_comercial = $("#setor_comercial"),
+  $setor_comercial_id = $("#setor_comercial_id"),
+  $rota = $("#rota")
+  $quadra = $("#quadra"),
+  $quadra_id = $("#quadra_id");
 
-  $("#matricula").keyup(function(event) {
+  if ( $localidade_id.val() !== "" ){
+    $setor_comercial.attr('disabled', false);
+  }
+
+  if( $setor_comercial_id.val() !== "" ){
+    $rota.attr('disabled', false);
+  }
+
+  if( $rota.val() !== "" ){
+    $quadra_id.attr('disabled', false);
+  }
+
+  $matricula.keyup(function(event) {
     var matricula = $(this).val();
 
     if(matricula){
@@ -53,12 +72,12 @@ $(function(){
         });
       },
       select: function(event, ui){
-        $("#localidade_id").val(ui.item.id);
-        $( "#setor_comercial" ).attr("disabled", false);
+        $localidade_id.val(ui.item.id);
+        $setor_comercial.attr("disabled", false);
       }
     });
 
-    $( "#setor_comercial" ).autocomplete({
+    $setor_comercial.autocomplete({
       minLength: 2,
       source: function( request, response ) {
         var term = request.term;
@@ -67,7 +86,7 @@ $(function(){
           return;
         }
 
-        request.filtros = { termo: term, localidade_id: $("#localidade_id").val() }
+        request.filtros = { termo: term, localidade_id: $localidade_id.val() }
 
         $.getJSON( BASE_URL + "/setor_comercial", request, function( data, status, xhr ) {
           var result = $.map(data.entidades, function (value, key) {
@@ -83,13 +102,13 @@ $(function(){
         });
       },
       select: function(event, ui){
-        $("#setor_comercial_id").val(ui.item.id);
-        $( "#rota" ).attr("disabled", false);
-        $( "#quadra" ).attr("disabled", false);
+        $setor_comercial_id.val(ui.item.id);
+        $rota.attr("disabled", false);
+        $quadra.attr("disabled", false);
       }
     });
 
-    $( "#rota" ).autocomplete({
+    $rota.autocomplete({
       minLength: 2,
       source: function( request, response ) {
         var term = request.term;
@@ -98,7 +117,7 @@ $(function(){
           return;
         }
 
-        request.filtros = { termo: term, setor_comercial_id: $("#setor_comercial_id").val() }
+        request.filtros = { termo: term, setor_comercial_id: $setor_comercial_id.val() }
 
         $.getJSON( BASE_URL + "/rotas", request, function( data, status, xhr ) {
           var result = $.map(data.entidades, function (value, key) {
@@ -118,7 +137,7 @@ $(function(){
       }
     });
 
-    $( "#quadra" ).autocomplete({
+    $quadra.autocomplete({
       minLength: 2,
       source: function( request, response ) {
         var term = request.term;
@@ -127,7 +146,7 @@ $(function(){
           return;
         }
 
-        request.filtros = { termo: term, setor_comercial_id: $("#setor_comercial_id").val() }
+        request.filtros = { termo: term, setor_comercial_id: $setor_comercial_id.val() }
 
         $.getJSON( BASE_URL + "/rotas", request, function( data, status, xhr ) {
           var result = $.map(data.entidades, function (value, key) {
@@ -143,7 +162,7 @@ $(function(){
         });
       },
       select: function(event, ui){
-        $("#quadra_id").val(ui.item.id);
+        $quadra_id.val(ui.item.id);
       }
     });
   });

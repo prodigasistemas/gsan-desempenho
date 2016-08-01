@@ -18,6 +18,7 @@ class AbrangenciasController < ApplicationController
   def new
     @contrato_medicao = ContratoMedicao.find(params[:contrato_medicao_id])
     @abrangencia = Abrangencia.new
+    @filtro = FiltroImovelPresenter.new(params)
 
     if params[:query].present?
       @imoveis = Imovel.where(params[:query])
