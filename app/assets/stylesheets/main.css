@@ -326,3 +326,8 @@ ul.dropdown-menu li{
 .error-message{
   color: #A94341;
 }
+
+.label-list{
+  font-size: 18px;
+  font-weight: 100;
+}
