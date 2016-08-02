@@ -5,7 +5,7 @@ $(function(){
   $setor_comercial = $("#setor_comercial"),
   $setor_comercial_id = $("#setor_comercial_id"),
   $rota = $("#rota_id")
-  $quadra = $("#quadra"),
+  $quadra = $("#quadra_id"),
   $quadra_id = $("#quadra_id");
 
   if ( $localidade_id.val() !== "" ){
@@ -14,11 +14,18 @@ $(function(){
 
   if( $setor_comercial_id.val() !== "" ){
     $rota.attr('disabled', false);
+    $quadra.attr('disabled', false);
 
     carregarRotas(function(){
       var rota_selecionada = $rota.data("rota-selecionada");
       
       if ( rota_selecionada ) $rota.val( rota_selecionada );
+    });
+
+    carregarQuadras(function(){
+      var quadra_selecionada = $quadra.data("quadra-selecionada");
+      
+      if ( quadra_selecionada ) $quadra.val( quadra_selecionada );
     });
   }
 
@@ -113,37 +120,38 @@ $(function(){
       $quadra.attr("disabled", false);
 
       carregarRotas();
+      carregarQuadras();
     }
   });
 
-  $quadra.autocomplete({
-    minLength: 2,
-    source: function( request, response ) {
-      var term = request.term;
-      if ( term in cache ) {
-        response( cache[ term ] );
-        return;
-      }
+  // $quadra.autocomplete({
+  //   minLength: 2,
+  //   source: function( request, response ) {
+  //     var term = request.term;
+  //     if ( term in cache ) {
+  //       response( cache[ term ] );
+  //       return;
+  //     }
 
-      request.filtros = { termo: term, setor_comercial_id: $setor_comercial_id.val() }
+  //     request.filtros = { termo: term, setor_comercial_id: $setor_comercial_id.val() }
 
-      $.getJSON( BASE_URL + "/rotas", request, function( data, status, xhr ) {
-        var result = $.map(data.entidades, function (value, key) {
-          return {
-            id: value.id,
-            label: value.codigo,
-            value: value.codigo
-          };
-        });
+  //     $.getJSON( BASE_URL + "/quadras", request, function( data, status, xhr ) {
+  //       var result = $.map(data.entidades, function (value, key) {
+  //         return {
+  //           id: value.id,
+  //           label: value.codigo,
+  //           value: value.codigo
+  //         };
+  //       });
 
-        cache[ term ] = result;
-        response( result );
-      });
-    },
-    select: function(event, ui){
-      $quadra_id.val(ui.item.id);
-    }
-  });
+  //       cache[ term ] = result;
+  //       response( result );
+  //     });
+  //   },
+  //   select: function(event, ui){
+  //     $quadra_id.val(ui.item.id);
+  //   }
+  // });
 
   function carregarRotas(callback = null){
     $rota.empty();
@@ -159,6 +167,28 @@ $(function(){
       $.each(data.entidades, function(index, value) {
          
           $rota.append('<option value="'+ value.id +'">'+ value.codigo +'</option>')
+
+      });
+
+      if (callback) callback();
+
+    });
+  }
+
+  function carregarQuadras(callback = null){
+    $quadra.empty();
+
+    var request = {};
+
+    $quadra.append('<option value=""></option>')
+
+    request.filtros = { setor_comercial_id: $setor_comercial_id.val() };
+
+    $.getJSON( BASE_URL + "/quadras", request, function( data, status, xhr ) {
+      
+      $.each(data.entidades, function(index, value) {
+         
+          $quadra.append('<option value="'+ value.id +'">'+ value.numero_quadra +'</option>')
 
       });
 

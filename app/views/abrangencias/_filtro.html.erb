@@ -27,9 +27,6 @@
       <div class="form-group">
         <label for="rota" class="col-sm-2 control-label">Rota</label>
         <div class="col-sm-1">
-        <!--  <input type="text" name="rota" id="rota" placeholder="Rota" class="form-control" value="<%= @filtro.rota %>" disabled="true" />
-          <input type="hidden" name="query[quadra][rota_id]" id="rota_id" value="<%= @filtro.rota_id %>" />
-        -->
           <div class="ui-widget">
             <select id="rota_id" name="query[quadra][rota_id]" class="form-control" data-rota-selecionada="<%= @filtro.rota_id %>" disabled=true>
               <option></option>
@@ -49,8 +46,9 @@
         <div class="form-group">
           <label for="quadra" class="col-sm-2 control-label">Quadra</label>
           <div class="col-sm-2">
-            <input type="text" name="quadra" id="quadra" placeholder="Quadra" class="form-control" value="<%= @filtro.quadra %>" disabled="true" />
-            <input type="hidden" name="query[qdra_id]" id="quadra_id" value="<%= @filtro.quadra_id %>" />
+            <select id="quadra_id" name="query[qdra_id]" class="form-control" data-quadra-selecionada="<%= @filtro.quadra_id %>" disabled=true>
+              <option></option>
+            </select>
           </div>
         </div>
 
