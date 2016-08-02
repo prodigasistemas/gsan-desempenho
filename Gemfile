@@ -13,7 +13,7 @@ gem 'bootstrap-datepicker-rails'
 gem 'rest-client'
 gem 'dotenv-rails'
 
-gem 'logstasher'
+gem 'log_file'
 
 group :development, :test do
   gem 'pry-rails'
