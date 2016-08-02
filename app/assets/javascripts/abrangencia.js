@@ -4,7 +4,7 @@ $(function(){
   $localidade_id = $("#localidade_id"),
   $setor_comercial = $("#setor_comercial"),
   $setor_comercial_id = $("#setor_comercial_id"),
-  $rota = $("#rota")
+  $rota = $("#rota_id")
   $quadra = $("#quadra"),
   $quadra_id = $("#quadra_id");
 
@@ -14,6 +14,12 @@ $(function(){
 
   if( $setor_comercial_id.val() !== "" ){
     $rota.attr('disabled', false);
+
+    carregarRotas(function(){
+      var rota_selecionada = $rota.data("rota-selecionada");
+      
+      if ( rota_selecionada ) $rota.val( rota_selecionada );
+    });
   }
 
   if( $rota.val() !== "" ){
@@ -47,122 +53,117 @@ $(function(){
   });
 
   $( "#localidade" ).autocomplete({
-      minLength: 2,
-      source: function( request, response ) {
-        var term = request.term;
-        if ( term in cache ) {
-          response( cache[ term ] );
-          return;
-        }
-
-        request.tipo = "localidade";
-        request.filtros = { termo: term }
-
-        $.getJSON( BASE_URL + "/filtros", request, function( data, status, xhr ) {
-          var result = $.map(data.entidades, function (value, key) {
-            return {
-              id: value.id,
-              label: value.nome,
-              value: value.nome
-            };
-          });
-
-          cache[ term ] = result;
-          response( result );
-        });
-      },
-      select: function(event, ui){
-        $localidade_id.val(ui.item.id);
-        $setor_comercial.attr("disabled", false);
+    minLength: 2,
+    source: function( request, response ) {
+      var term = request.term;
+      if ( term in cache ) {
+        response( cache[ term ] );
+        return;
       }
-    });
 
-    $setor_comercial.autocomplete({
-      minLength: 2,
-      source: function( request, response ) {
-        var term = request.term;
-        if ( term in cache ) {
-          response( cache[ term ] );
-          return;
-        }
+      request.tipo = "localidade";
+      request.filtros = { termo: term }
 
-        request.filtros = { termo: term, localidade_id: $localidade_id.val() }
-
-        $.getJSON( BASE_URL + "/setor_comercial", request, function( data, status, xhr ) {
-          var result = $.map(data.entidades, function (value, key) {
-            return {
-              id: value.id,
-              label: value.nome,
-              value: value.nome
-            };
-          });
-
-          cache[ term ] = result;
-          response( result );
+      $.getJSON( BASE_URL + "/filtros", request, function( data, status, xhr ) {
+        var result = $.map(data.entidades, function (value, key) {
+          return {
+            id: value.id,
+            label: value.nome,
+            value: value.nome
+          };
         });
-      },
-      select: function(event, ui){
-        $setor_comercial_id.val(ui.item.id);
-        $rota.attr("disabled", false);
-        $quadra.attr("disabled", false);
-      }
-    });
 
-    $rota.autocomplete({
-      minLength: 2,
-      source: function( request, response ) {
-        var term = request.term;
-        if ( term in cache ) {
-          response( cache[ term ] );
-          return;
-        }
-
-        request.filtros = { termo: term, setor_comercial_id: $setor_comercial_id.val() }
-
-        $.getJSON( BASE_URL + "/rotas", request, function( data, status, xhr ) {
-          var result = $.map(data.entidades, function (value, key) {
-            return {
-              id: value.id,
-              label: value.codigo,
-              value: value.codigo
-            };
-          });
-
-          cache[ term ] = result;
-          response( result );
-        });
-      },
-      select: function(event, ui){
-        $("#rota_id").val(ui.item.id);
-      }
-    });
-
-    $quadra.autocomplete({
-      minLength: 2,
-      source: function( request, response ) {
-        var term = request.term;
-        if ( term in cache ) {
-          response( cache[ term ] );
-          return;
-        }
-
-        request.filtros = { termo: term, setor_comercial_id: $setor_comercial_id.val() }
-
-        $.getJSON( BASE_URL + "/rotas", request, function( data, status, xhr ) {
-          var result = $.map(data.entidades, function (value, key) {
-            return {
-              id: value.id,
-              label: value.codigo,
-              value: value.codigo
-            };
-          });
-
-          cache[ term ] = result;
-          response( result );
-        });
-      },
-      select: function(event, ui){
-        $quadra_id.val(ui.item.id);
-      }
-    });
+        cache[ term ] = result;
+        response( result );
+      });
+    },
+    select: function(event, ui){
+      $localidade_id.val(ui.item.id);
+      $setor_comercial.attr("disabled", false);
+    }
   });
+
+  $setor_comercial.autocomplete({
+    minLength: 2,
+    source: function( request, response ) {
+      var term = request.term;
+      if ( term in cache ) {
+        response( cache[ term ] );
+        return;
+      }
+
+      request.filtros = { termo: term, localidade_id: $localidade_id.val() }
+
+      $.getJSON( BASE_URL + "/setor_comercial", request, function( data, status, xhr ) {
+        var result = $.map(data.entidades, function (value, key) {
+          return {
+            id: value.id,
+            label: value.nome,
+            value: value.nome
+          };
+        });
+
+        cache[ term ] = result;
+        response( result );
+      });
+    },
+    select: function(event, ui){
+      $setor_comercial_id.val(ui.item.id);
+      $rota.attr("disabled", false);
+      $quadra.attr("disabled", false);
+
+      carregarRotas();
+    }
+  });
+
+  $quadra.autocomplete({
+    minLength: 2,
+    source: function( request, response ) {
+      var term = request.term;
+      if ( term in cache ) {
+        response( cache[ term ] );
+        return;
+      }
+
+      request.filtros = { termo: term, setor_comercial_id: $setor_comercial_id.val() }
+
+      $.getJSON( BASE_URL + "/rotas", request, function( data, status, xhr ) {
+        var result = $.map(data.entidades, function (value, key) {
+          return {
+            id: value.id,
+            label: value.codigo,
+            value: value.codigo
+          };
+        });
+
+        cache[ term ] = result;
+        response( result );
+      });
+    },
+    select: function(event, ui){
+      $quadra_id.val(ui.item.id);
+    }
+  });
+
+  function carregarRotas(callback = null){
+    $rota.empty();
+
+    var request = {};
+
+    $rota.append('<option value=""></option>')
+
+    request.filtros = { setor_comercial_id: $setor_comercial_id.val() };
+
+    $.getJSON( BASE_URL + "/rotas", request, function( data, status, xhr ) {
+      
+      $.each(data.entidades, function(index, value) {
+         
+          $rota.append('<option value="'+ value.id +'">'+ value.codigo +'</option>')
+
+      });
+
+      if (callback) callback();
+
+    });
+  }
+});
