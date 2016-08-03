@@ -21,7 +21,7 @@ class AbrangenciasController < ApplicationController
     @filtro = FiltroImovelPresenter.new(params)
 
     if params[:query].present?
-      @imoveis = Imovel.where(params[:query])
+      @imoveis = Imovel.where(params[:query].merge(page: params[:page]))
     end
   end
 

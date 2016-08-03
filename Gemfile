@@ -11,6 +11,8 @@ gem 'bootstrap-datepicker-rails'
 gem 'rest-client'
 gem 'dotenv-rails'
 
+gem 'kaminari'
+
 group :development, :test do
   gem 'pry-rails'
   gem 'awesome_print', require: 'ap'

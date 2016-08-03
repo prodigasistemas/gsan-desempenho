@@ -94,9 +94,11 @@ module API
 
         def where(params={})
           begin
-            json = get_with_params([], params)
+            json = get_with_params([], params, page: params[:page], per_page: params[:per_page])
             entidades = json["entidades"]
-            entidades.map {|entidade| self.new entidade }
+            json["entidades"] = entidades.map {|entidade| self.new entidade }
+
+            API::Integracao::ResultadoBusca.build(json)
           rescue RestClient::ResourceNotFound
             []
           end

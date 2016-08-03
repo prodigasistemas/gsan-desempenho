@@ -1,8 +1,8 @@
 class FiltroImovelPresenter
-  attr_accessor :matricula, 
-                :localidade, 
-                :localidade_id, 
-                :setor_comercial, 
+  attr_accessor :matricula,
+                :localidade,
+                :localidade_id,
+                :setor_comercial,
                 :setor_comercial_id,
                 :rota,
                 :rota_id,
@@ -18,7 +18,7 @@ class FiltroImovelPresenter
     @setor_comercial = params[:setor_comercial]
     @setor_comercial_id = params[:query][:setor_comercial_id] if params[:query].present?
     @rota = params[:rota]
-    @rota_id = params[:query][:quadra][:rota_id] if params[:query].present?
+    @rota_id = params[:query][:quadra][:rota_id] if params[:query].present? && params[:query][:quadra].present?
     @quadra = params[:quadra] if params[:query].present?
     @quadra_id = params[:query][:qdra_id] if params[:query].present?
     @numero_lote = params[:query][:numero_lote] if params[:query].present?

@@ -1,7 +1,5 @@
-
-
 <div class="pull-right label-list">
-  <%= @imoveis.count %> imóveis encontrados
+  <%= @imoveis.total_count %> imóveis encontrados
 </div>
 
 <table class="table table-hover table-striped">
@@ -28,3 +26,7 @@
     <% end %>
   </tbody>
 </table>
+
+<div class="text-center">
+  <%= paginate @imoveis %>
+</div>
