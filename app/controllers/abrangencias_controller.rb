@@ -4,15 +4,7 @@ class AbrangenciasController < ApplicationController
 
   def index
     @contrato_medicao = ContratoMedicao.find(params[:contrato_medicao_id])
-
-    imoveis = @contrato_medicao.imoveis
-
-    imoveis = imoveis.filter(params[:filter]) if params[:filter].present?
-    @imoveis = smart_listing_create :imoveis,
-                                  imoveis,
-                                  partial: 'abrangencias/list',
-                                  sort_attributes: [[:numero, "imoveis.numero"]],
-                                  default_sort: {numero: "asc"}
+    @imoveis = @contrato_medicao.imoveis(page: params[:page] || 1)
   end
 
   def new

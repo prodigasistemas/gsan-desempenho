@@ -51,17 +51,15 @@ module API
         end
       end
 
-      def fetch_lazy relation
+      def fetch_lazy relation, options = {}
         begin
           params = {
             objeto: self.class.name.underscore,
             objeto_id: self.id,
             associacao: relation
-          }
+          }.merge(options)
 
-          json = get_relations([], params)
-
-          json["entidade"] || json["entidades"]
+          get_relations([], params)
         rescue RestClient::ResourceNotFound
           nil
         end
@@ -98,7 +96,7 @@ module API
             entidades = json["entidades"]
             json["entidades"] = entidades.map {|entidade| self.new entidade }
 
-            API::Integracao::ResultadoBusca.build(json)
+            API::Integracao::Paginacao.build(json)
           rescue RestClient::ResourceNotFound
             []
           end
