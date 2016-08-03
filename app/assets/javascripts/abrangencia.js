@@ -12,7 +12,7 @@ $(function(){
     $setor_comercial.attr('disabled', false);
   }
 
-  if( $setor_comercial_id.val() !== "" ){
+  if( $setor_comercial_id.length && $setor_comercial_id.val() !== "" ){
     $rota.attr('disabled', false);
     $quadra.attr('disabled', false);
 
