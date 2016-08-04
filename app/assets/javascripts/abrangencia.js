@@ -1,12 +1,38 @@
 $(function(){
   var cache = {},
+  codigoContrato = $("#contrato_id").val(),
   $matricula = $("#matricula"),
   $localidade_id = $("#localidade_id"),
   $setor_comercial = $("#setor_comercial"),
   $setor_comercial_id = $("#setor_comercial_id"),
   $rota = $("#rota_id")
   $quadra = $("#quadra_id"),
-  $quadra_id = $("#quadra_id");
+  $quadra_id = $("#quadra_id"),
+  $numero_lote = $("numero_lote")
+  $numero_sublote = $("#numero_sublote");
+
+  $("#form-abrangencia").submit(function(event) {
+    event.preventDefault();
+
+    var request = { query: { quadra: {} } };
+    $btn = $("#btn-salvar-abrangencia").button('loading');
+
+    request.query.id = $matricula.val();
+    request.query.localidade_id = $localidade_id.val();
+    request.query.setor_comercial_id = $setor_comercial_id.val();
+    request.query.quadra.rota_id = $rota.val();
+    request.query.qdra_id = $quadra.val();
+    request.query.numero_lote = $numero_lote.val();
+    request.query.numero_sublote = $numero_sublote.val();
+
+    $.post( BASE_URL + '/contrato_medicoes/' + codigoContrato + '/abrangencias', request, function(data, textStatus, xhr) {
+      
+      $btn.button('reset');
+      window.location = '/contrato_medicoes/' + codigoContrato + '/abrangencias';
+      return;
+
+    });
+  });
 
   if ( $localidade_id.val() !== "" ){
     $setor_comercial.attr('disabled', false);

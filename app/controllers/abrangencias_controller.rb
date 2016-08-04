@@ -19,11 +19,14 @@ class AbrangenciasController < ApplicationController
 
   def create
     abrangencia = Abrangencia.new(contrato_medicao_id: params[:contrato_medicao_id])
-    @contrato_medicao = abrangencia.definir_abrangencia(abrangencia_params)
+    imoveis = Imovel.where(params[:query])
+
+    @contrato_medicao = abrangencia.definir_abrangencia({ imoveis: imoveis.collect(&:id) })
+
     if @contrato_medicao.valid?
-      redirect_to contrato_medicao_abrangencias_path(@contrato_medicao.id), notice: "Abrangência criada com sucesso!"
+      render json: { notice: "Abrangência criada com sucesso!" }, status: :ok
     else
-      render :new
+      render json: { errors: @contrato_medicao.errors }, status: :unprocessable_entity
     end
   end
 
