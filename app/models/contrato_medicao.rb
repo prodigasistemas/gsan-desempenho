@@ -20,14 +20,14 @@ class ContratoMedicao < API::Model
   end
 
   def vigencia_inicial=(vigencia_inicial)
-    @vigencia_inicial = vigencia_inicial.to_date
+    @vigencia_inicial = vigencia_inicial.to_date if vigencia_inicial.present?
   end
 
   def vigencia_final=(vigencia_final)
-    @vigencia_final = vigencia_final.to_date
+    @vigencia_final = vigencia_final.to_date if vigencia_final.present?
   end
 
   def data_assinatura=(data_assinatura)
-    @data_assinatura = data_assinatura.to_date
+    @data_assinatura = data_assinatura.to_date if data_assinatura.present?
   end
 end
