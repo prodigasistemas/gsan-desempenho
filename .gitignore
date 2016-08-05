@@ -13,3 +13,5 @@
 /tmp
 .env
 .DS_Store
+.ruby-version
+.ruby-gemset
