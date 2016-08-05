@@ -251,6 +251,7 @@ DEPENDENCIES
   factory_girl_rails
   jbuilder (~> 2.0)
   jquery-rails
+  kaminari
   logstasher
   pry-rails
   quiet_assets
@@ -258,7 +259,7 @@ DEPENDENCIES
   rest-client
   rspec-mocks
   rspec-rails (~> 3.0)
-  sass-rails (~> 5.0)
+  sass-rails (~> 5.0.6)
   shoulda-matchers (~> 3.1)
   smart_listing
   spring

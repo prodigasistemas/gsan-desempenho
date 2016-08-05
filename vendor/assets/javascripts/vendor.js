@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
 //= require bootstrap
 //= require smart_listing
 //= require jquery.mask
-//= require jquery-ui

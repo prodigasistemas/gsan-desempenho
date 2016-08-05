@@ -4,33 +4,29 @@ class AbrangenciasController < ApplicationController
 
   def index
     @contrato_medicao = ContratoMedicao.find(params[:contrato_medicao_id])
-
-    imoveis = @contrato_medicao.imoveis
-
-    imoveis = imoveis.filter(params[:filter]) if params[:filter].present?
-    @imoveis = smart_listing_create :imoveis,
-                                  imoveis,
-                                  partial: 'abrangencias/list',
-                                  sort_attributes: [[:numero, "imoveis.numero"]],
-                                  default_sort: {numero: "asc"}
+    @imoveis = @contrato_medicao.imoveis(page: params[:page] || 1)
   end
 
   def new
     @contrato_medicao = ContratoMedicao.find(params[:contrato_medicao_id])
     @abrangencia = Abrangencia.new
+    @filtro = FiltroImovelPresenter.new(params)
 
     if params[:query].present?
-      @imoveis = Imovel.where(params[:query])
+      @imoveis = Imovel.where(params[:query].merge(page: params[:page]))
     end
   end
 
   def create
     abrangencia = Abrangencia.new(contrato_medicao_id: params[:contrato_medicao_id])
-    @contrato_medicao = abrangencia.definir_abrangencia(abrangencia_params)
+    imoveis = Imovel.where(params[:query])
+
+    @contrato_medicao = abrangencia.definir_abrangencia({ imoveis: imoveis.collect(&:id) })
+
     if @contrato_medicao.valid?
-      redirect_to contrato_medicao_abrangencias_path(@contrato_medicao.id), notice: "Abrangência criada com sucesso!"
+      render json: { notice: "Abrangência criada com sucesso!" }, status: :ok
     else
-      render :new
+      render json: { errors: @contrato_medicao.errors }, status: :unprocessable_entity
     end
   end
 
