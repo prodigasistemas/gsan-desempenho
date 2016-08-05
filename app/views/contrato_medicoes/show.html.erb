@@ -33,7 +33,7 @@
       </tr>
       <tr>
         <%= table_label "Total de Imóveis" %>
-        <td><%= @contrato.imoveis.size %></td>
+        <td><%= @contrato.imoveis(page: 1).total_count %></td>
       </tr>
     </tbody>
   </table>
