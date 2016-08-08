@@ -4,7 +4,7 @@
     <h3 class="panel-title">Formulário de Abrangência</h3>
   </div>
 
-  <%= gsan_form_for(@abrangencia, html: { class: 'form-horizontal' }) do |f| %>
+  <%= gsan_form_for(@abrangencia, html: { id: "form-abrangencia", class: 'form-horizontal' }) do |f| %>
     <div class="panel-body">
 
       <%= render 'imoveis' %>
@@ -12,7 +12,7 @@
     </div>
 
      <div class="panel-footer">
-      <%= f.submit "Adicionar", class: "btn btn-primary" %>
+      <%= f.submit "Adicionar", data: { "loading-text": "Processando..." }, id: "btn-salvar-abrangencia", class: "btn btn-primary" %>
     </div>
   <% end %>
 </div>

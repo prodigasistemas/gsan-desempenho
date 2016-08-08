@@ -4,17 +4,23 @@ module API
       extend ActiveSupport::Concern
 
       module ClassMethods
-        def has_many relations
+        def has_many relations, options = {}
           instance_eval do
-            define_method("#{relations}") do
-              attrs = self.attributes[relations.to_s]
-              attrs = fetch_lazy(relations) if attrs.blank?
+            define_method("#{relations}") do |args = {}|
+              attrs = { "entidades" => self.attributes[relations.to_s] }
+              attrs = fetch_lazy(relations, args) if attrs["entidades"].blank?
 
-              return [] if attrs.blank?
+              return [] if attrs.blank? && attrs["entidades"].blank?
 
-              attrs.map do |relation|
+              attrs["entidades"].map! do |relation|
                 relations.to_s.classify.constantize.new(relation)
               end
+
+              if sort_field = options[:order]
+                attrs["entidades"] = attrs["entidades"].sort_by{ |r| r.send(sort_field) }
+              end
+
+              API::Integracao::Paginacao.build(attrs)
             end
           end
         end
@@ -23,7 +29,7 @@ module API
           instance_eval do
             define_method("#{relation}") do
               attrs = self.attributes[relation.to_s]
-              attrs = fetch_lazy(relation) if attrs.blank?
+              attrs = fetch_lazy(relation)["entidade"] if attrs.blank?
 
               return if attrs.blank?
 

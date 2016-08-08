@@ -1,30 +1,21 @@
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">Formulário de Coeficiente</h3>
-  </div>
-
-  <%= gsan_form_for(@coeficiente, html: { class: 'form-horizontal' }) do |f| %>
-    <div class="panel-body">
-
+<div class="panel-body">
+  <% @coeficientes.each do |coeficiente| %>
+    <%= fields_for "coeficiente[]", coeficiente do |f| %>
       <div class="form-group">
-        <label for="ligacao_agua_id" class="col-sm-2 control-label">Situação da Ligação: *</label>
-        <div class="col-sm-6">
-          <%= collection_select(:coeficiente, :ligacao_agua_id, @ligacoes_agua, :id, :descricao, {}, { class: "form-control" }) %>
-          <div class="error-message"><%= show_errors(@coeficiente, :ligacao_agua_id) %></div>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="contrato_numero" class="col-sm-2 control-label">Coeficiente: *</label>
+        <label for="contrato_numero" class="col-sm-2 control-label"><%= coeficiente.ligacao_agua_situacao.descricao %>: *</label>
         <div class="col-sm-2">
-          <%= f.text_field :coeficiente, class: "form-control" %>
-          <div class="error-message"><%= show_errors(@coeficiente, :coeficiente) %></div>
+          <% if edit %>
+            <%= f.hidden_field :id, class: "form-control" %>
+          <% end %>
+          <%= f.hidden_field :ligacao_agua_id, class: "form-control" %>
+          <%= f.text_field :coeficiente, class: "form-control decimal", required: true %>
+          <div class="error-message"><%= show_errors(coeficiente, :coeficiente) %></div>
         </div>
       </div>
-    </div>
-
-     <div class="panel-footer">
-      <%= f.submit "Salvar", class: "btn btn-primary" %>
-    </div>
+    <% end %>
   <% end %>
+
+  <div class="panel-footer">
+    <%= submit_tag edit ? "Atualizar" : "Salvar", class: "btn btn-primary" %>
+  </div>
 </div>

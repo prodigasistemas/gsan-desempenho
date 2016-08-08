@@ -13,12 +13,11 @@ module API
 
       def get_relations(path=[], params = {})
         response = RestClient.get relations_url + params.to_query
-
         JSON.parse(response.body)
       end
 
-      def get_with_params(path=[], params = {})
-        query = { query: params }
+      def get_with_params(path=[], params = {}, page_params = {})
+        query = { query: params.merge(page_params) }
         response = RestClient.get build_url(path) + "?" + query.to_query
 
         JSON.parse(response.body)
