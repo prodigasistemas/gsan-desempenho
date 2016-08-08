@@ -179,7 +179,7 @@ $(function(){
   //   }
   // });
 
-  function carregarRotas(callback = null){
+  function carregarRotas(callback){
     $rota.empty();
 
     var request = {};
@@ -201,7 +201,7 @@ $(function(){
     });
   }
 
-  function carregarQuadras(callback = null){
+  function carregarQuadras(callback){
     $quadra.empty();
 
     var request = {};
