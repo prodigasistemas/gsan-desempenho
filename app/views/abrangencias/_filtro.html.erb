@@ -72,6 +72,8 @@
     </div>
     <div class="panel-footer">
       <%= submit_tag("Pesquisar", class: "btn btn-primary") %>
+
+      <%= link_to "Limpar formulário", new_contrato_medicao_abrangencia_path(@contrato_medicao.id), class: "limpar-form" %>
     </div>
   </form>
 </div>
