@@ -104,12 +104,7 @@ GEM
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
     kgio (2.10.0)
-    logstash-event (1.2.02)
-    logstasher (1.0.1)
-      activerecord (>= 4.0)
-      activesupport (>= 4.0)
-      logstash-event (~> 1.2.0)
-      request_store
+    log_file (0.0.3)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.4)
@@ -166,7 +161,6 @@ GEM
       thor (>= 0.18.1, < 2.0)
     raindrops (0.16.0)
     rake (11.2.2)
-    request_store (1.3.1)
     rest-client (2.0.0)
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
@@ -253,6 +247,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   logstasher
+  log_file
   pry-rails
   quiet_assets
   rails (= 4.2.7)
