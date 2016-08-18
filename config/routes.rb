@@ -18,4 +18,5 @@ Rails.application.routes.draw do
     end
   end
   resource :session, only: [:new, :create, :destroy]
+  resources :imovel_retorno
 end

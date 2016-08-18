@@ -4,4 +4,5 @@ class Empresa < API::Model
                 :encerramento_contrato, :meses_pagamento, :validar_pagamento
 
   has_many :contrato_medicoes
+  has_many :imovel_retornos
 end
