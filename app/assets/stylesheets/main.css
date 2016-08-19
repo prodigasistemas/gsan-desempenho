@@ -24,7 +24,7 @@ html{
 }
 
 .container{
-  background: #E2E4E6;
+  background: #0079BF;
   margin-top: 50px;
 }
 
@@ -325,4 +325,8 @@ ul.dropdown-menu li{
 
 .error-message{
   color: #A94341;
+}
+
+.menu-collapse {
+cursor:pointer;
 }
