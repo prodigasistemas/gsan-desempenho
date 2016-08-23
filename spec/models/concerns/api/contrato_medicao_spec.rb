@@ -25,11 +25,31 @@ describe ContratoMedicao do
     }
 
     it "RestClient::UnprocessableEntity" do
-      # faltar mockar o retorno da api, por enquanto esse teste tá batendo na api de fato
-      params = {contrato_medicao: subject.attributes}
-      expect(ContratoMedicao.create(params).valid?).to be false
-      expect(ContratoMedicao.create(params).errors.messages[:numero].first).to eq "é obrigatório"
+      params = subject.attributes
+      params.delete(:numero)
+      subject.errors = ActiveModel::Errors.new(subject)
+
+      expect(ContratoMedicao).to receive(:post)
+                                  .with([], { "contrato_medicao" => params })
+                                  .and_return(get_response_json({entidade: subject.attributes}))
+
+      entidade = ContratoMedicao.create(params)
+      expect(entidade.valid?).to be false
     end
+  end
+
+  describe ".iniciar_coeficientes" do
+    let(:ligacoes_agua_1) { LigacaoAguaSituacao.new(id: 1, descricao: "Normal") }
+    let(:ligacoes_agua_2) { LigacaoAguaSituacao.new(id: 2, descricao: "Anormal") }
+
+    let(:ligacoes_agua) do
+      [ligacoes_agua_1, ligacoes_agua_2]
+    end
+
+    it { expect(ContratoMedicao.iniciar_coeficientes(ligacoes_agua).first.ligacao_agua_situacao.id).to eq(ligacoes_agua_1.id) }
+    it { expect(ContratoMedicao.iniciar_coeficientes(ligacoes_agua).first.ligacao_agua_id).to eq(ligacoes_agua_1.id) }
+    it { expect(ContratoMedicao.iniciar_coeficientes(ligacoes_agua).last.ligacao_agua_situacao.id).to eq(ligacoes_agua_2.id) }
+    it { expect(ContratoMedicao.iniciar_coeficientes(ligacoes_agua).last.ligacao_agua_id).to eq(ligacoes_agua_2.id) }
   end
 
   private

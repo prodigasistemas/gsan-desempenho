@@ -328,5 +328,33 @@ ul.dropdown-menu li{
 }
 
 .menu-collapse {
-cursor:pointer;
+  cursor:pointer;
+}
+.label-list{
+  font-size: 18px;
+  font-weight: 100;
+}
+
+.custom-combobox {
+  position: relative;
+  display: inline-block;
+}
+.custom-combobox-toggle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin-left: -1px;
+  padding: 0;
+}
+.custom-combobox-input {
+  margin: 0;
+  padding: 5px 10px;
+}
+
+.limpar-form{
+  margin-left: 50px;
+}
+
+.form-file{
+  margin-bottom: 100px
 }

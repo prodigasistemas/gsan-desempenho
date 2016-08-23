@@ -8,10 +8,10 @@ module API
         base.extend(ClassMethods)
       end
 
-      def save
+      def save(attrs = {})
         begin
           params = {}
-          params[self.class.resource_name.singularize] = self.attributes
+          params[self.class.resource_name.singularize] = self.attributes.merge(attrs)
           json = post [], params
           self.class.new json["entidade"]
         rescue RestClient::UnprocessableEntity => e
@@ -41,25 +41,25 @@ module API
 
         begin
           delete [self.id]
+          true
         rescue RestClient::UnprocessableEntity => e
           erro = API::Integracao::Requisicao::ExcecaoNaoConcluido.new(self.class, e)
           erro.entidade
+          false
         rescue RestClient::ResourceNotFound => e
           false
         end
       end
 
-      def fetch_lazy relation
+      def fetch_lazy relation, options = {}
         begin
           params = {
             objeto: self.class.name.underscore,
             objeto_id: self.id,
             associacao: relation
-          }
+          }.merge(options)
 
-          json = get_relations([], params)
-
-          json["entidade"] || json["entidades"]
+          get_relations([], params)
         rescue RestClient::ResourceNotFound
           nil
         end
@@ -92,9 +92,11 @@ module API
 
         def where(params={})
           begin
-            json = get_with_params([], params)
+            json = get_with_params([], params, page: params[:page], per_page: params[:per_page])
             entidades = json["entidades"]
-            entidades.map {|entidade| self.new entidade }
+            json["entidades"] = entidades.map {|entidade| self.new entidade }
+
+            API::Integracao::Paginacao.build(json)
           rescue RestClient::ResourceNotFound
             []
           end

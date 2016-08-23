@@ -1,3 +1,3 @@
 class SetorComercial < API::Model
-  attr_accessor :id, :nome
+  attr_accessor :id, :nome, :localidade_id
 end

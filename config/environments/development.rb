@@ -39,6 +39,5 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
-  # Enable the logstasher logs for the current environment
-  config.logstasher.enabled = true
+  config.middleware.use LogFile::Display
 end

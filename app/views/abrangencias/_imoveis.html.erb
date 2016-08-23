@@ -1,3 +1,7 @@
+<div class="pull-right label-list">
+  <%= @imoveis.total_count %> imóveis encontrados
+</div>
+
 <table class="table table-hover table-striped">
   <thead>
     <tr>
@@ -13,7 +17,7 @@
         <td><%= imovel.id %></td>
         <td><%= imovel.localidade.nome %></td>
         <td><%= imovel.setor_comercial.nome %></td>
-        <td><%= imovel.numero_lote %></td>
+        <td align="center" width="140"><%= imovel.numero_lote %></td>
       </tr>
       <input type="hidden" name="abrangencia[imoveis][]" value="<%= imovel.id %>" />
     <% end %>
@@ -22,3 +26,7 @@
     <% end %>
   </tbody>
 </table>
+
+<div class="text-center">
+  <%= paginate @imoveis %>
+</div>

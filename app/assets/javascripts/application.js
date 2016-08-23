@@ -11,5 +11,7 @@
 // about supported directives.
 //
 //= require vendor
-//= require bootstrap-datepicker
+//= require bootstrap-datepicker/core
+//= require bootstrap-datepicker/locales/bootstrap-datepicker.pt-BR
+//= require custom-combobox
 //= require_tree .

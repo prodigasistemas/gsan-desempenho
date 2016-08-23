@@ -1,19 +1,19 @@
 source 'https://rubygems.org'
 
 gem 'rails', '4.2.7'
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails', '~> 5.0.6'
 gem 'uglifier', '>= 1.3.0'
 
 gem 'smart_listing'
 gem 'jquery-rails'
-gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'bootstrap-datepicker-rails'
-
 gem 'rest-client'
 gem 'dotenv-rails'
 
+gem 'kaminari'
 gem 'logstasher'
+gem 'log_file'
 
 group :development, :test do
   gem 'pry-rails'
