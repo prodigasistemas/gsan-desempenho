@@ -1,0 +1,17 @@
+<div class="page-header">
+  <%= build_breadcrumb [
+    { title: "Arquivo de Retorno", active: true }
+  ] %>
+
+  <h1>Arquivo de Retorno</h1>
+</div>
+
+<div class="container-fluid">
+
+<form class="form-file" action="<%= API::Base::URL_BASE %>/arquivo_recadastramento.csv" method="post" target="_blank">
+  <input type="hidden" name="usuario_id" id="usuario_id" value="<%= @usuario_logado.id %>">
+
+  <input type="submit" value="Gerar arquivo", class="btn btn-info">
+</form>
+
+</div>
