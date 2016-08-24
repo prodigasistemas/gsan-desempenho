@@ -358,3 +358,32 @@ ul.dropdown-menu li{
 .form-file{
   margin-bottom: 100px
 }
+
+/* css seguranca */
+
+.panel-modulo{
+  text-align: center;
+  cursor: pointer;
+  height: 230px;
+}
+
+.panel-modulo h1{
+  font-size: 20px
+}
+
+.panel-modulo i{
+  display: block;
+  margin-bottom: 30px;
+  margin-top: 20px;
+}
+
+.row-submenu{
+  padding: 13px;
+  display: none;
+}
+
+.container-submenu{
+  min-height: 250px;
+  background: #ccc;
+  padding: 20px 20px 20px 20px;
+}
