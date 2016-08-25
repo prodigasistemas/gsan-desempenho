@@ -19,4 +19,5 @@ Rails.application.routes.draw do
   end
   resource :session, only: [:new, :create, :destroy]
   resources :imovel_retorno
+  resources :acoes, except: [:destroy]
 end

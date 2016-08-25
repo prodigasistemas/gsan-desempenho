@@ -19,6 +19,10 @@ class ContratoMedicao < API::Model
     @coeficientes
   end
 
+  def nome_empresa
+    empresa.try(:nome)
+  end
+
   def vigencia_inicial=(vigencia_inicial)
     @vigencia_inicial = vigencia_inicial.to_date if vigencia_inicial.present?
   end

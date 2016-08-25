@@ -1,0 +1,15 @@
+<div class="page-header">
+  <%= build_breadcrumb [
+    { title: "Ações", active: true },
+  ] %>
+
+  <div class="actions pull-right">
+    <%= build_header_button('novo', :acao, new_acao_path) %>
+  </div>
+  <h1>Ações</h1>
+</div>
+
+<%= input_search :acoes %>
+<div class="panel panel-show">
+  <%= smart_listing_render :acoes %>
+</div>
