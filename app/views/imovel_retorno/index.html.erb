@@ -6,12 +6,11 @@
   <h1>Arquivo de Retorno</h1>
 </div>
 
-<div class="container-fluid">
+<div class="container-fluid container-arquivo">
 
-<form class="form-file" action="<%= API::Base::URL_BASE %>/arquivo_recadastramento.csv" method="post" target="_blank">
-  <input type="hidden" name="usuario_id" id="usuario_id" value="<%= @usuario_logado.id %>">
+  <div class="row" style="padding-bottom: 20px">
+    <input type="hidden" name="usuario_id" id="usuario_id" value="<%= @usuario_logado.id %>">
 
-  <input type="submit" value="Gerar arquivo", class="btn btn-info">
-</form>
-
+    <%= link_to "Gerar arquivo", "", data: { "loading-text": "Processando..." }, id: "btn-gerar-arquivo", class: "btn btn-info" %>
+  </div>
 </div>
