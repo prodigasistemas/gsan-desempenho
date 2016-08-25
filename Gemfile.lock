@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/prodigasistemas/log_file.git
+  revision: 2dd193dc582dfd2a40790dbea8feade50be9485e
+  specs:
+    log_file (0.0.4)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -104,7 +110,6 @@ GEM
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
     kgio (2.10.0)
-    log_file (0.0.3)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.4)
@@ -246,8 +251,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   kaminari
-  log_file
-  logstasher
+  log_file!
   pry-rails
   quiet_assets
   rails (= 4.2.7)
