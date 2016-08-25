@@ -12,8 +12,7 @@ gem 'rest-client'
 gem 'dotenv-rails'
 
 gem 'kaminari'
-gem 'logstasher'
-gem 'log_file'
+gem 'log_file', github: 'prodigasistemas/log_file'
 
 group :development, :test do
   gem 'pry-rails'
