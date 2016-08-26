@@ -92,7 +92,7 @@ Rails.application.configure do
 
   config.middleware.use ExceptionNotification::Rack,
     email: {
-      deliver_with: :deliver, # Rails >= 4.2.1 do not need this option since it defaults to :deliver_now
+      deliver_with: :deliver_now, # Rails >= 4.2.1 do not need this option since it defaults to :deliver_now
       email_prefix: "[ERROR] ",
       sender_address: %{"notifier" <#{ENV['EMAIL_SENDER']}>},
       exception_recipients: ENV['EMAIL_RECIPIENTS'].split
