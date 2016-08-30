@@ -23,7 +23,11 @@
             <% end -%>
           </div>
           <div class="col-md-4 brand">
-            <span class="brand"><a href="/"><i class="fa fa-tint"></i>GSAN</a></span>
+            <span class="brand">
+              <%= link_to root_application_path do %>
+                <i class="fa fa-tint"></i>GSAN
+              <% end %>
+            </span>
           </div>
           <div class="col-md-4">
             <ul class="top-nav">
@@ -38,7 +42,7 @@
                 </div>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                   <li>
-                    <%= link_to session_path, method: :delete do %>
+                    <%= link_to logout_url, method: :delete do %>
                       <i class="fa fa-sign-out"></i> Sair
                     <% end %>
                   </li>
