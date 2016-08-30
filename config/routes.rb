@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  root to: 'home#index'
-  #root to: 'contrato_medicoes#index'
+  root to: 'contrato_medicoes#index'
 
   resources :contrato_medicoes do
     resources :coeficientes, except: [:edit, :update, :destroy] do
