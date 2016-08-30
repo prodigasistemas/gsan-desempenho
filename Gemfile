@@ -15,6 +15,8 @@ gem 'kaminari'
 gem 'logstasher'
 gem 'log_file'
 
+gem "cliente-api", git: "git@gitlab.com:prodigasistemas/cliente-api.git"
+
 group :development, :test do
   gem 'pry-rails'
   gem 'awesome_print', require: 'ap'

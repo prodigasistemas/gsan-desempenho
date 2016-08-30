@@ -1,4 +1,4 @@
-class ContratoMedicao < API::Model
+class ContratoMedicao < ClienteAPI::Model
 
   attr_accessor :id, :numero, :vigencia_inicial,
                 :vigencia_final, :data_assinatura,
