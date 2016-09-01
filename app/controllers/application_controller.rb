@@ -10,8 +10,12 @@ class ApplicationController < ActionController::Base
   protected
 
   def usuario_logado
-    if id = cookies[:gsan]
-      Usuario.find(id)
+    if token = cookies[:gsan]
+      id, expiracao = verifier.verify(token)
+
+      if Time.zone.now < expiracao
+        Usuario.find(id)
+      end
     else
       nil
     end
@@ -25,5 +29,11 @@ class ApplicationController < ActionController::Base
     session.clear
 
     redirect_to(login_url, alert: "Efetue seu login no GSAN")
+  end
+
+  private
+
+  def verifier
+    @verifier ||= ActiveSupport::MessageVerifier.new('gsan', serializer: YAML)
   end
 end
