@@ -18,4 +18,5 @@ Rails.application.routes.draw do
   end
 
   resources :imovel_retorno
+  resources :acoes, except: [:destroy]
 end

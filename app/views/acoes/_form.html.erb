@@ -1,0 +1,36 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Formulário de Ação</h3>
+  </div>
+
+  <%= gsan_form_for(@acao, html: { class: 'form-horizontal' }) do |f| %>
+    <div class="panel-body">
+
+      <div class="form-group">
+        <label for="contrato_empresa" class="col-sm-2 control-label">Empresa:</label>
+        <div class="col-sm-6">
+          <%= collection_select(:acao, :contrato_medicao_id, @contratos, :id, :nome_empresa, {}, { class: "form-control" }) %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="contrato_vigencia_inicial" class="col-sm-2 control-label">Título: *</label>
+        <div class="col-sm-6">
+          <%= f.text_field :titulo, class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="contrato_vigencia_final" class="col-sm-2 control-label">Descrição:</label>
+        <div class="col-sm-6">
+          <%= f.text_area :descricao, class: "form-control", rows: 5 %>
+        </div>
+      </div>
+
+    </div>
+
+     <div class="panel-footer">
+      <%= f.submit "Salvar", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

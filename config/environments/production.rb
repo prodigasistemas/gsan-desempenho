@@ -62,7 +62,18 @@ Rails.application.configure do
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
-  # config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              ENV['EMAIL_ADDRESS'],
+    port:                 ENV['EMAIL_PORT'],
+    domain:               ENV['EMAIL_DOMAIN'],
+    user_name:            ENV['EMAIL_USERNAME'],
+    password:             ENV['EMAIL_PASSWORD'],
+    authentication:       ENV['EMAIL_AUTH'],
+    enable_starttls_auto: false
+  }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
@@ -78,4 +89,19 @@ Rails.application.configure do
   # config.active_record.dump_schema_after_migration = false
 
   config.middleware.use LogFile::Display
+
+  config.middleware.use ExceptionNotification::Rack,
+    email: {
+      deliver_with: :deliver_now, # Rails >= 4.2.1 do not need this option since it defaults to :deliver_now
+      email_prefix: "[ERROR] ",
+      sender_address: %{"notifier" <#{ENV['EMAIL_SENDER']}>},
+      exception_recipients: ENV['EMAIL_RECIPIENTS'].split
+    },
+    slack: {
+      webhook_url: ENV['SLACK_WEBHOOK_URL'],
+      channel: "##{ENV['SLACK_CHANNEL']}",
+      additional_parameters: {
+        mrkdwn: true
+      }
+    }
 end

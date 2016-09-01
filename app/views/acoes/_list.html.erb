@@ -1,0 +1,22 @@
+<table class="table table-hover table-striped">
+  <thead>
+    <tr>
+      <th>Contrato</th>
+      <th>Título</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% smart_listing.collection.each do |acao| %>
+      <tr class="item-list" data-item-id="<%= acao.id %>" data-show-item="acoes">
+        <td><%= acao.contrato_medicao.try(:nome_empresa) %></td>
+        <td><%= acao.titulo %></td>
+        <td><%= truncate(acao.descricao, length: 100, separator: ' ', omission: '...') %></td>
+      </tr>
+    <% end %>
+    <% if smart_listing.empty? %>
+      <tr><th><center>Nenhum registro encontrado</center></th></tr>
+    <% end %>
+  </tbody>
+</table>
+<%= smart_listing.paginate %>

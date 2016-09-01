@@ -1,0 +1,12 @@
+<div class="page-header">
+
+  <%= build_breadcrumb [
+    { title: "Ações", link: acoes_path },
+    # { title: @acao.titulo, link: acao_path(@acao) },
+    { title: "Editar", active: true }
+  ] %>
+
+  <h1>Ações</h1>
+</div>
+
+<%= render "form", edit: true %>

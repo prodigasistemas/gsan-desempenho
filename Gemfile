@@ -12,8 +12,9 @@ gem 'rest-client'
 gem 'dotenv-rails'
 
 gem 'kaminari'
-gem 'logstasher'
-gem 'log_file'
+gem 'log_file', github: 'prodigasistemas/log_file'
+gem 'exception_notification'
+gem 'slack-notifier'
 
 gem "cliente-api", git: "git@gitlab.com:prodigasistemas/cliente-api.git"
 
