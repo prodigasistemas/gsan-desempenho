@@ -13,6 +13,8 @@ gem 'dotenv-rails'
 
 gem 'kaminari'
 gem 'log_file', github: 'prodigasistemas/log_file'
+gem 'exception_notification'
+gem 'slack-notifier'
 
 group :development, :test do
   gem 'pry-rails'
