@@ -14,7 +14,9 @@ $(function(){
       url: BASE_URL + '/arquivo_recadastramento',
       type: 'post',
       dataType: 'json',
-      data: { usuario_id: $("#usuario_id").val() },
+      data: {
+        empresa_id: $("#lista-empresas").val()
+      }
     })
     .done(function(response) {
       if (!response.success){
