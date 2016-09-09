@@ -2,8 +2,6 @@ class ImovelRetornoController < ApplicationController
   def index
     @imoveis = []
     
-    # @usuario_logado.empresas.each do |empresa|
-    #   @imoveis.concat(empresa.imovel_retornos)
-    # end
+    @empresas = Empresa.all
   end
 end
