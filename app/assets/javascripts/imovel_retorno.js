@@ -20,7 +20,8 @@ $(function(){
     })
     .done(function(response) {
       if (!response.success){
-        $(".container-arquivo").html('<div class="alert alert-danger" role="alert">'+ response.message +'</div>')
+        $(".alert-danger").remove();
+        $(".container-arquivo").append('<div class="alert alert-danger" role="alert">'+ response.message +'</div>')
         $btn.button('reset');
         return;
       }
