@@ -7,21 +7,41 @@ $(function(){
   $("#btn-gerar-arquivo").click(function(event) {
 
     event.preventDefault();
+    var data = {},
+    data_inicial = $("#data-inicial").val(),
+    data_final = $("#data-final").val()
+    empresaId = $("#lista-empresas").val();
+
+    data['empresa_id'] = empresaId;
+
+    if ( data_inicial && data_final ){
+      console.log(data_inicial)
+      data['data_inicial'] = data_inicial;
+      data['data_final']   = data_final;
+    }
+
+    if ( empresaId === "" || empresaId === undefined ){
+      $(".alert-arquivo").html('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>Selecione uma empresa!</div>')
+      return;
+    }
+
+    if ( (data_inicial !== "" && data_final === "") || (data_inicial === "" && data_final !== "") ){
+      $(".alert-arquivo").html('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>Informe um intervalo de datas!</div>')
+      return;
+    }
 
     $btn = $(this).button('loading');
+    console.log(data)
     
     $.ajax({
       url: BASE_URL + '/arquivo_recadastramento',
       type: 'post',
       dataType: 'json',
-      data: {
-        empresa_id: $("#lista-empresas").val()
-      }
+      data: data
     })
     .done(function(response) {
       if (!response.success){
-        $(".alert-danger").remove();
-        $(".container-arquivo").append('<div class="alert alert-danger" role="alert">'+ response.message +'</div>')
+        $(".alert-arquivo").html('<div class="alert alert-danger" role="alert">'+ response.message +'</div>')
         $btn.button('reset');
         return;
       }

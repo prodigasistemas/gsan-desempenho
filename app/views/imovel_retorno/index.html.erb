@@ -6,6 +6,8 @@
   <h1>Arquivo de Retorno</h1>
 </div>
 
+<div class="alert-arquivo"></div>
+
 <div class="panel panel-default">
   <div class="panel-heading">Filtro</div>
   <div class="panel-body">
@@ -13,17 +15,20 @@
       <div class="form-group">
         <label class="sr-only" for="lista-empresas">Empresas</label>
         <select class="form-control" id="lista-empresas">
-          <option var="">Selecione uma empresa</option>
+          <option value="">Selecione uma empresa</option>
           <% @empresas.each do |empresa| %>
             <option value="<%= empresa.id %>"><%= empresa.nome %></option>
           <% end -%>
         </select>
       </div>
-   <!--   <div class="form-group">
-        <label class="sr-only" for="exampleInputPassword3">Password</label>
-        <input type="text" class="form-control date-br datepicker" id="data-transmissao" placeholder="Data de transmissão">
+      <div class="form-group">
+        <label class="sr-only" for="exampleInputPassword3">Data inicial</label>
+        <input type="text" class="form-control date-br datepicker" id="data-inicial" placeholder="Data inicial">
       </div>
-    -->
+      <div class="form-group">
+        <label class="sr-only" for="exampleInputPassword3">Data final</label>
+        <input type="text" class="form-control date-br datepicker" id="data-final" placeholder="Data final">
+      </div>
     </form>
   </div>
 </div>
