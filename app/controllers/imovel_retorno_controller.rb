@@ -1,7 +1,7 @@
 class ImovelRetornoController < ApplicationController
   def index
-    @imoveis = []
-    
+    @historico = @usuario_logado.historico_arquivo_retornos.sort!{ |a,b| b.id <=> a.id }
+
     if @usuario_logado.admin
       @empresas = Empresa.all
     else

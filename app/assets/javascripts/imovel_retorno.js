@@ -2,6 +2,7 @@ $(function(){
 
   var nomeArquivo = "",
       intervalId = 0,
+      registroHistorico = {},
       $btn = null;
   
   $("#btn-gerar-arquivo").click(function(event) {
@@ -10,12 +11,13 @@ $(function(){
     var data = {},
     data_inicial = $("#data-inicial").val(),
     data_final = $("#data-final").val()
-    empresaId = $("#lista-empresas").val();
+    empresaId = $("#lista-empresas").val()
+    usuarioId = $("#usuario-id").val();
 
     data['empresa_id'] = empresaId;
+    data['usuario_id'] = usuarioId;
 
     if ( data_inicial && data_final ){
-      console.log(data_inicial)
       data['data_inicial'] = data_inicial;
       data['data_final']   = data_final;
     }
@@ -31,7 +33,6 @@ $(function(){
     }
 
     $btn = $(this).button('loading');
-    console.log(data)
     
     $.ajax({
       url: BASE_URL + '/arquivo_recadastramento',
@@ -46,7 +47,15 @@ $(function(){
         return;
       }
 
+      var empresa = response.empresa;
+      var linhaTabela = "";
+
       nomeArquivo = response.nome_arquivo;
+      registroHistorico = response.historico;
+      registroHistorico.empresa = empresa;
+      linhaTabela = linhaDaTabela(registroHistorico);
+
+      $("#historico-geracao").prepend(linhaTabela)
 
       intervalId = setInterval(function(){
         poolingVerificaSeArquivoExiste(nomeArquivo);
@@ -73,18 +82,31 @@ $(function(){
     .done(function(response) {
         
       if (response.success){
-        window.location = BASE_URL + "/arquivo_recadastramento.csv?nome_arquivo=" + nomeArquivo;
         clearInterval(intervalId);
         $btn.button('reset');
+
+        $( "#" + registroHistorico.id ).find(".historico-situacao").html('<span class="label label-success">concluido</span>');
+        $( "#" + registroHistorico.id ).find(".link-arquivo").html( '<a href="'+ BASE_URL +'/arquivo_recadastramento.csv?nome_arquivo=' + nomeArquivo + '">'+ nomeArquivo +'</a>' );
+
       }
 
     })
     .fail(function() {
-      console.log("error");
+      $( "#" + registroHistorico.id ).find(".historico-situacao").html('<span class="label label-danger">falha</span>');
     })
     .always(function() {
       console.log("complete");
     });
+  }
+
+  function linhaDaTabela(data){
+    var linhaTabela = "<tr id='"+ data.id +"'>";
+    linhaTabela += "<td class='historico-id'>" + data.id + "</td>";
+    linhaTabela += "<td class='historico-empresa'>" + data.empresa + "</td>";
+    linhaTabela += "<td class='link-arquivo'>" + data.caminho + "</td>";
+    linhaTabela += "<td class='historico-situacao'><span class='label label-warning'>" + data.situacao_arquivo + "</span></td>";
+
+    return linhaTabela;
   }
 
 });
