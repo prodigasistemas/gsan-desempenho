@@ -5,26 +5,19 @@ $(function(){
       registroHistorico = {},
       $btn = null;
 
-  $("#btn-gerar-arquivo").click(function(event) {
+  $("#btn-gerar-arquivo-hidrometro").click(function(event) {
 
     event.preventDefault();
-    var data = {},
-    data_inicial = $("#data-inicial").val(),
-    data_final = $("#data-final").val()
-    empresaId = $("#lista-empresas").val()
-    usuarioId = $("#usuario-id").val();
 
-    data['empresa_id'] = empresaId;
-    data['usuario_id'] = usuarioId;
+    var data = {},
+    data_inicial = $('#data_inicial').val(),
+    data_final = $('#data_final').val();
+
+    data['usuario_id'] = $('#usuario_id').val();
 
     if ( data_inicial && data_final ){
       data['data_inicial'] = data_inicial;
       data['data_final']   = data_final;
-    }
-
-    if ( empresaId === "" || empresaId === undefined ){
-      $(".alert-arquivo").html('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>Selecione uma empresa!</div>')
-      return;
     }
 
     if ( (data_inicial !== "" && data_final === "") || (data_inicial === "" && data_final !== "") ){
@@ -32,10 +25,17 @@ $(function(){
       return;
     }
 
+    data['localidade_id'] = $('#localidade_id').val();
+    data['setor_comercial_id'] = $('#setor_comercial_id').val();
+    data['rota_id'] = $('#rota_id :selected').val();
+    data['quadra_id'] = $('#quadra_id').val();
+    data['numero_lote'] = $('#numero_lote').val();
+    data['numero_sublote'] = $('#numero_sublote').val();
+
     $btn = $(this).button('loading');
 
     $.ajax({
-      url: BASE_URL + '/arquivo_recadastramento',
+      url: BASE_URL + '/arquivo_hidrometro_instalacao_historicos',
       type: 'post',
       dataType: 'json',
       data: data
@@ -74,7 +74,7 @@ $(function(){
 
   function poolingVerificaSeArquivoExiste(nomeArquivo){
     $.ajax({
-      url: BASE_URL + '/verifica_arquivo_recadastramento',
+      url: BASE_URL + '/verifica_arquivo_hidrometro_historico',
       type: 'get',
       dataType: 'json',
       data: { nome_arquivo: nomeArquivo },
@@ -86,7 +86,7 @@ $(function(){
         $btn.button('reset');
 
         $( "#" + registroHistorico.id ).find(".historico-situacao").html('<span class="label label-success">concluido</span>');
-        $( "#" + registroHistorico.id ).find(".link-arquivo").html( '<a href="'+ BASE_URL +'/arquivo_recadastramento.csv?nome_arquivo=' + nomeArquivo + '">'+ nomeArquivo +'</a>' );
+        $( "#" + registroHistorico.id ).find(".link-arquivo").html( '<a href="'+ BASE_URL +'/arquivo_hidrometro_instalacao_historicos.csv?nome_arquivo=' + nomeArquivo + '">'+ nomeArquivo +'</a>' );
 
       }
 

@@ -1,0 +1,27 @@
+<table class="table table-hover table-striped">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Responsável</th>
+      <th>Arquivo</th>
+      <th>Situação</th>
+    </tr>
+  </thead>
+  <tbody id="historico-geracao">
+    <% @historico.each do |registro| %>
+      <tr id="<%= registro.id %>">
+        <td class="historico-id"><%= registro.id %></td>
+        <td class="historico-responsavel"><%= registro.empresa.nil? ? registro.usuario.nome : registro.empresa.nome %></td>
+        <td class="link-arquivo"><%= link_to registro.caminho, "#{API::Base::URL_BASE}/arquivo_recadastramento.csv?nome_arquivo=#{registro.caminho}" %></td>
+        <td class="historico-situacao"><%= label_arquivo registro.situacao_arquivo %></td>
+      </tr>
+    <% end %>
+    <% if @historico.empty? %>
+      <tr><td colspan="4"><center>Nenhum registro encontrado</center></td></tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="text-center">
+  <%= paginate @historico %>
+</div>

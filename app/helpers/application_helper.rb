@@ -53,6 +53,16 @@ module ApplicationHelper
     end
   end
 
+  def label_arquivo situacao
+    if situacao == 'pendente'
+      "<span class='label label-warning'>pendente</span>".html_safe
+    elsif situacao == 'concluido'
+      "<span class='label label-success'>concluido</span>".html_safe
+    else
+      "<span class='label label-danger'>falha</span>".html_safe
+    end
+  end
+
   def show_errors(object, field_name)
     if object.errors.present?
       if !object.errors.messages[field_name].blank?
