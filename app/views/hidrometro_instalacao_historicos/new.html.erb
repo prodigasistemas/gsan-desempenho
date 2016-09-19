@@ -1,0 +1,17 @@
+<div class="page-header">
+  <%= build_breadcrumb [
+    { title: "Histórico de Instalação de Hidrômetros", active: true }
+  ] %>
+
+  <h1>Histórico de Instalação de Hidrômetros</h1>
+</div>
+
+<%= render "filtro" %>
+
+<div class="page-header">
+  <h1>Histórico</h1>
+</div>
+
+<div class="panel panel-show">
+  <%= render 'list' %>
+</div>

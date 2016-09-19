@@ -20,4 +20,5 @@ Rails.application.routes.draw do
   resource :session, only: [:new, :create, :destroy]
   resources :imovel_retorno
   resources :acoes, except: [:destroy]
+  resources :hidrometro_instalacao_historicos
 end
