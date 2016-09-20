@@ -12,7 +12,7 @@ class HistoricoArquivoRetorno < ClienteAPI::Model
   def self.filtrar_por(tipo_arquivo, collection)
     attrs = {}
     attrs['entidades'] = send(tipo_arquivo.to_sym, collection)
-    API::Integracao::Paginacao.build(attrs)
+    ClienteAPI::Integracao::Paginacao.build(attrs)
   end
 
   private

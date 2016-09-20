@@ -13,7 +13,7 @@ class Abrangencia < ClienteAPI::Model
       json = post([], params)
       ContratoMedicao.new json["entidade"]
     rescue RestClient::UnprocessableEntity => e
-      erro = API::Integracao::Requisicao::ExcecaoNaoConcluido.new(ContratoMedicao, e)
+      erro = ClienteAPI::Integracao::Requisicao::ExcecaoNaoConcluido.new(ContratoMedicao, e)
       erro.entidade
     end
   end
@@ -23,7 +23,7 @@ class Abrangencia < ClienteAPI::Model
       json = delete([:redefinir])
       ContratoMedicao.new json["entidade"]
     rescue RestClient::UnprocessableEntity => e
-      erro = API::Integracao::Requisicao::ExcecaoNaoConcluido.new(ContratoMedicao, e)
+      erro = ClienteAPI::Integracao::Requisicao::ExcecaoNaoConcluido.new(ContratoMedicao, e)
       erro.entidade
     end
   end
