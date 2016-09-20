@@ -5,7 +5,7 @@ GIT
     log_file (0.0.4)
 
 GIT
-  remote: git@gitlab.com:prodigasistemas/cliente-api.git
+  remote: https://gitlab.com/prodigasistemas/cliente-api.git
   revision: e3f72305ab6332c5ca6d8963bedc570b2882e06b
   specs:
     cliente-api (0.1.0)
@@ -285,4 +285,4 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 BUNDLED WITH
-   1.11.2
+   1.12.5

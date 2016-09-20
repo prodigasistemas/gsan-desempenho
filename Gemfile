@@ -16,7 +16,7 @@ gem 'log_file', github: 'prodigasistemas/log_file'
 gem 'exception_notification'
 gem 'slack-notifier'
 
-gem "cliente-api", git: "git@gitlab.com:prodigasistemas/cliente-api.git"
+gem "cliente-api", git: "https://gitlab.com/prodigasistemas/cliente-api.git"
 
 group :development, :test do
   gem 'pry-rails'
