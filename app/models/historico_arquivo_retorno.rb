@@ -1,4 +1,4 @@
-class HistoricoArquivoRetorno < API::Model
+class HistoricoArquivoRetorno < ClienteAPI::Model
   attr_accessor :id, :usuario_id, :empresa_id, :criado_em, :caminho, :situacao_arquivo, :tipo_arquivo
 
   belongs_to :usuario

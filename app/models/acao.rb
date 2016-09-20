@@ -1,4 +1,4 @@
-class Acao < API::Model
+class Acao < ClienteAPI::Model
   attr_accessor :id, :titulo, :descricao, :contrato_medicao_id, :contrato_medicao,
                 :data_criacao, :data_atualizacao
 

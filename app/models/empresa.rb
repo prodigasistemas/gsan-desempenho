@@ -1,4 +1,4 @@
-class Empresa < API::Model
+class Empresa < ClienteAPI::Model
   include API::Integracao::Requisicao
 
   attr_accessor :id, :nome, :email, :ativo, :ultima_alteracao,
