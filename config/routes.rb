@@ -19,4 +19,5 @@ Rails.application.routes.draw do
 
   resources :imovel_retorno
   resources :acoes, except: [:destroy]
+  resources :hidrometro_instalacao_historicos
 end
