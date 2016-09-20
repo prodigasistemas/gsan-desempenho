@@ -1,5 +1,5 @@
-class Usuario < API::Model
-  extend API::Integracao::Autenticacao
+class Usuario < ClienteAPI::Model
+  extend ClienteAPI::Integracao::Autenticacao
 
   attr_accessor :id, :nome, :nome_usuario, :senha, :empresa_id, :admin
 

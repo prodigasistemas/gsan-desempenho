@@ -1,4 +1,4 @@
-class LigacaoAguaSituacao < API::Model
+class LigacaoAguaSituacao < ClienteAPI::Model
   attr_accessor :id, :descricao, :indicador_uso, :ultima_alteracao
 
   def self.sorted

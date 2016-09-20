@@ -1,4 +1,4 @@
-class ImovelRetorno < API::Model
+class ImovelRetorno < ClienteAPI::Model
    attr_accessor :id, :numero_imovel,
                  :complemento_endereco,
                  :pontos_utilizacao,

@@ -1,4 +1,4 @@
-class HistoricoCoeficiente < API::Model
+class HistoricoCoeficiente < ClienteAPI::Model
   attr_accessor :id, :coeficiente, :coeficiente_id, :numero_coeficiente, :usuario, :usuario_id, :ligacao_agua_situacao, :ligacao_agua_id, :criado_em
 
   belongs_to :ligacao_agua_situacao

@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  # root to: 'home#index'
   root to: 'contrato_medicoes#index'
 
   resources :contrato_medicoes do
@@ -17,7 +16,7 @@ Rails.application.routes.draw do
       resource :abrangencia, only: :destroy
     end
   end
-  resource :session, only: [:new, :create, :destroy]
+
   resources :imovel_retorno
   resources :acoes, except: [:destroy]
   resources :hidrometro_instalacao_historicos

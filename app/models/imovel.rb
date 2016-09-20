@@ -1,9 +1,9 @@
-class Imovel < API::Model
+class Imovel < ClienteAPI::Model
   attr_accessor :id, :localidade_id, :setor_comercial_id, :quadra_id, :numero_lote,
                 :logradouro_bairro_id, :logradouro_cep_id, :bairro_id, :vencimento_mes_seguinte,
                 :numero_sublote, :testada_lote, :numero_imovel, :complemento_endereco, :faixa_area_construida_id,
-                :imovel_condominio_id, :indicador_imovel_condominio, :imovel_principal_id, :tipo_despejo_id, 
-                :volume_reservatorio_superior, :faixa_reservatorio_superior_id, :volume_reservatorio_inferior, 
+                :imovel_condominio_id, :indicador_imovel_condominio, :imovel_principal_id, :tipo_despejo_id,
+                :volume_reservatorio_superior, :faixa_reservatorio_superior_id, :volume_reservatorio_inferior,
                 :faixa_reservatorio_inferior_id, :tipo_pavimento_calcada_id, :tipo_pavimento_rua_id,
                 :fonte_abastecimento_id, :situacao_ligacao_agua_id, :situacao_ligacao_esgoto_id,
                 :perfil_imovel_id, :situacao_especial_de_cobranca_id, :situacao_especial_faturamento_id,
@@ -16,8 +16,8 @@ class Imovel < API::Model
                 :atualizado_em, :tarifa_id, :tipo_faturamento_id, :referencia_numero_id, :logradouro_id,
                 :economias, :suspensao_abastecimento, :faturamento_situacao_motivo_id, :area_construida,
                 :tipo_cobranca_situacao_id, :tipo_envio_conta_id, :jardim, :sequencial_rota_leitura,
-                :nome, :funcionario_id, :habitacao_id, :tipo_propriedade_id, :tipo_constricao_id, 
-                :tipo_cobertura_id, :rota_entrega_id, :sequencia_rota_entrega, :data_contrato, 
+                :nome, :funcionario_id, :habitacao_id, :tipo_propriedade_id, :tipo_constricao_id,
+                :tipo_cobertura_id, :rota_entrega_id, :sequencia_rota_entrega, :data_contrato,
                 :codigo_atualizacao_id, :logradouro_inicio_perimetro_id, :logradouro_final_perimetro_id,
                 :face_quadra_id, :rota_alternativa_id, :medidor_energia_id, :visita_comercial_id,
                 :informacoes, :codigo_debito_automatico, :reincidencia_infracao, :quadra_entrega,
