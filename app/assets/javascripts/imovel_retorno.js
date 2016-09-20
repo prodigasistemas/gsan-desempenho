@@ -47,12 +47,12 @@ $(function(){
         return;
       }
 
-      var empresa = response.empresa;
       var linhaTabela = "";
 
       nomeArquivo = response.nome_arquivo;
       registroHistorico = response.historico;
-      registroHistorico.empresa = empresa;
+      registroHistorico.responsavel = response.responsavel;
+      registroHistorico.nome_arquivo = nomeArquivo;
       linhaTabela = linhaDaTabela(registroHistorico);
 
       $("#historico-geracao").prepend(linhaTabela)
@@ -102,16 +102,8 @@ $(function(){
   function linhaDaTabela(data){
     var linhaTabela = "<tr id='"+ data.id +"'>";
     linhaTabela += "<td class='historico-id'>" + data.id + "</td>";
-
-    var responsavel = "";
-    if(data.empresa != undefined) {
-      responsavel = data.empresa.nome;
-    } else {
-      responsavel = data.usuario.nome
-    }
-
-    linhaTabela += "<td class='historico-responsavel'>" + responsavel + "</td>";
-    linhaTabela += "<td class='link-arquivo'>" + data.caminho + "</td>";
+    linhaTabela += "<td class='historico-responsavel'>" + data.responsavel + "</td>";
+    linhaTabela += "<td class='link-arquivo'>" + data.nome_arquivo + "</td>";
     linhaTabela += "<td class='historico-situacao'><span class='label label-warning'>" + data.situacao_arquivo + "</span></td>";
 
     return linhaTabela;
