@@ -18,7 +18,7 @@
 
         <div class="row">
           <div class="col-md-4">
-            <%= link_to "", class: "btn-menu" do %>
+            <%= link_to root_application_path do %>
               <i class="fa fa-align-justify fa-2x"></i>
             <% end -%>
           </div>
@@ -54,38 +54,7 @@
       </div>
     </nav>
 
-    <div class="container-fluid container-main">
-      <div class="row">
-        <div class="col-md-2 sidebar">
-          <ul class="nav nav-sidebar">
-            <li class="top-sidebar">MENU</li>
-          </ul>
-          <ul class="nav nav-sidebar">
-            <li class="active">
-              <%= link_to contrato_medicoes_path do %>
-                <i class="fa fa-building"></i> Contratos
-              <% end -%>
-            </li>
 
-            <li class="active">
-              <%= link_to acoes_path do %>
-                <i class="fa fa-building"></i> Ações
-              <% end -%>
-            </li>
-
-            <li class="active">
-              <%= link_to imovel_retorno_index_path do %>
-                <i class="fa fa-building"></i> Arquivo de Retorno
-              <% end -%>
-            </li>
-
-            <li class="active">
-              <%= link_to new_hidrometro_instalacao_historico_path do %>
-                <i class="fa fa-building"></i> Arquivo de Hidrômetros
-              <% end -%>
-            </li>
-          </ul>
-        </div>
         <div class="col-md-12 main">
           <%= bootstrap_flash %>
           <div class="container">
