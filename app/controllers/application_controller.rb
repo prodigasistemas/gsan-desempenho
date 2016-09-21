@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
     end
     session.clear
 
-    redirect_to(login_url, alert: "Efetue seu login no GSAN")
+    redirect_to(login_url)
   end
 
   private
