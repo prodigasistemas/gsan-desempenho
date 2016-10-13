@@ -22,7 +22,7 @@ class Imovel < ClienteAPI::Model
                 :face_quadra_id, :rota_alternativa_id, :medidor_energia_id, :visita_comercial_id,
                 :informacoes, :codigo_debito_automatico, :reincidencia_infracao, :quadra_entrega,
                 :ano_mes_exclusao_tarifa_social, :nivel_instalacao_esgoto, :utiliza_rateio_area_comum,
-                :categoria, :subcategoria, :localidade, :setor_comercial
+                :categoria, :subcategoria, :localidade, :setor_comercial, :percentual_abastecimento
 
   belongs_to :localidade
   belongs_to :setor_comercial
