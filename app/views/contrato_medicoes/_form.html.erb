@@ -1,0 +1,52 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Formulário de Contrato</h3>
+  </div>
+
+  <%= gsan_form_for(@contrato_medicao, html: { class: 'form-horizontal' }) do |f| %>
+    <div class="panel-body">
+
+      <div class="form-group">
+        <label for="contrato_numero" class="col-sm-2 control-label">Número: *</label>
+        <div class="col-sm-2">
+          <%= f.text_field :numero, class: "form-control", id: "contrato_numero" %>
+          <div class="error-message"><%= show_errors(@contrato_medicao, :numero) %></div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="contrato_empresa" class="col-sm-2 control-label">Empresa:</label>
+        <div class="col-sm-6">
+          <%= collection_select(:contrato_medicao, :empresa_id, @empresas, :id, :nome, {}, { class: "form-control", id: "contrato_empresa" }) %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="contrato_vigencia_inicial" class="col-sm-2 control-label">Vigência Inicial: *</label>
+        <div class="col-sm-2">
+          <%= f.text_field :vigencia_inicial, class: "form-control date-br datepicker", id: "contrato_vigencia_inicial" %>
+          <div class="error-message"><%= show_errors(@contrato_medicao, :vigencia_inicial) %></div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="contrato_vigencia_final" class="col-sm-2 control-label">Vigência Final:</label>
+        <div class="col-sm-2">
+          <%= f.text_field :vigencia_final, class: "form-control date-br datepicker", id: "contrato_vigencia_final" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="contrato_data_assinatura" class="col-sm-2 control-label">Data da Assinatura:</label>
+        <div class="col-sm-2">
+          <%= f.text_field :data_assinatura, class: "form-control date-br datepicker", id: "contrato_data_assinatura" %>
+        </div>
+      </div>
+
+    </div>
+
+     <div class="panel-footer">
+      <%= f.submit "Salvar", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,21 @@
+<div class="panel-body">
+  <% @coeficientes.each do |coeficiente| %>
+    <%= fields_for "coeficiente[]", coeficiente do |f| %>
+      <div class="form-group">
+        <label for="contrato_numero" class="col-sm-2 control-label"><%= coeficiente.ligacao_agua_situacao.descricao %>: *</label>
+        <div class="col-sm-2">
+          <% if edit %>
+            <%= f.hidden_field :id, class: "form-control" %>
+          <% end %>
+          <%= f.hidden_field :ligacao_agua_id, class: "form-control" %>
+          <%= f.text_field :coeficiente, class: "form-control decimal", required: true %>
+          <div class="error-message"><%= show_errors(coeficiente, :coeficiente) %></div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+
+  <div class="panel-footer">
+    <%= submit_tag edit ? "Atualizar" : "Salvar", class: "btn btn-primary" %>
+  </div>
+</div>

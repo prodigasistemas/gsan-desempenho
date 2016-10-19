@@ -1,0 +1,15 @@
+<div class="page-header">
+  <%= build_breadcrumb [
+    { title: "Contratos", active: true },
+  ] %>
+
+  <div class="actions pull-right">
+    <%= build_header_button('novo', :contrato, new_contrato_medicao_path) %>
+  </div>
+  <h1>Contratos</h1>
+</div>
+
+<%= input_search :contrato_medicoes %>
+<div class="panel panel-show">
+  <%= smart_listing_render :contrato_medicoes %>
+</div>

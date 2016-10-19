@@ -1,0 +1,54 @@
+<div class="page-header">
+
+  <%= build_breadcrumb [
+    { title: "Contratos", link: contrato_medicoes_path },
+    { title: "#{@contrato.numero} - #{@contrato.empresa.nome}", active: true }
+  ] %>
+
+</div>
+
+<%= build_action_header("#{@contrato.numero} - #{@contrato.empresa.nome}", [@contrato]) %>
+
+<div class="panel panel-show">
+  <table class="table">
+    <tbody>
+      <tr>
+        <%= table_label "Registro" %>
+        <td><%= @contrato.id %></td>
+      </tr>
+      <tr>
+        <%= table_label "Número do contrato" %>
+        <td><%= @contrato.numero %></td>
+      </tr>
+      <tr>
+        <%= table_label "Vigência incial" %>
+        <td><%= @contrato.vigencia_inicial %></td>
+      </tr>
+      <tr>
+        <%= table_label "Abrangência" %>
+        <td>
+          <%= link_to "Visualizar", contrato_medicao_abrangencias_path(@contrato.id), class: "btn btn-info" %>
+          <%= link_to "Redefinir", redefinir_contrato_medicao_abrangencias_path(@contrato.id), method: :delete, class: "btn btn-danger" %>
+        </td>
+      </tr>
+      <tr>
+        <%= table_label "Total de Imóveis" %>
+        <td><%= @contrato.imoveis(page: 1).total_count %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="actions pull-right">
+  <% if @contrato.coeficientes.empty? %>
+    <%= build_header_button('novo', :coeficiente, new_contrato_medicao_coeficiente_path(@contrato.id)) %>
+  <% else %>
+    <%= build_header_button('editar', :coeficiente, edit_contrato_medicao_coeficientes_path(@contrato.id)) %>
+  <% end %>
+</div>
+<div class="page-header">
+  <h1>Coeficientes</h1>
+  <div class="panel panel-show">
+    <%= smart_listing_render :coeficientes %>
+  </div>
+</div>

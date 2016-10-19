@@ -1,0 +1,37 @@
+<div class="page-header">
+
+  <%= build_breadcrumb [
+    { title: "Ações", link: acoes_path },
+    { title: "#{@acao.titulo}", active: true }
+  ] %>
+
+</div>
+
+<%= render 'action_header', edit_path: edit_acao_path(@acao.id), title: @acao.titulo %>
+
+<div class="panel panel-show">
+  <table class="table">
+    <tbody>
+      <tr>
+        <%= table_label "Contrato" %>
+        <td><%= link_to @acao.contrato_medicao.try(:nome_empresa), contrato_medicoes_path(@acao.contrato_medicao) %></td>
+      </tr>
+      <tr>
+        <%= table_label "Título" %>
+        <td><%= @acao.titulo %></td>
+      </tr>
+      <tr>
+        <%= table_label "Descrição" %>
+        <td><%= @acao.descricao %></td>
+      </tr>
+      <tr>
+        <%= table_label "Criado em" %>
+        <td><%= @acao.data_criacao.strftime("%d/%m/%Y") %></td>
+      </tr>
+      <tr>
+        <%= table_label "Atualizado em" %>
+        <td><%= @acao.data_atualizacao.strftime("%d/%m/%Y") %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,11 @@
+<ul class="breadcrumb">
+  <% breadcrumbs.each do |bc| %>
+    <% if bc[:active] %>
+      <li class="active"><%= truncate(bc[:title], length: 20) %></li>
+    <% else %>
+      <li>
+        <%= link_to truncate(bc[:title], length: 20), bc[:link] %>
+      </li>
+    <% end %>
+  <% end %>
+</ul>
