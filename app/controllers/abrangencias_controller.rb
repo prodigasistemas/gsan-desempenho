@@ -4,7 +4,7 @@ class AbrangenciasController < ApplicationController
 
   def index
     @contrato_medicao = ContratoMedicao.find(params[:contrato_medicao_id])
-    @imoveis = @contrato_medicao.imoveis(page: params[:page] || 1)
+    @abrangencias = @contrato_medicao.abrangencias(page: params[:page] || 1)
   end
 
   def new
