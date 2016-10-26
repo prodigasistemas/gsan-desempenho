@@ -1,9 +1,15 @@
 class Abrangencia < ClienteAPI::Model
-  attr_accessor :id, :contrato_medicao_id, :imovel_id, :criado_em, :atualizado_em, :ligacao_agua_situacao_id
+  attr_accessor :id, 
+                :contrato_medicao_id, 
+                :imovel_id, 
+                :criado_em, 
+                :atualizado_em, 
+                :ligacao_agua_situacao_id,
+                :percentual_esgoto
 
-  belongs_to :contrato_medicao
-  belongs_to :imovel
-  belongs_to :ligacao_agua_situacao
+  belongs_to    :contrato_medicao
+  belongs_to    :imovel
+  belongs_to    :ligacao_agua_situacao
 
   def resource_path
     [["contrato_medicoes", contrato_medicao_id]]
