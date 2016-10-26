@@ -6,8 +6,8 @@ class ContratoMedicao < ClienteAPI::Model
                 :imoveis, :coeficientes
 
   belongs_to :empresa
-  has_many :imoveis
   has_many :coeficientes, order: :ligacao_agua_id
+  has_many :abrangencias
 
   def self.iniciar_coeficientes(ligacoes_agua)
     @coeficientes = []
