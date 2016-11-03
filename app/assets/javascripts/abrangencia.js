@@ -150,35 +150,6 @@ $(function(){
     }
   });
 
-  // $quadra.autocomplete({
-  //   minLength: 2,
-  //   source: function( request, response ) {
-  //     var term = request.term;
-  //     if ( term in cache ) {
-  //       response( cache[ term ] );
-  //       return;
-  //     }
-
-  //     request.filtros = { termo: term, setor_comercial_id: $setor_comercial_id.val() }
-
-  //     $.getJSON( BASE_URL + "/quadras", request, function( data, status, xhr ) {
-  //       var result = $.map(data.entidades, function (value, key) {
-  //         return {
-  //           id: value.id,
-  //           label: value.codigo,
-  //           value: value.codigo
-  //         };
-  //       });
-
-  //       cache[ term ] = result;
-  //       response( result );
-  //     });
-  //   },
-  //   select: function(event, ui){
-  //     $quadra_id.val(ui.item.id);
-  //   }
-  // });
-
   function carregarRotas(callback){
     $rota.empty();
 
