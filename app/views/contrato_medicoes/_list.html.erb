@@ -15,7 +15,7 @@
         <td><%= contrato.numero %></td>
         <td><%= contrato.vigencia_inicial %></td>
         <td><%= contrato.vigencia_final %></td>
-        <td><%= contrato.imoveis(page: 1).total_count %></td>
+        <td><%= contrato.abrangencias(page: 1).total_count %></td>
       </tr>
     <% end %>
     <% if smart_listing.empty? %>

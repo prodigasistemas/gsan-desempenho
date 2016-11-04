@@ -6,8 +6,8 @@ class ContratoMedicao < ClienteAPI::Model
                 :imoveis, :coeficientes
 
   belongs_to :empresa
-  has_many :imoveis
   has_many :coeficientes, order: :ligacao_agua_id
+  has_many :abrangencias
 
   def self.iniciar_coeficientes(ligacoes_agua)
     @coeficientes = []
@@ -17,6 +17,10 @@ class ContratoMedicao < ClienteAPI::Model
     end
 
     @coeficientes
+  end
+
+  def nome_empresa_com_numero
+    self.empresa.nome + ' - ' + self.numero
   end
 
   def nome_empresa
@@ -33,5 +37,9 @@ class ContratoMedicao < ClienteAPI::Model
 
   def data_assinatura=(data_assinatura)
     @data_assinatura = data_assinatura.to_date if data_assinatura.present?
+  end
+
+  def buscar_imoveis_pela_referencia(referencia)
+    
   end
 end

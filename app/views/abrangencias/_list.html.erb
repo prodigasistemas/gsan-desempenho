@@ -5,29 +5,33 @@
       <th>Localidade</th>
       <th>Setor Comercial</th>
       <th>Número do Lote</th>
+      <th>Situação da Ligação de Água</th>
+      <th>Percentual Esgoto</th>
       <th></th>
     </tr>
   </thead>
   <tbody>
-    <% @imoveis.each do |imovel| %>
+    <% @abrangencias.each do |abrangencia| %>
       <tr>
-        <td><%= imovel.id %></td>
-        <td><%= imovel.localidade.nome %></td>
-        <td><%= imovel.setor_comercial.nome %></td>
-        <td><%= imovel.numero_lote %></td>
+        <td><%= abrangencia.imovel.id %></td>
+        <td><%= abrangencia.imovel.localidade.nome %></td>
+        <td><%= abrangencia.imovel.setor_comercial.nome %></td>
+        <td><%= abrangencia.imovel.numero_lote %></td>
+        <td><%= abrangencia.ligacao_agua_situacao.descricao %></td>
+        <td><%= abrangencia.percentual_esgoto %></td>
         <td>
-          <%= link_to contrato_medicao_imovel_abrangencia_path(@contrato_medicao.id, imovel.id), method: :delete, data: {confirm: "Você deseja remover esse imóvel da abrangência?"} do %>
+          <%= link_to contrato_medicao_imovel_abrangencia_path(@contrato_medicao.id, abrangencia.imovel.id), method: :delete, data: {confirm: "Você deseja remover esse imóvel da abrangência?"} do %>
             <i class="fa fa-remove"></i>
           <% end %>
         </td>
       </tr>
     <% end %>
-    <% if @imoveis.empty? %>
+    <% if @abrangencias.empty? %>
       <tr><th><center>Nenhum registro encontrado</center></th></tr>
     <% end %>
   </tbody>
 </table>
 
 <div class="text-center">
-  <%= paginate @imoveis %>
+  <%= paginate @abrangencias %>
 </div>

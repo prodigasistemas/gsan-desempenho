@@ -1,0 +1,63 @@
+<div class="panel panel-default">
+  <form class="form-horizontal">
+    <div class="panel-body">
+
+      <div class="form-group">
+        <label for="contrato_medicao" class="col-sm-2 control-label">Contrato de medição</label>
+        <div class="col-sm-6">
+          <%= collection_select(:query, :contrato_medicao_id, @contratos, :id, :nome_empresa_com_numero, {}, { class: "form-control", id: "contrato_medicao" }) %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="localidade" class="col-sm-2 control-label">Localidade</label>
+        <div class="col-sm-4">
+          <input type="text" name="localidade" id="localidade" placeholder="Localidade" class="form-control" value="<%= @filtro.localidade %>" />
+          <input type="hidden" name="query[localidade_id]" id="localidade_id" value="<%= @filtro.localidade_id %>" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="setor_comercial" class="col-sm-2 control-label">Setor Comercial</label>
+        <div class="col-sm-4">
+          <input type="text" name="setor_comercial" id="setor_comercial" placeholder="Setor Comercial" class="form-control" value="<%= @filtro.setor_comercial %>" disabled="true" />
+          <input type="hidden" name="query[setor_comercial_id]" id="setor_comercial_id" value="<%= @filtro.setor_comercial_id %>" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="rota" class="col-sm-2 control-label">Rota</label>
+        <div class="col-sm-1">
+          <div class="ui-widget">
+            <select id="rota_id" name="query[quadra][rota_id]" class="form-control" data-rota-selecionada="<%= @filtro.rota_id %>" disabled=true>
+              <option></option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="referencia" class="col-sm-2 control-label">Referência</label>
+        <div class="col-sm-4">
+          <input type="text" name="query[referencia]" id="referencia" placeholder="Ano/Mês de Referência" class="form-control" value="<%= @filtro.referencia %>"/>
+        </div>
+      </div>
+
+      <div>
+        <label for="referencia" class="col-sm-2 control-label">Formato</label>
+        <div class="col-sm-4">
+          <input type="radio" name="formato" value="pdf" checked/> PDF
+          <input type="radio" name="formato" value="xls"/>XLS
+        </div>
+      </div>
+    </div>
+
+    <div class="panel-footer">
+      <input type="hidden" name="usuario_id" id="usuario_id" value="<%= @usuario_logado.id %>">
+
+      <button class="btn btn-primary" id="btn-gerar-relatorio"> Gerar relatório </button>
+
+      <%= link_to "Limpar formulário", new_medicao_performance_path, class: "limpar-form" %>
+    </div>
+  </form>
+</div>
