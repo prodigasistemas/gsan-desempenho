@@ -21,6 +21,7 @@ $(function(){
     data['rota_id']             = $('#rota_id :selected').val();
     data['referencia']          = referencia[1] + referencia[0];
     data['formato']             = $('input[name=formato]:checked').val();
+    data['tipo']                = $('input[name=tipo]:checked').val();
 
     $btn = $(this).button('loading');
 
