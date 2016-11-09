@@ -21,8 +21,16 @@
         <td><%= @contrato.numero %></td>
       </tr>
       <tr>
+        <%= table_label "Data da Assinatura" %>
+        <td><%= @contrato.data_assinatura %></td>
+      </tr>
+      <tr>
         <%= table_label "Vigência incial" %>
         <td><%= @contrato.vigencia_inicial %></td>
+      </tr>
+      <tr>
+        <%= table_label "Vigência final" %>
+        <td><%= @contrato.vigencia_final %></td>
       </tr>
       <tr>
         <%= table_label "Abrangência" %>
