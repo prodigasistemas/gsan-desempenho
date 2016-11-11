@@ -12,7 +12,7 @@
       <tr id="<%= registro.id %>">
         <td class="historico-id"><%= registro.id %></td>
         <td class="historico-responsavel"><%= registro.empresa.nil? ? registro.usuario.nome : registro.empresa.nome %></td>
-        <td class="link-arquivo"><%= link_to registro.caminho, "#{ClienteAPI::Base::URL_BASE}/arquivo_recadastramento.csv?nome_arquivo=#{registro.caminho}" %></td>
+        <td class="link-arquivo"><%= link_to registro.caminho, "#{ClienteAPI::Base::URL_BASE}#{url_arquivo}#{registro.caminho}" %></td>
         <td class="historico-situacao"><%= label_arquivo registro.situacao_arquivo %></td>
       </tr>
     <% end %>
