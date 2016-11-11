@@ -44,16 +44,8 @@
       </div>
 
       <div class="form-group">
-        <label for="formato" class="col-sm-2 control-label">Formato</label>
-        <div class="col-sm-4">
-          <input type="radio" name="formato" value="pdf" checked/> PDF
-          <input type="radio" name="formato" value="xls"/>XLS
-        </div>
-      </div>
-
-      <div class="form-group">
         <label for="tipo" class="col-sm-2 control-label">Tipo</label>
-        <div class="col-sm-4">
+        <div id="arquivo-tipo" class="col-sm-4">
           <input type="radio" name="tipo" value="sintetico" checked/> Sintético
           <input type="radio" name="tipo" value="analitico"/> Analítico
         </div>
@@ -63,7 +55,7 @@
     <div class="panel-footer">
       <input type="hidden" name="usuario_id" id="usuario_id" value="<%= @usuario_logado.id %>">
 
-      <button class="btn btn-primary" id="btn-gerar-relatorio"> Gerar relatório </button>
+      <button class="btn btn-primary" id="btn-gerar-relatorio-medicao-performance"> Gerar relatório </button>
 
       <%= link_to "Limpar formulário", new_medicao_performance_path, class: "limpar-form" %>
     </div>

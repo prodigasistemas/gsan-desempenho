@@ -6,7 +6,9 @@ class HistoricoArquivoRetorno < ClienteAPI::Model
 
   TIPO_ARQUIVO = {
     imovel_retorno: "recadastramento_imovel",
-    hidrometro_historico: "hidrometro_historico"
+    hidrometro_historico: "hidrometro_historico",
+    medicao_performance_analitico: "medicao_performance_analitico",
+    medicao_performance_sintetico: "medicao_performance_sintetico"
   }
 
   def self.filtrar_por(tipo_arquivo, collection)
@@ -23,5 +25,12 @@ class HistoricoArquivoRetorno < ClienteAPI::Model
 
   def self.imovel_retorno(collection)
     collection.select { |h| h.tipo_arquivo == TIPO_ARQUIVO[:imovel_retorno] or h.tipo_arquivo.blank? }
+  end
+
+  def self.medicao_performance_relatorios(collection)
+    collection.select { |h| [
+                              TIPO_ARQUIVO[:medicao_performance_sintetico],
+                              TIPO_ARQUIVO[:medicao_performance_analitico]
+                            ].include?(h.tipo_arquivo)}
   end
 end

@@ -9,3 +9,11 @@
 <div class="alert-arquivo"></div>
 
 <%= render "filtro" %>
+
+<div class="page-header">
+  <h1>Histórico</h1>
+</div>
+
+<div class="panel panel-show">
+  <%= render 'shared/list_historico', historico: @historico, url_arquivo: "/arquivo_medicao_performance_relatorios?nome_arquivo=" %>
+</div>
