@@ -30,25 +30,27 @@
             </span>
           </div>
           <div class="col-md-4">
-            <ul class="top-nav">
-              <!-- <li>
-                <a href="#"><i class="fa fa-bell"></i> <span class="badge">42</span></a>
-              </li> -->
+            <% if @usuario_logado %>
+              <ul class="top-nav">
+                <!-- <li>
+                  <a href="#"><i class="fa fa-bell"></i> <span class="badge">42</span></a>
+                </li> -->
 
-              <li class="dropdown">
-                <div class="dropdown-toggle dropdown-user" id="dropdownMenu1" data-toggle="dropdown">
-                  <%= @usuario_logado.nome %>
-                  <span class="caret"></span>
-                </div>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                  <li>
-                    <%= link_to logout_url, method: :delete do %>
-                      <i class="fa fa-sign-out"></i> Sair
-                    <% end %>
-                  </li>
-                </ul>
-              </li>
-            </ul>
+                <li class="dropdown">
+                  <div class="dropdown-toggle dropdown-user" id="dropdownMenu1" data-toggle="dropdown">
+                    <%= @usuario_logado.nome %>
+                    <span class="caret"></span>
+                  </div>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li>
+                      <%= link_to logout_url, method: :delete do %>
+                        <i class="fa fa-sign-out"></i> Sair
+                      <% end %>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            <% end %>
           </div>
         </div>
       </div>

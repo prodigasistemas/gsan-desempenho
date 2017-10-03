@@ -1,0 +1,27 @@
+<table class="table table-hover table-striped">
+  <thead>
+    <tr>
+      <th>Data</th>
+      <th>Valor</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% smart_listing.collection.each do |conta| %>
+      <tr>
+        <td><%= conta.data_conta %></td>
+        <td>R$&nbsp;<%= conta.valor %></td>
+        <td>
+          <%= link_to root_path, class: 'btn btn-default btn-sm' do %>
+            <i class="fa fa-print"></i>
+            Imprimir
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+    <% if smart_listing.empty? %>
+      <tr><th colspan="3"><center>Nenhum registro encontrado</center></th></tr>
+    <% end %>
+  </tbody>
+</table>
+<%= smart_listing.paginate %>

@@ -1,0 +1,11 @@
+<div class="page-header">
+  <%= build_breadcrumb [
+    { title: "Faturas Disponíveis", active: true },
+  ] %>
+  <h1>Faturas Disponíveis</h1>
+</div>
+
+
+<div class="panel panel-show">
+  <%= smart_listing_render :contas %>
+</div>

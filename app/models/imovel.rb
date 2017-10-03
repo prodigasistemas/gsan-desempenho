@@ -26,4 +26,5 @@ class Imovel < ClienteAPI::Model
 
   belongs_to :localidade
   belongs_to :setor_comercial
+  has_many :contas
 end

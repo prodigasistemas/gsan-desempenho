@@ -1,0 +1,18 @@
+<div class="panel panel-default">
+  <div class="panel-heading">Consultar Segunda Via</div>
+  <%= form_tag(contas_path, method: :get, class: 'form-horizontal') do |f| %>
+    <div class="panel-body">
+      <p class="text-center">Informe apenas os números da sua <b>MATRÍCULA</b>, que se encontra na parte superior da sua conta de água:</p>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-sm-2">
+            <%= text_field_tag 'matricula', '', placeholder: 'Matrícula', required: true, class: "form-control" %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel-footer">
+      <%= submit_tag "Consultar", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>
