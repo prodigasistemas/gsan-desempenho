@@ -27,4 +27,8 @@ class Imovel < ClienteAPI::Model
   belongs_to :localidade
   belongs_to :setor_comercial
   has_many :contas
+
+  def self.imovel_nao_excluido(collection)
+    collection.select { |i| i.imovel_excluido == nil or i.imovel_excluido != 1 }
+  end
 end

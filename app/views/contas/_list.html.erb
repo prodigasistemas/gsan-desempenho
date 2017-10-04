@@ -9,8 +9,8 @@
   <tbody>
     <% smart_listing.collection.each do |conta| %>
       <tr>
-        <td><%= conta.data_conta %></td>
-        <td>R$&nbsp;<%= conta.valor %></td>
+        <td><%= conta.ano_mes_referencia_formatado %></td>
+        <td>R$&nbsp;<%= conta.total %></td>
         <td>
           <%= link_to root_path, class: 'btn btn-default btn-sm' do %>
             <i class="fa fa-print"></i>
