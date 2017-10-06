@@ -75,6 +75,9 @@ module ApplicationHelper
 
   STRING_COMUM = "javascript:abrirPopup('gerarRelatorio2ViaContaAction.do?cobrarTaxaEmissaoConta=N&idConta='"
   def obter_ids_contas_gsan(matricula)
+    ids = Rails.cache.read(:ids_gsan)
+    return ids if not ids.nil?
+
     ids = []
     a = Mechanize.new
     a.get(ENV['GSAN_SEGUNDA_VIA_PATH']) do |page|
@@ -90,6 +93,7 @@ module ApplicationHelper
       end
     end
 
+    Rails.cache.write(:ids_gsan, ids)
     ids
   end
 

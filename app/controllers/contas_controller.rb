@@ -8,11 +8,11 @@ class ContasController < ApplicationController
 
   def index
     if @matricula.blank?
-    redirect_to segunda_via_index_path, notice: "Insira uma matricula"
+    redirect_to segunda_via_path, notice: "Insira uma matricula"
     elsif @imovel.nil?
-      redirect_to segunda_via_index_path, alert: "Matricula '#{@matricula}' não encontrada"
+      redirect_to segunda_via_path, alert: "Matricula '#{@matricula}' não encontrada"
     else
-      ids_gsan = obter_ids_contas_gsan @matricula
+      ids_gsan = obter_ids_contas_gsan(@matricula)
       contas = @imovel.contas
       contas = Conta.filtrar_contas(contas, ids_gsan)
       @nome = contas.last.try(:nome_cliente)
@@ -29,6 +29,12 @@ class ContasController < ApplicationController
   end
 
   def find_imovel
-    @imovel = Imovel.imovel_nao_excluido(Imovel.where(id: @matricula)).first if @matricula.present?
+    begin
+      @imovel = Imovel.imovel_nao_excluido(Imovel.where(id: @matricula)).first if @matricula.present?
+    rescue Exception => e
+      @imovel = nil
+      flash[:error] = "Erro interno. Tente novamente mais tarde"
+      redirect_to segunda_via_path
+    end
   end
 end
