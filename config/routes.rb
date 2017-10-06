@@ -21,4 +21,6 @@ Rails.application.routes.draw do
   resources :acoes, except: [:destroy]
   resources :hidrometro_instalacao_historicos
   resources :medicao_performances,   only: [:new]
+  get 'segunda-via', to: 'segunda_via#index', as: :segunda_via
+  resources :contas, only: [:index, :show]
 end

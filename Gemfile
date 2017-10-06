@@ -18,6 +18,8 @@ gem 'slack-notifier'
 
 gem "cliente-api", git: "https://gitlab.com/prodigasistemas/cliente-api.git"
 
+gem "mechanize"
+
 group :development, :test do
   gem 'pry-rails'
   gem 'awesome_print', require: 'ap'

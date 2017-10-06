@@ -1,0 +1,27 @@
+<table class="table table-hover table-striped">
+  <thead>
+    <tr>
+      <th>Data</th>
+      <th>Valor</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% smart_listing.collection.each do |conta| %>
+      <tr>
+        <td><%= conta.ano_mes_referencia_formatado %></td>
+        <td>R<%= number_to_currency conta.total, delimiter: '.', separator: ",", format: '%u %n' %></td>
+        <td>
+          <%= link_to link_para_impressao(conta.id), class: 'btn btn-default', target: :blank do %>
+            <i class="fa fa-print"></i>
+            Imprimir
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+    <% if smart_listing.empty? %>
+      <tr><th colspan="3"><center>Nenhum registro encontrado</center></th></tr>
+    <% end %>
+  </tbody>
+</table>
+<%= smart_listing.paginate %>
