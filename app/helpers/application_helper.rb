@@ -1,3 +1,5 @@
+require 'mechanize'
+
 module ApplicationHelper
 
   def gsan_form_for(model, options = {}, &block)
@@ -69,6 +71,30 @@ module ApplicationHelper
         object.errors.messages[field_name].join(", ")
       end
     end
+  end
+
+  STRING_COMUM = "javascript:abrirPopup('gerarRelatorio2ViaContaAction.do?cobrarTaxaEmissaoConta=N&idConta='"
+  def obter_ids_contas_gsan(matricula)
+    ids = []
+    a = Mechanize.new
+    a.get(ENV['GSAN_SEGUNDA_VIA_PATH']) do |page|
+
+      my_page = page.form_with(:name => 'EmitirSegundaViaContaInternetActionForm') do |f|
+        f.matricula = matricula
+      end.submit
+
+      my_page.links.each do |link|
+        if link.href.start_with? STRING_COMUM
+          ids << link.href.split("+").second.split(",").first
+        end
+      end
+    end
+
+    ids
+  end
+
+  def link_para_impressao(id_conta)
+    "#{ENV['GSAN_IMPRIMIR_SEGUNDA_VIA_PATH']}#{id_conta}"
   end
 
   private

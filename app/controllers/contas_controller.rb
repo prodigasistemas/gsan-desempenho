@@ -1,20 +1,25 @@
 class ContasController < ApplicationController
   include SmartListing::Helper::ControllerExtensions
   helper  SmartListing::Helper
+  include ApplicationHelper
 
   skip_before_action :acesso_restrito
   before_action :find_matricula, :find_imovel
 
   def index
-    redirect_to segunda_via_index_path, notice: "Insira uma matricula" if @matricula.blank?
-    redirect_to segunda_via_index_path, notice: "Matricula nao encontrada" if @imovel.nil?
-    contas = @imovel.contas
-    # contas << Conta.new({data_conta: "08/2017", valor: "120,00"})
-    # contas << Conta.new({data_conta: "09/2017", valor: "120,00"})
-    # contas << Conta.new({data_conta: "10/2017", valor: "133,00"})
-    @contas = smart_listing_create :contas, contas, partial: 'list',
-                                    sort_attributes: [[:data_conta, "conta.data_conta"]],
-                                    default_sort: { data_conta: "asc" }
+    if @matricula.blank?
+    redirect_to segunda_via_index_path, notice: "Insira uma matricula"
+    elsif @imovel.nil?
+      redirect_to segunda_via_index_path, alert: "Matricula '#{@matricula}' não encontrada"
+    else
+      ids_gsan = obter_ids_contas_gsan @matricula
+      contas = @imovel.contas
+      contas = Conta.filtrar_contas(contas, ids_gsan)
+      @nome = contas.last.try(:nome_cliente)
+      @contas = smart_listing_create :contas, contas, partial: 'list',
+                                      sort_attributes: [[:data_conta, "conta.data_conta"]],
+                                      default_sort: { data_conta: "asc" }
+    end
   end
 
   private

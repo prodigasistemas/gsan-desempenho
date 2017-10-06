@@ -1,11 +1,17 @@
 <div class="page-header">
-  <%= build_breadcrumb [
-    { title: "Faturas Disponíveis", active: true },
-  ] %>
   <h1>Faturas Disponíveis</h1>
 </div>
 
+<p>
+  <b>Matrícula:</b>&nbsp;<%= @matricula %><br>
+  <b>Nome do Cliente:</b>&nbsp;<%= @nome %><br>
+  <b>Localidade Polo:</b>&nbsp;<%= @imovel.localidade.nome %>
+</p>
 
 <div class="panel panel-show">
   <%= smart_listing_render :contas %>
+
+  <div class="panel-footer">
+    <%= link_to "Sair", segunda_via_path, class: "btn btn-default" %>
+  </div>
 </div>

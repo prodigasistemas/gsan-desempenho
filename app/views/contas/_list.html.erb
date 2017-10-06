@@ -10,9 +10,9 @@
     <% smart_listing.collection.each do |conta| %>
       <tr>
         <td><%= conta.ano_mes_referencia_formatado %></td>
-        <td>R$&nbsp;<%= conta.total %></td>
+        <td>R<%= number_to_currency conta.total, delimiter: '.', separator: ",", format: '%u %n' %></td>
         <td>
-          <%= link_to root_path, class: 'btn btn-default btn-sm' do %>
+          <%= link_to link_para_impressao(conta.id), class: 'btn btn-default', target: :blank do %>
             <i class="fa fa-print"></i>
             Imprimir
           <% end %>

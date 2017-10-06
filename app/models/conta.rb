@@ -20,17 +20,27 @@ class Conta < ClienteAPI::Model
                 :digito_verificador,
                 :quadra_id,
                 :localidade_id,
-                :ligacao_esgoto_situacao
+                :ligacao_esgoto_situacao,
+                :valor_impostos
 
   belongs_to :imovel
+  has_one :cliente_conta
 
   def total
-    valor_debitos.to_f + valor_esgoto.to_f + valor_agua.to_f - valor_creditos.to_f
+    (valor_debitos.to_f + valor_esgoto.to_f + valor_agua.to_f + valor_impostos.to_f) - valor_creditos.to_f
   end
 
   def ano_mes_referencia_formatado
     mes = ano_mes_referencia.to_s[4, 2]
     ano = ano_mes_referencia.to_s[0, 4]
     "#{mes}/#{ano}"
+  end
+
+  def nome_cliente
+    self.try(:cliente_conta).try(:cliente).try(:nome)
+  end
+
+  def self.filtrar_contas(collection, ids)
+    collection.select { |c| ids.include? "#{c.id}" }
   end
 end
