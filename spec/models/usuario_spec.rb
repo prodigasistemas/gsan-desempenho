@@ -6,7 +6,7 @@ describe Usuario do
   let(:usuario_invalido) {{ nome_usuario: 'admin', senha: '12345678' }}
 
   it 'valid authentication' do
-    retorno_api = {"id": 1, "nome": "Administrador", "nome_usuario": "admin", "senha": "123456"}
+    retorno_api = { :"id" => "1", :"nome" => "Administrador", :"nome_usuario" => "admin", :"senha" => "123456" }
     expect(Usuario).to receive(:autenticar_usuario)
                        .with(usuario_valido)
                        .and_return(retorno_api)

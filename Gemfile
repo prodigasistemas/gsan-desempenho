@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.7'
+gem 'rails', '4.2.10'
 gem 'sass-rails', '~> 5.0.6'
 gem 'uglifier', '>= 1.3.0'
 
@@ -17,6 +17,8 @@ gem 'exception_notification'
 gem 'slack-notifier'
 
 gem "cliente-api", git: "https://gitlab.com/prodigasistemas/cliente-api.git"
+
+gem "mechanize"
 
 group :development, :test do
   gem 'pry-rails'
