@@ -23,4 +23,6 @@ Rails.application.routes.draw do
   resources :medicao_performances,   only: [:new]
   get 'segunda-via', to: 'segunda_via#index', as: :segunda_via
   resources :contas, only: [:index, :show]
+
+  resources :recadastramentos, only: [:index]
 end

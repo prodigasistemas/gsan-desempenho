@@ -1,0 +1,22 @@
+<table class="table table-hover table-striped">
+  <thead>
+    <tr>
+      <th>Imovel</th>
+      <th>Agente Cadastral</th>
+      <th>Situação</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% smart_listing.collection.each do |imovel| %>
+      <tr>
+        <td><%= link_to imovel.matricula, '/' %></td>
+        <td><%#= imovel.agente_cadastral %></td>
+        <td><%= imovel.situacao %></td>
+      </tr>
+    <% end %>
+    <% if smart_listing.empty? %>
+      <tr><th colspan="3"><center>Nenhum registro encontrado</center></th></tr>
+    <% end %>
+  </tbody>
+</table>
+<%= smart_listing.paginate %>

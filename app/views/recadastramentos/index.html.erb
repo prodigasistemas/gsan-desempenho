@@ -1,0 +1,117 @@
+<div class="page-header">
+  <h1>Recadastramento</h1>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">Buscar Imóveis Em Processo de Recadastramento</div>
+  <%= form_tag(recadastramentos_path, method: :get, class: 'form-horizontal') do |f| %>
+    <div class="panel-body">
+
+      <div class="form-group">
+        <label for="agente_cadastral" class="col-sm-3 control-label">Agente Cadastral: *</label>
+        <div class="col-sm-6">
+          <%= select_tag "agente_cadastral", options_from_collection_for_select(@leituristas, "id", "nome"), class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="periodo_inicial" class="col-sm-3 control-label">Período: *</label>
+        <div class="col-sm-3">
+          <%= text_field_tag :periodo_inicial, '', class: "form-control datepicker" %>
+        </div>
+        <div class="col-sm-3">
+          <%= text_field_tag :periodo_final, '', class: "form-control datepicker" %>
+        </div>
+      </div>
+      <hr>
+
+      <p class="text-muted">Informe os dados da inscrição inicial</p>
+      <div class="form-group">
+        <label for="localidade_inicial" class="col-sm-3 control-label">Localidade:</label>
+        <div class="col-sm-6">
+          <%= text_field_tag :localidade_inicial, '', class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="setor_comercial_inicial" class="col-sm-3 control-label">Setor Comercial:</label>
+        <div class="col-sm-6">
+          <%= text_field_tag :setor_comercial_inicial, '', class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="rota_inicial" class="col-sm-3 control-label">Rota:</label>
+        <div class="col-sm-6">
+          <%= text_field_tag :rota_inicial, '', class: "form-control" %>
+        </div>
+      </div>
+      <hr>
+
+      <p class="text-muted">Informe os dados da inscrição final</p>
+      <div class="form-group">
+        <label for="localidade_final" class="col-sm-3 control-label">Localidade:</label>
+        <div class="col-sm-6">
+          <%= text_field_tag :localidade_final, '', class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="setor_comercial_final" class="col-sm-3 control-label">Setor Comercial:</label>
+        <div class="col-sm-6">
+          <%= text_field_tag :setor_comercial_final, '', class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="rota_final" class="col-sm-3 control-label">Rota:</label>
+        <div class="col-sm-6">
+          <%= text_field_tag :rota_final, '', class: "form-control" %>
+        </div>
+      </div>
+      <hr>
+
+      <div class="form-group">
+        <label for="exibir_imoveis" class="col-sm-3 control-label">Exibir Imóveis:</label>
+        <div class="col-sm-6">
+          <%= render partial: 'radio', locals: { input_name: 'exibir_imoveis' } %>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="ocorrencias_cadastro" class="col-sm-3 control-label">Ocorrência de Cadastro:</label>
+        <div class="col-sm-6">
+          <%= render partial: 'radio', locals: { input_name: 'ocorrencias_cadastro' } %>
+        </div>
+      </div>
+
+      <!-- -->
+      <div class="form-group">
+        <label for="alteracao_hidrometro" class="col-sm-3 control-label">Alteração de Hidrômetro:</label>
+        <div class="col-sm-6">
+          <%= render partial: 'radio', locals: { input_name: 'alteracao_hidrometro' } %>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="alteracao_agua" class="col-sm-3 control-label">Alteração de Situação de Água:</label>
+        <div class="col-sm-6">
+          <%= render partial: 'radio', locals: { input_name: 'alteracao_agua' } %>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="alteracao_esgoto" class="col-sm-3 control-label">Alteração de Situação de Esgoto:</label>
+        <div class="col-sm-6">
+          <%= render partial: 'radio', locals: { input_name: 'alteracao_esgoto' } %>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="alteracao_categoria_subcategoria" class="col-sm-3 control-label">Alteração de Categoria, Subcategoria e Qnt. de Economias:</label>
+        <div class="col-sm-6">
+          <%= render partial: 'radio', locals: { input_name: 'alteracao_categoria_subcategoria' } %>
+        </div>
+      </div>
+    </div> <!-- panel-body -->
+
+    <div class="panel-footer">
+      <%= submit_tag "Pesquisar", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>
+
+<div class="panel panel-show">
+  <%= smart_listing_render :imoveis %>
+</div>
