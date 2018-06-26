@@ -6,9 +6,10 @@ class RecadastramentosController < ApplicationController
 
   def index
     imoveis = []
+    imoveis = Imovel.where(params[:query]) if params[:query].present?
     @imoveis = smart_listing_create :imoveis, imoveis, partial: 'list',
-                                      sort_attributes: [[:situacao, "imovel.situal"]],
-                                      default_sort: { situacao: "asc" }
+                                      sort_attributes: [[:situacao_ligacao_agua_id, "imovel.situacao_ligacao_agua_id"]],
+                                      default_sort: { situacao_ligacao_agua_id: "asc" }
   end
 
   private
@@ -19,23 +20,4 @@ class RecadastramentosController < ApplicationController
       l.nome = "Neymar Jr"
       @leituristas << l
     end
-  #   def pesquisa_params
-  #     params.require(:pesquisa).permit(
-  #       :agente_cadastral,
-  #       :periodo_inicial,
-  #       :periodo_final,
-  #       :localidade_inicial,
-  #       :setor_comercial_inicial,
-  #       :rota_inicial,
-  #       :localidade_final,
-  #       :setor_comercial_final,
-  #       :rota_final,
-  #       :exibir_imoveis,
-  #       :ocorrencias_cadastro,
-  #       :alteracao_hidrometro,
-  #       :alteracao_agua,
-  #       :alteracao_esgoto,
-  #       :alteracao_categoria_subcategoria
-  #   )
-  #   end
 end

@@ -9,9 +9,9 @@
   <tbody>
     <% smart_listing.collection.each do |imovel| %>
       <tr>
-        <td><%= link_to imovel.matricula, '/' %></td>
-        <td><%#= imovel.agente_cadastral %></td>
-        <td><%= imovel.situacao %></td>
+        <td><%= link_to imovel.try(:id), '/' %></td>
+        <td><%= 'Neymar Jr' %></td>
+        <td><%= imovel.try(:situacao_ligacao_agua_id) %></td>
       </tr>
     <% end %>
     <% if smart_listing.empty? %>
