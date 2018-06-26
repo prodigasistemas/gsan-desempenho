@@ -5,11 +5,11 @@ class RecadastramentosController < ApplicationController
   before_action :find_leituristas
 
   def index
-    imoveis = []
-    imoveis = Imovel.where(params[:query]) if params[:query].present?
-    @imoveis = smart_listing_create :imoveis, imoveis, partial: 'list',
-                                      sort_attributes: [[:situacao_ligacao_agua_id, "imovel.situacao_ligacao_agua_id"]],
-                                      default_sort: { situacao_ligacao_agua_id: "asc" }
+    colunas = []
+    colunas = ColunaAtualizacaoCadastral.where(params[:query]) if params[:query].present?
+    @colunas = smart_listing_create :colunas, colunas, partial: 'list',
+                                      sort_attributes: [[:atualizacao_cadastral_id, "coluna.atualizacao_cadastral_id"]],
+                                      default_sort: { atualizacao_cadastral_id: "asc" }
   end
 
   private
