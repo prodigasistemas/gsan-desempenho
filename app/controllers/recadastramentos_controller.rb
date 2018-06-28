@@ -6,7 +6,11 @@ class RecadastramentosController < ApplicationController
 
   def index
     colunas = []
-    colunas = ColunaAtualizacaoCadastral.where(params[:query]) if params[:query].present?
+    @filtro = FiltroRecadastramento.new(params)
+    if params[:query].present?
+      params[:query][:empresa_id] = usuario_logado.empresa_id
+      # colunas = ColunaAtualizacaoCadastral.where(@filtro)
+    end
     @colunas = smart_listing_create :colunas, colunas, partial: 'list',
                                       sort_attributes: [[:atualizacao_cadastral_id, "coluna.atualizacao_cadastral_id"]],
                                       default_sort: { atualizacao_cadastral_id: "asc" }
@@ -15,9 +19,7 @@ class RecadastramentosController < ApplicationController
   private
     def find_leituristas
       @leituristas = []
-      l = Leiturista.new
-      l.id = 1
-      l.nome = "Neymar Jr"
+      l = Leiturista.new({id: 1, nome: "Neymar Jr"})
       @leituristas << l
     end
 end

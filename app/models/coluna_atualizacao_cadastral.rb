@@ -9,7 +9,7 @@ class ColunaAtualizacaoCadastral < ClienteAPI::Model
                 :data_ultima_atualizacao,
                 :usuario_id
 
-  # belongs_to :atualizacao_cadastral, foreign_key: :tatc_id
+  belongs_to :atualizacao_cadastral
   # belongs_to :tabela_coluna,         foreign_key: :tbco_id
   belongs_to :usuario
 end
