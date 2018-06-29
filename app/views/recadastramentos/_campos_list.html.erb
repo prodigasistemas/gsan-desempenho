@@ -1,0 +1,24 @@
+<table class="table table-hover table-striped">
+  <thead>
+    <tr>
+      <th>Tabela</th>
+      <th>Campo</th>
+      <th>Anterior</th>
+      <th>Atual</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% smart_listing.collection.each do |colunas| %>
+      <tr>
+        <td><%= "tabela" %></td>
+        <td><%= 'campo' %></td>
+        <td><%= 'ant' %></td>
+        <td><%= 'atual' %></td>
+      </tr>
+    <% end %>
+    <% if smart_listing.empty? %>
+      <tr><th colspan="4"><center>Nenhum registro encontrado</center></th></tr>
+    <% end %>
+  </tbody>
+</table>
+<%= smart_listing.paginate %>

@@ -85,9 +85,19 @@
       <div class="form-group">
         <label for="exibir_imoveis" class="col-sm-3 control-label">Exibir Imóveis:</label>
         <div class="col-sm-6">
-          <%= render partial: 'radio', locals: { input_name: 'query[exibir_imoveis]', selected: @filtro.exibir_imoveis } %>
+          <label class="radio-inline">
+            <input type="radio" name="query[exibir_imoveis]" id="exibir_imoveis_pendentes" value="1" <%= @filtro.exibir_imoveis == "1" ? 'checked' : '' %>> Pendentes
+          </label>
+          <label class="radio-inline">
+            <input type="radio" name="query[exibir_imoveis]" id="exibir_imoveis_aprovados" value="0" <%= @filtro.exibir_imoveis == "0" ? 'checked' : '' %>> Aprovados
+          </label>
+          <label class="radio-inline">
+            <input type="radio" name="query[exibir_imoveis]" id="exibir_imoveis_todos" value="2" <%= @filtro.exibir_imoveis == "2" ? 'checked' : '' %>> Todos
+          </label>
         </div>
       </div>
+      <hr>
+
       <div class="form-group">
         <label for="ocorrencias_cadastro" class="col-sm-3 control-label">Ocorrência de Cadastro:</label>
         <div class="col-sm-6">

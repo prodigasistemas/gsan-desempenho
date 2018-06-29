@@ -1,0 +1,42 @@
+<div class="page-header">
+
+  <%= build_breadcrumb [
+    { title: "Recadastramento", link: recadastramentos_path },
+    { title: "#{@atualizacao_cadastral.try(:id)}", active: true }
+  ] %>
+
+</div>
+
+<%#= build_action_header("#{@atualizacao_cadastral.try(:id)}", ["/"]) %>
+
+<div class="panel panel-show">
+  <div class="panel-heading">Dados do Imóvel</div>
+
+  <table class="table">
+    <tbody>
+      <tr>
+        <%= table_label "Matrícula:" %>
+        <td><%= @imovel.try(:id) %></td>
+      </tr>
+      <tr>
+        <%= table_label "Localidade:" %>
+        <td><%= @imovel.try(:localidade).try(:nome) %></td>
+      </tr>
+      <tr>
+        <%= table_label "Setor Comercial:" %>
+        <td><%= @imovel.try(:setor_comercial).try(:nome) %></td>
+      </tr>
+      <tr>
+        <%= table_label "Quadra:" %>
+        <td><%= @imovel.try(:quadra).try(:numero_quadra) %></td>
+      </tr>
+      <tr>
+        <%= table_label "Situação:" %>
+        <td><%= 1 %></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br>
+  <%= smart_listing_render :campos %>
+</div>

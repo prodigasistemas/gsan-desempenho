@@ -24,5 +24,5 @@ Rails.application.routes.draw do
   get 'segunda-via', to: 'segunda_via#index', as: :segunda_via
   resources :contas, only: [:index, :show]
 
-  resources :recadastramentos, only: [:index]
+  resources :recadastramentos, only: [:index, :show]
 end

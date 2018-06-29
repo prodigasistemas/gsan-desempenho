@@ -26,6 +26,7 @@ class Imovel < ClienteAPI::Model
 
   belongs_to :localidade
   belongs_to :setor_comercial
+  belongs_to :quadra
   has_many :contas
 
   def self.imovel_nao_excluido(collection)
