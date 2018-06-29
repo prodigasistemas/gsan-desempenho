@@ -8,7 +8,7 @@ class ContasController < ApplicationController
 
   def index
     if @matricula.blank?
-    redirect_to segunda_via_path, notice: "Insira uma matricula"
+      redirect_to segunda_via_path, notice: "Insira uma matricula"
     elsif @imovel.nil?
       redirect_to segunda_via_path, alert: "Matricula '#{@matricula}' não encontrada"
     else
@@ -30,7 +30,7 @@ class ContasController < ApplicationController
 
   def find_imovel
     begin
-      @imovel = Imovel.imovel_nao_excluido(Imovel.where(id: @matricula)).first if @matricula.present?
+      @imovel = Imovel.imovel_nao_excluido(Imovel.where(id: @matricula, page: 1, per_page: 10)).first if @matricula.present?
     rescue Exception => e
       @imovel = nil
       flash[:error] = "Erro interno. Tente novamente mais tarde"
