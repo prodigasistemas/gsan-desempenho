@@ -6,22 +6,22 @@ class RecadastramentosController < ApplicationController
   before_action :find_atualizacao_cadastral, :find_imovel, only: [:show]
 
   def index
-    colunas = []
+    atualizacao_cadastrais = []
     @filtro = FiltroRecadastramento.new(params)
     if params[:query].present?
-      params[:query][:empresa_id] = usuario_logado.empresa_id
-      # colunas = ColunaAtualizacaoCadastral.where(@filtro, page: 1, per_page: 100)
+      params[:query][:empresa_id] = 50 #usuario_logado.empresa_id
+      atualizacao_cadastrais = AtualizacaoCadastral.where(params[:query])
     end
-    @colunas = smart_listing_create :colunas, colunas, partial: 'list',
-                                      sort_attributes: [[:atualizacao_cadastral_id, "coluna.atualizacao_cadastral_id"]],
-                                      default_sort: { atualizacao_cadastral_id: "asc" }
+    @atualizacao_cadastrais = smart_listing_create :atualizacao_cadastrais,
+                                                   atualizacao_cadastrais,
+                                                   partial: 'list',
+                                                   default_sort: { leiturista_id: "desc" }
   end
 
   def show
     @campos = smart_listing_create :campos,
-                                   [],
-                                   partial: 'campos_list',
-                                   default_sort: { id: "asc" }
+                                   @coluna_atualizacao_cadastrais,
+                                   partial: 'campos_list'
   end
 
   private
@@ -32,10 +32,10 @@ class RecadastramentosController < ApplicationController
     end
 
     def find_atualizacao_cadastral
-      @atualizacao_cadastral = AtualizacaoCadastral.where(id: params[:id], page: 1, per_page: 100).try(:first) || AtualizacaoCadastral.new
+      @coluna_atualizacao_cadastrais = ColunaAtualizacaoCadastral.where(atualizacao_cadastral_id: params[:id])
     end
 
     def find_imovel
-      @imovel = Imovel.where(id: @atualizacao_cadastral.codigo_imovel, page: 1, per_page: 10).try(:first) unless @atualizacao_cadastral.nil?
+      # @imovel = Imovel.where(id: @atualizacao_cadastral.codigo_imovel, page: 1, per_page: 10).try(:first) unless @atualizacao_cadastral.nil?
     end
 end

@@ -7,11 +7,11 @@
     </tr>
   </thead>
   <tbody>
-    <% smart_listing.collection.each do |colunas| %>
+    <% smart_listing.collection.each do |atualizacao_cadastral| %>
       <tr>
-        <td><%= link_to colunas.try(:id), '/' %></td>
-        <td><%= 'Neymar Jr' %></td>
-        <td><%= colunas.try(:atualizacao_cadastral_id) %></td>
+        <td><%= link_to atualizacao_cadastral.try(:codigo_imovel), '/' %></td>
+        <td><%= atualizacao_cadastral.leiturista_id %></td>
+        <td><%= atualizacao_cadastral.try(:tabela_id) %></td>
       </tr>
     <% end %>
     <% if smart_listing.empty? %>

@@ -5,15 +5,17 @@
       <th>Campo</th>
       <th>Anterior</th>
       <th>Atual</th>
+      <th>Usuario</th>
     </tr>
   </thead>
   <tbody>
-    <% smart_listing.collection.each do |colunas| %>
+    <% smart_listing.collection.each do |coluna| %>
       <tr>
-        <td><%= "tabela" %></td>
-        <td><%= 'campo' %></td>
-        <td><%= 'ant' %></td>
-        <td><%= 'atual' %></td>
+        <td><%= coluna.tabela %></td>
+        <td><%= coluna.campo %></td>
+        <td><%= coluna.valor_anterior %></td>
+        <td><%= coluna.valor_atual %></td>
+        <td><%= coluna.nome_usuario %></td>
       </tr>
     <% end %>
     <% if smart_listing.empty? %>
