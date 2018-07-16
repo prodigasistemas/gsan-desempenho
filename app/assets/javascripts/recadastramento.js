@@ -1,6 +1,6 @@
 $(function(){
-  $('#periodo_inicial').mask('00/00/0000');
-  $('#periodo_final').mask('00/00/0000');
+  $('#query_periodo_inicial').mask('00/00/0000');
+  $('#query_periodo_final').mask('00/00/0000');
 
   var cache = {},
   $localidade_id_final = $("#localidade_id_final"),
