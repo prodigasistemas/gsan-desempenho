@@ -10,16 +10,16 @@
       <div class="form-group">
         <label for="agente_cadastral" class="col-sm-3 control-label">Agente Cadastral: *</label>
         <div class="col-sm-6">
-          <%= select_tag "query[agente_cadastral]", options_from_collection_for_select(@leituristas, "id", "nome"), class: "form-control" %>
+          <%= select_tag "query[agente_cadastral]", options_from_collection_for_select(@leituristas, "id", "nome"), class: "form-control", required: true %>
         </div>
       </div>
       <div class="form-group">
         <label for="periodo_inicial" class="col-sm-3 control-label">Período: *</label>
         <div class="col-sm-3">
-          <%= text_field_tag 'query[periodo_inicial]', @filtro.periodo_inicial, class: "form-control datepicker" %>
+          <%= text_field_tag 'query[periodo_inicial]', @filtro.periodo_inicial, class: "form-control datepicker", required: false %>
         </div>
         <div class="col-sm-3">
-          <%= text_field_tag 'query[periodo_final]', @filtro.periodo_final, class: "form-control datepicker" %>
+          <%= text_field_tag 'query[periodo_final]', @filtro.periodo_final, class: "form-control datepicker", required: false %>
         </div>
       </div>
       <hr>
