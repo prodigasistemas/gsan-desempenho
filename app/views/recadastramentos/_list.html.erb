@@ -10,8 +10,8 @@
     <% smart_listing.collection.each do |atualizacao_cadastral| %>
       <tr>
         <td><%= link_to atualizacao_cadastral.try(:codigo_imovel), '/' %></td>
-        <td><%= atualizacao_cadastral.leiturista_id %></td>
-        <td><%= atualizacao_cadastral.try(:tabela_id) %></td>
+        <td><%= atualizacao_cadastral.try(:agente_cadastral) %></td>
+        <td><%= atualizacao_cadastral.try(:situacao) %></td>
       </tr>
     <% end %>
     <% if smart_listing.empty? %>
