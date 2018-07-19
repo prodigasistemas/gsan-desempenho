@@ -2,15 +2,29 @@
   <h1>Recadastramento</h1>
 </div>
 
-<div class="panel panel-default">
+<% if params[:query].present? %>
+<a class="btn btn-primary" role="button" data-toggle="collapse" href="#panel-pesquisa" aria-expanded="false" aria-controls="panel-pesquisa">
+  Mostrar/Ocultar Formulario de Pesquisa
+</a>
+<% end %>
+
+<div class="panel panel-default collapse <%= params[:query].present? ? '' : 'in' %>" id="panel-pesquisa">
   <div class="panel-heading">Buscar Imóveis Em Processo de Recadastramento</div>
   <%= form_tag(recadastramentos_path, method: :get, class: 'form-horizontal') do |f| %>
     <div class="panel-body">
 
       <div class="form-group">
-        <label for="agente_cadastral" class="col-sm-3 control-label">Agente Cadastral: *</label>
+        <label for="empresa_id" class="col-sm-3 control-label">Agente Cadastral: *</label>
         <div class="col-sm-6">
-          <%= select_tag "query[agente_cadastral]", options_from_collection_for_select(@leituristas, "id", "nome"), class: "form-control", required: true %>
+          <%= select_tag "query[empresa_id]", options_from_collection_for_select(@empresas, "id", "nome", @filtro.empresa_id),
+                class: "form-control", required: true, prompt: 'Escolha' %>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="leiturista_id" class="col-sm-3 control-label">Agente Cadastral: *</label>
+        <div class="col-sm-6">
+          <%= select_tag "query[leiturista_id]", options_from_collection_for_select(@leituristas, "id", "nome", @filtro.leiturista_id),
+                class: "form-control", required: true,  prompt: 'Escolha' %>
         </div>
       </div>
       <div class="form-group">
@@ -86,13 +100,16 @@
         <label for="exibir_imoveis" class="col-sm-3 control-label">Exibir Imóveis:</label>
         <div class="col-sm-6">
           <label class="radio-inline">
-            <input type="radio" name="query[exibir_imoveis]" id="exibir_imoveis_pendentes" value="1" <%= @filtro.exibir_imoveis == "1" ? 'checked' : '' %>> Pendentes
+            <input type="radio" name="query[exibir_imoveis]" id="exibir_imoveis_pendentes" value="3" <%= @filtro.exibir_imoveis == "3" ? 'checked' : '' %>> Pendentes
           </label>
           <label class="radio-inline">
-            <input type="radio" name="query[exibir_imoveis]" id="exibir_imoveis_aprovados" value="0" <%= @filtro.exibir_imoveis == "0" ? 'checked' : '' %>> Aprovados
+            <input type="radio" name="query[exibir_imoveis]" id="exibir_imoveis_aprovados" value="4" <%= @filtro.exibir_imoveis == "4" ? 'checked' : '' %>> Aprovados
           </label>
           <label class="radio-inline">
-            <input type="radio" name="query[exibir_imoveis]" id="exibir_imoveis_todos" value="2" <%= @filtro.exibir_imoveis == "2" ? 'checked' : '' %>> Todos
+            <input type="radio" name="query[exibir_imoveis]" id="exibir_imoveis_aprovar_em_lote" value="-2" <%= @filtro.exibir_imoveis == "-2" ? 'checked' : '' %>> Aprovar em Lote
+          </label>
+           <label class="radio-inline">
+            <input type="radio" name="query[exibir_imoveis]" id="exibir_imoveis_todos" value="-1" <%= @filtro.exibir_imoveis == "-1" ? 'checked' : '' %>> Todos
           </label>
         </div>
       </div>
@@ -134,6 +151,7 @@
 
     <div class="panel-footer">
       <%= submit_tag "Pesquisar", class: "btn btn-primary" %>
+      <%= link_to "Limpar", recadastramentos_path %>
     </div>
   <% end %>
 </div>
