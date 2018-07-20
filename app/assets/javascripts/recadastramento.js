@@ -68,7 +68,8 @@ $(function(){
           return {
             id: value.id,
             label: value.nome,
-            value: value.nome
+            value: value.nome,
+            codigo: value.codigo
           };
         });
 
@@ -77,7 +78,7 @@ $(function(){
       });
     },
     select: function(event, ui){
-      $setor_comercial_id_final.val(ui.item.id);
+      $setor_comercial_id_final.val(ui.item.codigo);
       $rota_final.attr("disabled", false);
 
       carregarRotas();

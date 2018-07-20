@@ -26,7 +26,7 @@ $(function(){
     request.query.numero_sublote = $numero_sublote.val();
 
     $.post( BASE_URL + '/contrato_medicoes/' + codigoContrato + '/abrangencias', request, function(data, textStatus, xhr) {
-      
+
       $btn.button('reset');
       window.location = '/contrato_medicoes/' + codigoContrato + '/abrangencias';
       return;
@@ -44,13 +44,13 @@ $(function(){
 
     carregarRotas(function(){
       var rota_selecionada = $rota.data("rota-selecionada");
-      
+
       if ( rota_selecionada ) $rota.val( rota_selecionada );
     });
 
     carregarQuadras(function(){
       var quadra_selecionada = $quadra.data("quadra-selecionada");
-      
+
       if ( quadra_selecionada ) $quadra.val( quadra_selecionada );
     });
   }
@@ -77,12 +77,12 @@ $(function(){
     var $pesquisaAvancada = $( "#pesquisa-avancada" );
 
     if( $pesquisaAvancada.hasClass('hide') ){
-      $pesquisaAvancada.removeClass("hide");  
+      $pesquisaAvancada.removeClass("hide");
     }
     else{
-      $pesquisaAvancada.addClass("hide");  
+      $pesquisaAvancada.addClass("hide");
     }
-    
+
   });
 
   $( "#localidade" ).autocomplete({
@@ -132,7 +132,8 @@ $(function(){
           return {
             id: value.id,
             label: value.nome,
-            value: value.nome
+            value: value.nome,
+            codigo: value.codigo
           };
         });
 
@@ -141,7 +142,7 @@ $(function(){
       });
     },
     select: function(event, ui){
-      $setor_comercial_id.val(ui.item.id);
+      $setor_comercial_id.val(ui.item.codigo);
       $rota.attr("disabled", false);
       $quadra.attr("disabled", false);
 
@@ -160,9 +161,9 @@ $(function(){
     request.filtros = { setor_comercial_id: $setor_comercial_id.val() };
 
     $.getJSON( BASE_URL + "/rotas", request, function( data, status, xhr ) {
-      
+
       $.each(data.entidades, function(index, value) {
-         
+
           $rota.append('<option value="'+ value.id +'">'+ value.codigo +'</option>')
 
       });
@@ -182,9 +183,9 @@ $(function(){
     request.filtros = { setor_comercial_id: $setor_comercial_id.val() };
 
     $.getJSON( BASE_URL + "/quadras", request, function( data, status, xhr ) {
-      
+
       $.each(data.entidades, function(index, value) {
-         
+
           $quadra.append('<option value="'+ value.id +'">'+ value.numero_quadra +'</option>')
 
       });

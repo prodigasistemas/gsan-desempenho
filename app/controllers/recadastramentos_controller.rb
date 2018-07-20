@@ -4,7 +4,7 @@ class RecadastramentosController < ApplicationController
 
   before_action :find_leituristas
   before_action :verificar_parametros_obrigatorios, :find_empresas, :find_leituristas, only: [:index]
-  before_action :find_coluna_atualizacao_cadastral, :find_imovel, only: [:show]
+  before_action :find_coluna_atualizacao_cadastrais, :find_imovel, only: [:show]
 
   def index
     atualizacao_cadastrais = []
@@ -34,12 +34,13 @@ class RecadastramentosController < ApplicationController
       @leituristas = Leiturista.all
     end
 
-    def find_coluna_atualizacao_cadastral
-      @coluna_atualizacao_cadastrais = ColunaAtualizacaoCadastral.where(atualizacao_cadastral_id: params[:id])
+    def find_coluna_atualizacao_cadastrais
+      atualizacao_cadastrais = AtualizacaoCadastral.where(codigo_imovel: params[:id])
+      @coluna_atualizacao_cadastrais = ColunaAtualizacaoCadastral.where(atualizacao_cadastral_id: atualizacao_cadastrais.map(&:id))
     end
 
     def find_imovel
-      # @imovel = Imovel.where(id: @atualizacao_cadastral.codigo_imovel, page: 1, per_page: 10).try(:first) unless @atualizacao_cadastral.nil?
+      @imovel = Imovel.where(id: params[:id], page: 1, per_page: 10).try(:first)
     end
 
     def find_empresas
