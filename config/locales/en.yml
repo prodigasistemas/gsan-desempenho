@@ -29,6 +29,7 @@ en:
       previous: "&lsaquo; Anterior"
       next: "Próximo &rsaquo;"
       truncate: "&hellip;"
+      per_page: "Tamanho da Página"
     helpers:
       page_entries_info:
         one_page:

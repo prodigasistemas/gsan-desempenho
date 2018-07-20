@@ -18,7 +18,8 @@ class RecadastramentosController < ApplicationController
     end
     @atualizacao_cadastrais = smart_listing_create :atualizacao_cadastrais,
                                                    atualizacao_cadastrais,
-                                                   partial: 'list'
+                                                   partial: 'list',
+                                                   page_sizes: [25, 50]
   end
 
   def show
