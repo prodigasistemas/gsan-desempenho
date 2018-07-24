@@ -12,30 +12,39 @@
 <div class="panel panel-show">
   <div class="panel-heading">Dados do Imóvel</div>
 
-  <table class="table">
-    <tbody>
-      <tr>
-        <%= table_label "Matrícula:" %>
-        <td><%= @imovel.try(:id) %></td>
-      </tr>
-      <tr>
-        <%= table_label "Localidade:" %>
-        <td><%= @imovel.try(:localidade).try(:nome) %></td>
-      </tr>
-      <tr>
-        <%= table_label "Setor Comercial:" %>
-        <td><%= @imovel.try(:setor_comercial).try(:nome) %></td>
-      </tr>
-      <tr>
-        <%= table_label "Quadra:" %>
-        <td><%= @imovel.try(:quadra).try(:numero_quadra) %></td>
-      </tr>
-      <tr>
-        <%= table_label "Situação:" %>
-        <td><%= "" %></td>
-      </tr>
-    </tbody>
-  </table>
+  <form class="form-inline">
+    <div class="form-group">
+      <%= label_tag "Matrícula:" %>
+      <%= @imovel.try(:id) %>
+    </div>
+    <div class="form-group">
+      <%= label_tag "Localidade:" %>
+      <%= @imovel.try(:localidade).try(:nome) %>
+    </div>
+    <div class="form-group">
+      <%= label_tag "Setor Comercial:" %>
+      <%= @imovel.try(:setor_comercial).try(:nome) %>
+    </div>
+    <div class="form-group">
+      <%= label_tag "Quadra:" %>
+      <%= @imovel.try(:quadra).try(:numero_quadra) %>
+    </div>
+  </form>
+
+  <form class="form-inline">
+    <div class="form-group">
+      <%= label_tag "Situação Ligação da Água:" %>
+      <%= @imovel.try(:situacao_agua) %>
+    </div>
+    <div class="form-group">
+      <%= label_tag "Situação Ligação do Esgoto:" %>
+      <%= @imovel.try(:situacao_esgoto) %>
+    </div>
+    <div class="form-group">
+      <%= label_tag "Quantidade de Economias:" %>
+      <%= @imovel.try(:economias) %>
+    </div>
+  </form>
 
   <br>
   <%= smart_listing_render :campos %>

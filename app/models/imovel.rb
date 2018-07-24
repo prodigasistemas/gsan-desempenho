@@ -1,4 +1,22 @@
 class Imovel < ClienteAPI::Model
+
+  SITUACOES_AGUA = { 1 => "POTENCIAL",
+                     2 => "FACTIVEL" ,
+                     3 => "LIGADO",
+                     4 => "EM_FISCALIZACAO",
+                     5 => "CORTADO",
+                     6 => "SUPRIMIDO",
+                     7 => "SUPR_PARC",
+                     8 => "SUPR_PARC_PEDIDO",
+                     9 => "EM_CANCELAMENTO" }
+
+  SITUACOES_ESGOTO = { 1 => "POTENCIAL",
+                       2 => "FACTIVEL",
+                       3 => "LIGADO",
+                       4 => "EM_FISCALIZACAO",
+                       5 => "LIG_FORA_DE_USO",
+                       6 => "TAMPONADO" }
+
   attr_accessor :id, :localidade_id, :setor_comercial_id, :quadra_id, :numero_lote,
                 :logradouro_bairro_id, :logradouro_cep_id, :bairro_id, :vencimento_mes_seguinte,
                 :numero_sublote, :testada_lote, :numero_imovel, :complemento_endereco, :faixa_area_construida_id,
@@ -31,5 +49,13 @@ class Imovel < ClienteAPI::Model
 
   def self.imovel_nao_excluido(collection)
     collection.select { |i| i.imovel_excluido == nil or i.imovel_excluido != 1 }
+  end
+
+  def situacao_agua
+    SITUACOES_AGUA[situacao_ligacao_agua_id]
+  end
+
+  def situacao_esgoto
+    SITUACOES_ESGOTO[situacao_ligacao_esgoto_id]
   end
 end
