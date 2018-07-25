@@ -30,7 +30,11 @@ class RecadastramentosController < ApplicationController
 
   private
     def find_leituristas
-      @leituristas = []
+      if params[:query][:empresa_id].present?
+        @leituristas = Leiturista.where(empr_id: params[:query][:empresa_id])
+      else
+        @leituristas = []
+      end
     end
 
     def find_coluna_atualizacao_cadastrais
@@ -43,8 +47,8 @@ class RecadastramentosController < ApplicationController
     end
 
     def find_empresas
-      @empresas = Empresa.where(empr_id: usuario_logado.empresa_id)
-      # @empresas = Empresa.where(leituristas: true)
+      # @empresas = Empresa.where(empr_id: usuario_logado.empresa_id)
+      @empresas = Empresa.all
     end
 
     def verificar_parametros_obrigatorios
