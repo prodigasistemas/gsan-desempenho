@@ -4,6 +4,7 @@ class RecadastramentosController < ApplicationController
 
   before_action :verificar_parametros_obrigatorios, :find_empresas, :find_leituristas, only: [:index]
   before_action :find_coluna_atualizacao_cadastrais, :find_imovel, only: [:show]
+  before_action :find_imovel_atualizacao_cadastral, only: [:show, :update]
 
   def index
     atualizacao_cadastrais = []
@@ -28,7 +29,21 @@ class RecadastramentosController < ApplicationController
                                    page_sizes: [100]
   end
 
+  def update
+    @imovel_atualizacao_cadastral = @imovel_atualizacao_cadastral.update({ situacao_cadastral_id: params[:situacao] })
+    if params[:situacao] == "7"
+      msgm = "Imóvel Pré-Avaliado com sucesso"
+    else
+      msgm = "Imóvel enviado para Revisão"
+    end
+    redirect_to recadastramento_path(@imovel_atualizacao_cadastral.id), notice: msgm
+  end
+
   private
+    def find_imovel_atualizacao_cadastral
+      @imovel_atualizacao_cadastral = ImovelAtualizacaoCadastral.find params[:id]
+    end
+
     def find_leituristas
       if params[:query].present? and params[:query][:empresa_id].present?
         @leituristas = Leiturista.where(empr_id: params[:query][:empresa_id])

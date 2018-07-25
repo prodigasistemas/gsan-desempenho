@@ -1,8 +1,8 @@
 <div class="page-header">
 
   <%= build_breadcrumb [
-    { title: "Recadastramento", link: recadastramentos_path },
-    { title: "#{@atualizacao_cadastral.try(:id)}", active: true }
+    { title: "Recadastramentos", link: recadastramentos_path },
+    { title: "#{@imovel.try(:id)}", active: true }
   ] %>
 
 </div>
@@ -45,8 +45,11 @@
   </form>
 
   <div class="pull-right">
-    <a class="btn btn-success" role="button" href="#">Pré-Aprovar</a>
-    <a class="btn btn-primary" role="button" href="#">Fiscalizar</a>
+    <% if @imovel_atualizacao_cadastral.situacao_cadastral_id.to_i != 7 %>
+      <%= link_to "Pré-Aprovar", recadastramento_path(id: @imovel.id, situacao: 7), method: :put, class: "btn btn-success", role: "button" %>
+    <% elsif @imovel_atualizacao_cadastral.situacao_cadastral_id.to_i != 8 %>
+      <%= link_to "Revisar", recadastramento_path(id: @imovel.id, situacao: 8), method: :put, class: "btn btn-primary", role: "button" %>
+    <% end %>
   </div>
 
   <br>
