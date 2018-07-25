@@ -7,8 +7,6 @@
 
 </div>
 
-<%#= build_action_header("#{@atualizacao_cadastral.try(:id)}", ["/"]) %>
-
 <div class="panel panel-show">
   <div class="panel-heading">Dados do Imóvel</div>
 
@@ -46,6 +44,12 @@
     </div>
   </form>
 
+  <div class="pull-right">
+    <a class="btn btn-success" role="button" href="#">Pré-Aprovar</a>
+    <a class="btn btn-primary" role="button" href="#">Fiscalizar</a>
+  </div>
+
+  <br>
   <br>
   <%= smart_listing_render :campos %>
 </div>

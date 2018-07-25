@@ -30,7 +30,7 @@ class RecadastramentosController < ApplicationController
 
   private
     def find_leituristas
-      if params[:query][:empresa_id].present?
+      if params[:query].present? and params[:query][:empresa_id].present?
         @leituristas = Leiturista.where(empr_id: params[:query][:empresa_id])
       else
         @leituristas = []
