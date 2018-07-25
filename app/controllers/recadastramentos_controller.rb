@@ -2,7 +2,6 @@ class RecadastramentosController < ApplicationController
   include SmartListing::Helper::ControllerExtensions
   helper  SmartListing::Helper
 
-  before_action :find_leituristas
   before_action :verificar_parametros_obrigatorios, :find_empresas, :find_leituristas, only: [:index]
   before_action :find_coluna_atualizacao_cadastrais, :find_imovel, only: [:show]
 
@@ -31,7 +30,7 @@ class RecadastramentosController < ApplicationController
 
   private
     def find_leituristas
-      @leituristas = Leiturista.all
+      @leituristas = []
     end
 
     def find_coluna_atualizacao_cadastrais
@@ -44,7 +43,8 @@ class RecadastramentosController < ApplicationController
     end
 
     def find_empresas
-      @empresas = Empresa.where(id: usuario_logado.empresa_id)
+      @empresas = Empresa.where(empr_id: usuario_logado.empresa_id)
+      # @empresas = Empresa.where(leituristas: true)
     end
 
     def verificar_parametros_obrigatorios

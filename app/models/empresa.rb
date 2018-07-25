@@ -7,6 +7,7 @@ class Empresa < ClienteAPI::Model
 
   has_many :contrato_medicoes
   has_many :imovel_retornos
+  has_many :leituristas
 
   def self.do_usuario(usuario_id)
     json = JSON.parse(RestClient.get("#{ClienteAPI::Base::URL_BASE}/empresas_usuario/#{usuario_id}"))

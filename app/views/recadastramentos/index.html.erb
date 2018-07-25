@@ -14,7 +14,7 @@
     <div class="panel-body">
 
       <div class="form-group">
-        <label for="empresa_id" class="col-sm-3 control-label">Agente Cadastral: *</label>
+        <label for="empresa_id" class="col-sm-3 control-label">Empresa: *</label>
         <div class="col-sm-6">
           <%= select_tag "query[empresa_id]", options_from_collection_for_select(@empresas, "id", "nome", @filtro.empresa_id),
                 class: "form-control", required: true, prompt: 'Escolha' %>
@@ -25,6 +25,7 @@
         <div class="col-sm-6">
           <%= select_tag "query[leiturista_id]", options_from_collection_for_select(@leituristas, "id", "nome", @filtro.leiturista_id),
                 class: "form-control", required: true,  prompt: 'Escolha' %>
+
         </div>
       </div>
       <div class="form-group">

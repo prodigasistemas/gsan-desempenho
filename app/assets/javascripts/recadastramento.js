@@ -100,4 +100,19 @@ $(function(){
     });
   }
 
+
+  // Recarregar combo de leituristas de acordo com a empresa
+  $('#query_empresa_id').change(function() {
+    var empresa_id = $(this).val(),
+    $leituristasSelect = $('#query_leiturista_id');
+    $leituristasSelect.empty();
+    $leituristasSelect.append($("<option></option>").attr("value", "").text("Escolha"));
+    var request = {};
+    request.query = { empr_id: empresa_id };
+    $.getJSON( BASE_URL + "/leituristas", request, function( data, status, xhr ) {
+      $.each(data.entidades, function(index, value) {
+        $leituristasSelect.append($("<option></option>").attr("value", value.id).text(value.nome));
+      });
+    })
+  });
 });
