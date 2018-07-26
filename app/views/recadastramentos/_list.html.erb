@@ -9,7 +9,7 @@
   <tbody>
     <% smart_listing.collection.each do |atualizacao_cadastral| %>
       <tr>
-        <td><%= link_to atualizacao_cadastral.try(:codigo_imovel), recadastramento_path(id: atualizacao_cadastral.codigo_imovel) %></td>
+        <td><%= link_to atualizacao_cadastral.try(:codigo_imovel), recadastramento_path(id: atualizacao_cadastral.codigo_imovel), target: '_blank' %></td>
         <td><%= atualizacao_cadastral.try(:agente_cadastral) %></td>
         <td><%= atualizacao_cadastral.try(:situacao) %></td>
       </tr>
