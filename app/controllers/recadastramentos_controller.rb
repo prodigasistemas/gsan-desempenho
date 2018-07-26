@@ -39,6 +39,15 @@ class RecadastramentosController < ApplicationController
     redirect_to recadastramento_path(@imovel_atualizacao_cadastral.id), notice: msgm
   end
 
+  def pre_aprovar_em_lote
+    if AtualizacaoCadastral.put([], params)
+      redirect_to recadastramentos_path, flash: { notice: "Pré-Avaliação em Lote ocorreu com sucesso" }
+    else
+      flash[:error] = "Falha na Pré-Avaliação em Lote, tente novamente mais tarde"
+      redirect_to recadastramentos_path(query: params[:query])
+    end
+  end
+
   private
     def find_imovel_atualizacao_cadastral
       @imovel_atualizacao_cadastral = ImovelAtualizacaoCadastral.find params[:id]

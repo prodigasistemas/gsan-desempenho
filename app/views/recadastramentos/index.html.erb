@@ -6,6 +6,9 @@
 <a class="btn btn-primary" role="button" data-toggle="collapse" href="#panel-pesquisa" aria-expanded="false" aria-controls="panel-pesquisa">
   Mostrar/Ocultar Formulario de Pesquisa
 </a>
+<%= link_to "Aprovar Em Lote", pre_aprovar_em_lote_path(query: params[:query]), class: "btn btn-warning pull-right",
+      data: { confirm: "Tem certeza que deseja pré-aprovar todos esses registros?" },
+      method: :put if @filtro.exibir_imoveis == "-2" %>
 <% end %>
 
 <div class="panel panel-default collapse <%= params[:query].present? ? '' : 'in' %>" id="panel-pesquisa">
