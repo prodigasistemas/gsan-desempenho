@@ -30,7 +30,7 @@ listen "/tmp/.unicorn.gsan-desempenho.sock", :backlog => 64
 #listen 8081, :tcp_nopush => true
 
 # nuke workers after 30 seconds instead of 60 seconds (the default)
-timeout 30
+timeout 90
 
 # feel free to point this anywhere accessible on the filesystem
 pid "/tmp/.unicorn.gsan-desempenho.pid"
