@@ -6,7 +6,8 @@ class AtualizacaoCadastral < ClienteAPI::Model
                 :codigo_imovel,
                 :codigo_cliente,
                 :agente_cadastral,
-                :situacao
+                :situacao,
+                :complemento
 
   has_many :coluna_atualizacao_cadastrais
 end
