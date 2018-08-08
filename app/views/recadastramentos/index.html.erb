@@ -110,7 +110,7 @@
             <input type="radio" name="query[exibir_imoveis]" id="exibir_imoveis_aprovados" value="4" <%= @filtro.exibir_imoveis == "4" ? 'checked' : '' %>> Aprovados
           </label>
           <label class="radio-inline">
-            <input type="radio" name="query[exibir_imoveis]" id="exibir_imoveis_aprovar_em_lote" value="-2" <%= @filtro.exibir_imoveis == "-2" ? 'checked' : '' %>> Aprovar em Lote
+            <input type="radio" name="query[exibir_imoveis]" id="exibir_imoveis_aprovar_em_lote" value="-2" <%= @filtro.exibir_imoveis == "-2" ? 'checked' : '' %>> Pré-aprovar em Lote
           </label>
            <label class="radio-inline">
             <input type="radio" name="query[exibir_imoveis]" id="exibir_imoveis_todos" value="-1" <%= @filtro.exibir_imoveis == "-1" ? 'checked' : '' %>> Todos
@@ -120,11 +120,12 @@
       <hr>
 
       <div class="form-group">
-        <label for="ocorrencias_cadastro" class="col-sm-3 control-label">Ocorrência de Cadastro:</label>
+        <label for="ocorrencias_cadastro" class="col-sm-3 control-label">Sem Ocorrência de Cadastro:</label>
         <div class="col-sm-6">
           <%= render partial: 'radio', locals: { input_name: 'query[ocorrencias_cadastro]', selected: @filtro.ocorrencias_cadastro } %>
         </div>
       </div>
+      <hr>
 
       <!-- -->
       <div class="form-group">
