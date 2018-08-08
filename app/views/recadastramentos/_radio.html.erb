@@ -1,9 +1,9 @@
 <label class="radio-inline">
-  <input type="radio" name="<%= input_name %>" id="<%= input_name %>_yes" value="1" <%= selected == "1" ? 'checked' : '' %>> Sim
+  <input type="radio" name="<%= input_name %>" id="<%= input_name.gsub('[', '_').gsub(']', '_') %>yes" value="1" <%= selected == "1" ? 'checked' : '' %>> Sim
 </label>
 <label class="radio-inline">
-  <input type="radio" name="<%= input_name %>" id="<%= input_name %>_no" value="2" <%= selected == "2" ? 'checked' : '' %>> Não
+  <input type="radio" name="<%= input_name %>" id="<%= input_name.gsub('[', '_').gsub(']', '_') %>no" value="2" <%= selected == "2" ? 'checked' : '' %>> Não
 </label>
 <label class="radio-inline">
-  <input type="radio" name="<%= input_name %>" id="<%= input_name %>_all" value="-1" <%= selected == "-1" ? 'checked' : '' %>> Todos
+  <input type="radio" name="<%= input_name %>" id="<%= input_name.gsub('[', '_').gsub(']', '_') %>all" value="-1" <%= selected == "-1" ? 'checked' : '' %>> Todos
 </label>

@@ -115,4 +115,32 @@ $(function(){
       });
     })
   });
+
+  $("input:radio[name='query[exibir_imoveis]']").change(function() {
+    if ($(this).is(':checked') && $(this).val() == '-2') {
+      $("#query_alteracao_hidrometro_no").prop('checked', true);
+      $("#query_alteracao_agua_no").prop('checked', true);
+      $("#query_alteracao_esgoto_no").prop('checked', true);
+      $("#query_alteracao_categoria_subcategoria_no").prop('checked', true);
+      disabilitarRadios();
+    } else if ($(this).is(':checked') && $(this).val() == '-1') {
+      $("#query_alteracao_hidrometro_all").prop('checked', true);
+      $("#query_alteracao_agua_all").prop('checked', true);
+      $("#query_alteracao_esgoto_all").prop('checked', true);
+      $("#query_alteracao_categoria_subcategoria_all").prop('checked', true);
+      disabilitarRadios();
+    } else {
+      $("input:radio[name='query[alteracao_hidrometro]']").removeAttr('disabled');
+      $("input:radio[name='query[alteracao_agua]']").removeAttr('disabled');
+      $("input:radio[name='query[alteracao_esgoto]']").removeAttr('disabled');
+      $("input:radio[name='query[alteracao_categoria_subcategoria]']").removeAttr('disabled');
+    }
+  });
+
+  function disabilitarRadios() {
+    $("input:radio[name='query[alteracao_hidrometro]']").prop('disabled', true);
+      $("input:radio[name='query[alteracao_agua]']").prop('disabled', true);
+      $("input:radio[name='query[alteracao_esgoto]']").prop('disabled', true);
+      $("input:radio[name='query[alteracao_categoria_subcategoria]']").prop('disabled', true);
+  }
 });
