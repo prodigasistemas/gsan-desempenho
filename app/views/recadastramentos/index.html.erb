@@ -3,17 +3,19 @@
 </div>
 
 <% if params[:query].present? %>
-<a class="btn btn-primary" role="button" data-toggle="collapse" href="#panel-pesquisa" aria-expanded="false" aria-controls="panel-pesquisa">
-  Mostrar/Ocultar Formulario de Pesquisa
-</a>
-<div class="pull-right">
-  <%= link_to "Pre-aprovar Em Lote", pre_aprovar_em_lote_path(query: params[:query]), class: "btn btn-warning",
-      data: { confirm: "Tem certeza que deseja pre-aprovar todos esses registros?" },
-      method: :put, role: 'button' %>
-<%= link_to "Revisar Em Lote", revisar_em_lote_path(query: params[:query]), class: "btn btn-danger",
-      data: { confirm: "Tem certeza que deseja enviar para revisão todos esses registros?" },
-      method: :put, role: 'button' %>
-</div>
+  <a class="btn btn-primary" role="button" data-toggle="collapse" href="#panel-pesquisa" aria-expanded="false" aria-controls="panel-pesquisa">
+    Mostrar/Ocultar Formulario de Pesquisa
+  </a>
+  <% unless @atualizacao_cadastrais.try(:empty?) %>
+    <div class="pull-right">
+      <%= link_to "Pre-aprovar Em Lote", pre_aprovar_em_lote_path(query: params[:query]), class: "btn btn-warning",
+          data: { confirm: "Tem certeza que deseja pre-aprovar todos esses registros?" },
+          method: :put, role: 'button' %>
+      <%= link_to "Revisar Em Lote", revisar_em_lote_path(query: params[:query]), class: "btn btn-danger",
+          data: { confirm: "Tem certeza que deseja enviar para revisão todos esses registros?" },
+          method: :put, role: 'button' %>
+    </div>
+  <% end %>
 <% end %>
 
 <div class="panel panel-default collapse <%= params[:query].present? ? '' : 'in' %>" id="panel-pesquisa">
