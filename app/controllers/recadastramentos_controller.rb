@@ -82,7 +82,10 @@ class RecadastramentosController < ApplicationController
     end
 
     def find_empresas
-      # @empresas = Empresa.where(empr_id: usuario_logado.empresa_id)
-      @empresas = Empresa.all
+      if Rails.env.development?
+        @empresas = Empresa.all
+      else
+        @empresas = Empresa.where(empr_id: usuario_logado.empresa_id)
+      end
     end
 end
