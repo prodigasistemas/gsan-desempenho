@@ -125,6 +125,14 @@
       <hr>
 
       <div class="form-group">
+        <label for="alteracao_cpf" class="col-sm-3 control-label">Com alteração no CPF:</label>
+        <div class="col-sm-6">
+          <%= render partial: 'radio', locals: { input_name: 'query[alteracao_cpf]', selected: @filtro.alteracao_cpf } %>
+        </div>
+      </div>
+      <hr>
+
+      <div class="form-group">
         <label for="ocorrencias_cadastro" class="col-sm-3 control-label">Sem Ocorrência de Cadastro:</label>
         <div class="col-sm-6">
           <%= render partial: 'radio', locals: { input_name: 'query[ocorrencias_cadastro]', selected: @filtro.ocorrencias_cadastro } %>

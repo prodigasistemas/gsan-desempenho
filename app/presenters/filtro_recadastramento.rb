@@ -21,7 +21,8 @@ class FiltroRecadastramento
                 :alteracao_esgoto,
                 :alteracao_categoria_subcategoria,
                 :empresa_id,
-                :leiturista_id
+                :leiturista_id,
+                :alteracao_cpf
 
   def initialize(params)
     if params[:query].present?
@@ -48,6 +49,7 @@ class FiltroRecadastramento
         @alteracao_categoria_subcategoria = params[:query][:alteracao_categoria_subcategoria]
         @empresa_id =                       params[:query][:empresa_id]
         @leiturista_id =                    params[:query][:leiturista_id]
+        @alteracao_cpf =                    params[:query][:alteracao_cpf]
     end
   end
 end
