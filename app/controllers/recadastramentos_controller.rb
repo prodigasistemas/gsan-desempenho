@@ -2,7 +2,7 @@ class RecadastramentosController < ApplicationController
   include SmartListing::Helper::ControllerExtensions
   helper  SmartListing::Helper
 
-  before_action :verificar_parametros_obrigatorios, :find_empresas, :find_leituristas, only: [:index]
+  before_action :find_empresas, :find_leituristas, only: [:index]
   before_action :find_coluna_atualizacao_cadastrais, :find_imovel, only: [:show]
   before_action :find_imovel_atualizacao_cadastral, only: [:show, :update]
 
@@ -84,12 +84,5 @@ class RecadastramentosController < ApplicationController
     def find_empresas
       # @empresas = Empresa.where(empr_id: usuario_logado.empresa_id)
       @empresas = Empresa.all
-    end
-
-    def verificar_parametros_obrigatorios
-      if params[:query].present?
-        flash[:error] = "Período Inicial e Final são obrigatórios" if params[:query][:periodo_inicial].blank? or params[:query][:periodo_final].blank?
-        flash[:error] = "Agente Cadastral é obrigatório" if params[:query][:leiturista_id].blank?
-      end
     end
 end

@@ -29,15 +29,15 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="leiturista_id" class="col-sm-3 control-label">Agente Cadastral: *</label>
+        <label for="leiturista_id" class="col-sm-3 control-label">Agente Cadastral: </label>
         <div class="col-sm-6">
           <%= select_tag "query[leiturista_id]", options_from_collection_for_select(@leituristas, "id", "nome", @filtro.leiturista_id),
-                class: "form-control", required: true,  prompt: 'Escolha' %>
+                class: "form-control",  prompt: 'Escolha' %>
 
         </div>
       </div>
       <div class="form-group">
-        <label for="periodo_inicial" class="col-sm-3 control-label">Período: *</label>
+        <label for="periodo_inicial" class="col-sm-3 control-label">Período: </label>
         <div class="col-sm-3">
           <%= text_field_tag 'query[periodo_inicial]', @filtro.periodo_inicial, class: "form-control datepicker", required: false %>
         </div>
