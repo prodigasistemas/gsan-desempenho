@@ -51,18 +51,18 @@
 
       <p class="text-muted">Informe os dados da inscrição inicial</p>
       <div class="form-group">
-        <label for="localidade" class="col-sm-3 control-label">Localidade</label>
+        <label for="localidade_inicial" class="col-sm-3 control-label">Localidade</label>
         <div class="col-sm-6">
-          <input type="text" name="query[localidade_inicial]" id="localidade" placeholder="Localidade" class="form-control" value="<%= @filtro.localidade_inicial %>" />
-          <input type="hidden" name="query[localidade_id_inicial]" id="localidade_id" value="<%= @filtro.localidade_id_inicial %>" />
+          <input type="text" name="query[localidade_inicial]" id="localidade_inicial" placeholder="Localidade" class="form-control" value="<%= @filtro.localidade_inicial %>" />
+          <input type="hidden" name="query[localidade_id_inicial]" id="localidade_id_inicial" value="<%= @filtro.localidade_id_inicial %>" />
         </div>
       </div>
 
       <div class="form-group">
-        <label for="setor_comercial" class="col-sm-3 control-label">Setor Comercial</label>
+        <label for="setor_comercial_inicial" class="col-sm-3 control-label">Setor Comercial</label>
         <div class="col-sm-6">
-          <input type="text" name="query[setor_comercial_inicial]" id="setor_comercial" placeholder="Setor Comercial" class="form-control" value="<%= @filtro.setor_comercial_inicial %>" disabled="true" />
-          <input type="hidden" name="query[setor_comercial_id_inicial]" id="setor_comercial_id" value="<%= @filtro.setor_comercial_id_inicial %>" />
+          <input type="text" name="query[setor_comercial_inicial]" id="setor_comercial_inicial" placeholder="Setor Comercial" class="form-control" value="<%= @filtro.setor_comercial_inicial %>" disabled="true" />
+          <input type="hidden" name="query[setor_comercial_id_inicial]" id="setor_comercial_id_inicial" value="<%= @filtro.setor_comercial_id_inicial %>" />
         </div>
       </div>
 
@@ -70,7 +70,7 @@
         <label for="rota" class="col-sm-3 control-label">Rota</label>
         <div class="col-sm-1">
           <div class="ui-widget">
-            <select id="rota_id" name="query[rota_id_inicial]" class="form-control" data-rota-selecionada="<%= @filtro.rota_id_inicial %>" disabled=true>
+            <select id="rota_id_inicial" name="query[rota_id_inicial]" class="form-control" data-rota-selecionada="<%= @filtro.rota_id_inicial %>" disabled=true>
               <option></option>
             </select>
           </div>
