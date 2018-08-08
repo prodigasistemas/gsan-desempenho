@@ -139,8 +139,17 @@ $(function(){
 
   function disabilitarRadios() {
     $("input:radio[name='query[alteracao_hidrometro]']").prop('disabled', true);
-      $("input:radio[name='query[alteracao_agua]']").prop('disabled', true);
-      $("input:radio[name='query[alteracao_esgoto]']").prop('disabled', true);
-      $("input:radio[name='query[alteracao_categoria_subcategoria]']").prop('disabled', true);
+    $("input:radio[name='query[alteracao_agua]']").prop('disabled', true);
+    $("input:radio[name='query[alteracao_esgoto]']").prop('disabled', true);
+    $("input:radio[name='query[alteracao_categoria_subcategoria]']").prop('disabled', true);
   }
+
+  $("input:radio[name='query[ocorrencias_cadastro]']").change(function() {
+    if ($(this).is(':checked') && $(this).val() == '1') {
+      $("#query_cadastro_ocorrencia_id").removeAttr('disabled');
+    } else {
+      $('#query_cadastro_ocorrencia_id').val('');
+      $("#query_cadastro_ocorrencia_id").prop('disabled', true);
+    }
+  });
 });

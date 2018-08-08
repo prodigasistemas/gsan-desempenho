@@ -2,7 +2,7 @@ class RecadastramentosController < ApplicationController
   include SmartListing::Helper::ControllerExtensions
   helper  SmartListing::Helper
 
-  before_action :find_empresas, :find_leituristas, only: [:index]
+  before_action :find_empresas, :find_leituristas, :find_cadastro_ocorrencias, only: [:index]
   before_action :find_coluna_atualizacao_cadastrais, :find_imovel, only: [:show]
   before_action :find_imovel_atualizacao_cadastral, only: [:show, :update]
 
@@ -60,6 +60,10 @@ class RecadastramentosController < ApplicationController
   end
 
   private
+    def find_cadastro_ocorrencias
+      @cadastro_ocorrencias = CadastroOcorrencia.all
+    end
+
     def find_imovel_atualizacao_cadastral
       @imovel_atualizacao_cadastral = ImovelAtualizacaoCadastral.find params[:id]
     end
