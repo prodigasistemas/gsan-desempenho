@@ -7,3 +7,8 @@
 <label class="radio-inline">
   <input type="radio" name="<%= input_name %>" id="<%= input_name.gsub('[', '_').gsub(']', '_') %>all" value="-1" <%= selected == "-1" ? 'checked' : '' %>> Todos
 </label>
+<% if input_name.include?('cpf') %>
+  <label class="radio-inline">
+    <input type="radio" name="<%= input_name %>" id="<%= input_name.gsub('[', '_').gsub(']', '_') %>sem" value="-2" <%= selected == "-2" ? 'checked' : '' %>> Sem CPF
+  </label>
+<% end %>
