@@ -237,7 +237,7 @@ $(function(){
   }
 
   $("input:radio[name='query[ocorrencias_cadastro]']").change(function() {
-    if ($(this).is(':checked') && $(this).val() == '1') {
+    if ($(this).is(':checked') && $(this).val() == '2') {
       $("#query_cadastro_ocorrencia_id").removeAttr('disabled');
     } else {
       $('#query_cadastro_ocorrencia_id').val('');
