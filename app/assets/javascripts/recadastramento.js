@@ -244,4 +244,16 @@ $(function(){
       $("#query_cadastro_ocorrencia_id").prop('disabled', true);
     }
   });
+
+
+  // Selecao de colunas para alteracao
+  $("input:checkbox[name=colunas_checkbox]").change(function() {
+    if (this.checked) {
+      $("#colunas_revisao").val($("#colunas_revisao").val() + " " + this.id);
+      $("#td_" + this.id).effect("highlight", {}, 2000);
+    } else {
+      var novoValor = $("#colunas_revisao").val().replace(this.id, '');
+      $("#colunas_revisao").val(novoValor);
+    }
+  });
 });

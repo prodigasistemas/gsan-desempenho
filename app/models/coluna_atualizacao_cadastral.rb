@@ -10,7 +10,8 @@ class ColunaAtualizacaoCadastral < ClienteAPI::Model
                 :usuario_id,
                 :tabela,
                 :campo,
-                :nome_usuario
+                :nome_usuario,
+                :valor_revisado
 
   belongs_to :atualizacao_cadastral
   # belongs_to :tabela_coluna,         foreign_key: :tbco_id
