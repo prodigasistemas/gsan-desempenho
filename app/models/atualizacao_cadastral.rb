@@ -7,7 +7,13 @@ class AtualizacaoCadastral < ClienteAPI::Model
                 :codigo_cliente,
                 :agente_cadastral,
                 :situacao,
-                :complemento
+                :complemento,
+                :tipo_alteracao
 
   has_many :coluna_atualizacao_cadastrais
+
+  def descricao_imovel
+    return "Exclusão" if tipo_alteracao.to_i == 3
+    tipo_alteracao.to_i == 2 ? "Novo Imóvel" : "#{codigo_imovel}"
+  end
 end
