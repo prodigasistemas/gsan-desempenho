@@ -1,10 +1,12 @@
-<table class="table table-hover table-striped">
+<table class="table table-hover table-striped" style="table-layout: fixed; width: 100%">
   <thead>
     <tr>
       <th>Tabela</th>
       <th>Campo</th>
       <th>Anterior</th>
-      <th>Atual</th>
+      <th>Transmitido</th>
+      <th>Revisado</th>
+      <th>Campos da revisão</th>
     </tr>
   </thead>
   <tbody>
@@ -14,6 +16,12 @@
         <td><%= coluna.campo %></td>
         <td><%= coluna.valor_anterior %></td>
         <td><%= coluna.valor_atual %></td>
+        <td id="td_<%= coluna.id %>" style="word-wrap: break-word"><%= coluna.try(:valor_revisado) %></td>
+        <td>
+          <label>
+            <input type="checkbox" id="<%= coluna.id %>" name="colunas_checkbox">
+          </label>
+        </td>
       </tr>
     <% end %>
     <% if smart_listing.empty? %>
@@ -21,4 +29,5 @@
     <% end %>
   </tbody>
 </table>
+<input type="hidden" id="colunas_revisao" value="">
 <%= smart_listing.paginate %>
