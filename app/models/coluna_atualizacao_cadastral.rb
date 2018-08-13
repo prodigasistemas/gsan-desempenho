@@ -16,4 +16,8 @@ class ColunaAtualizacaoCadastral < ClienteAPI::Model
   belongs_to :atualizacao_cadastral
   # belongs_to :tabela_coluna,         foreign_key: :tbco_id
   belongs_to :usuario
+
+  def valor_final
+    valor_atual || valor_revisado
+  end
 end

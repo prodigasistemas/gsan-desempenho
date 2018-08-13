@@ -63,7 +63,7 @@
                              method: :put, class: "btn btn-primary", role: "button" %>
     <% end %>
     <% if @imovel_controle_atualizacao_cadastral.pode_ser_revisado? %>
-      <%= link_to "Aprovar Revisão", recadastramento_path(id: @imovel_controle_atualizacao_cadastral.imovel_id,
+      <%= link_to "Revisado", recadastramento_path(id: @imovel_controle_atualizacao_cadastral.imovel_id,
                                                           situacao: SituacaoAtualizacaoCadastral::SITUACOES[:"REVISADO"]),
                              method: :put, class: "btn btn-info", role: "button", id: "link-revisado" %>
     <% end %>

@@ -249,14 +249,21 @@ $(function(){
   $("input:checkbox[name=colunas_checkbox]").change(function() {
     if (this.checked) {
       $("#colunas_revisao").val($("#colunas_revisao").val() + "," + this.id);
-      $("#td_" + this.id).effect("highlight", {}, 2000);
+      $(".td_" + this.id).effect("highlight", {}, 2000);
       var novoHref = $("#link-revisado").attr('href') + '&revisoes%5B%5D=' + this.id;
       $("#link-revisado").attr('href', novoHref);
+      trocarValor("#td_" + this.id, $("#td_revisado_" + this.id).html());
     } else {
       var novoValor = $("#colunas_revisao").val().replace(this.id + ",", '');
       $("#colunas_revisao").val(novoValor);
       var novoHref = $("#link-revisado").attr('href').replace('&revisoes%5B%5D=' + this.id, '');
       $("#link-revisado").attr('href', novoHref);
+      trocarValor("#td_" + this.id, $("#hidden_" + this.id).val());
     }
   });
+
+  var trocarValor = function(idTd, novoValor) {
+    console.log("ID =" + idTd + ", novoValor = " + novoValor);
+    $(idTd).html(novoValor);
+  }
 });
