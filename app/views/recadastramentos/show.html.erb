@@ -44,12 +44,28 @@
     </div>
   </form>
 
+  <form class="form-inline">
+    <div class="form-group">
+      <%= label_tag "Situação" %>
+      <%= @imovel_controle_atualizacao_cadastral.try(:situacao) %>
+    </div>
+  </form>
+
   <div class="pull-right">
-    <% if @imovel_controle_atualizacao_cadastral.situacao_cadastral_id.to_i != 7 %>
-      <%= link_to "Pré-Aprovar", recadastramento_path(id: @imovel_controle_atualizacao_cadastral.imovel_id, situacao: 7), method: :put, class: "btn btn-success", role: "button" %>
+    <% if @imovel_controle_atualizacao_cadastral.pode_ser_pre_aprovado? %>
+      <%= link_to "Pré-Aprovar", recadastramento_path(id: @imovel_controle_atualizacao_cadastral.imovel_id,
+                                                      situacao: SituacaoAtualizacaoCadastral::SITUACOES[:"PRE APROVADO"]),
+                                 method: :put, class: "btn btn-success", role: "button" %>
     <% end %>
-    <% if @imovel_controle_atualizacao_cadastral.situacao_cadastral_id.to_i != 8 %>
-      <%= link_to "Revisar", recadastramento_path(id: @imovel_controle_atualizacao_cadastral.imovel_id, situacao: 8), method: :put, class: "btn btn-primary", role: "button" %>
+    <% if @imovel_controle_atualizacao_cadastral.pode_ficar_em_revisao? %>
+      <%= link_to "Em Revisão", recadastramento_path(id: @imovel_controle_atualizacao_cadastral.imovel_id,
+                                                  situacao: SituacaoAtualizacaoCadastral::SITUACOES[:"EM REVISAO"]),
+                             method: :put, class: "btn btn-primary", role: "button" %>
+    <% end %>
+    <% if @imovel_controle_atualizacao_cadastral.pode_ser_revisado? %>
+      <%= link_to "Aprovar Revisão", recadastramento_path(id: @imovel_controle_atualizacao_cadastral.imovel_id,
+                                                          situacao: SituacaoAtualizacaoCadastral::SITUACOES[:"REVISADO"]),
+                             method: :put, class: "btn btn-info", role: "button", id: "link-revisado" %>
     <% end %>
   </div>
 

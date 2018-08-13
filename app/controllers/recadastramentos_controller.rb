@@ -30,17 +30,15 @@ class RecadastramentosController < ApplicationController
   end
 
   def update
-    @imovel_controle_atualizacao_cadastral = @imovel_controle_atualizacao_cadastral.update({ situacao_atualizacao_cadastral_id: params[:situacao] })
-    if params[:situacao] == "7"
-      msgm = "Imóvel Pré-avaliado com sucesso"
-    else
-      msgm = "Imóvel enviado para Revisão"
-    end
-    redirect_to recadastramento_path(@imovel_controle_atualizacao_cadastral.id), notice: msgm
+    parametros = { situacao_atualizacao_cadastral_id: params[:situacao] }
+    parametros[:revisoes] = params[:revisoes] unless params[:revisoes].blank?
+    @imovel_controle_atualizacao_cadastral = @imovel_controle_atualizacao_cadastral.update(parametros)
+    redirect_to recadastramento_path(@imovel_controle_atualizacao_cadastral.id),
+                  notice: "Imóvel colocado na situação '#{SituacaoAtualizacaoCadastral.descricao_situacao(params[:situacao])}' com sucesso"
   end
 
   def pre_aprovar_em_lote
-    params[:query][:situacao_cadastral_id] = 7
+    params[:query][:situacao_cadastral_id] = SituacaoAtualizacaoCadastral::SITUACOES[:"PRE APROVADO"]
     if AtualizacaoCadastral.put([], params)
       redirect_to recadastramentos_path, flash: { notice: "Pre-aprovação em Lote ocorreu com sucesso" }
     else
@@ -50,7 +48,7 @@ class RecadastramentosController < ApplicationController
   end
 
   def revisar_em_lote
-    params[:query][:situacao_cadastral_id] = 8
+    params[:query][:situacao_cadastral_id] = SituacaoAtualizacaoCadastral::SITUACOES[:"EM REVISAO"]
     if AtualizacaoCadastral.put([], params)
       redirect_to recadastramentos_path, flash: { notice: "Revisão em Lote ocorreu com sucesso" }
     else

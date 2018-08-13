@@ -245,15 +245,18 @@ $(function(){
     }
   });
 
-
   // Selecao de colunas para alteracao
   $("input:checkbox[name=colunas_checkbox]").change(function() {
     if (this.checked) {
-      $("#colunas_revisao").val($("#colunas_revisao").val() + " " + this.id);
+      $("#colunas_revisao").val($("#colunas_revisao").val() + "," + this.id);
       $("#td_" + this.id).effect("highlight", {}, 2000);
+      var novoHref = $("#link-revisado").attr('href') + '&revisoes%5B%5D=' + this.id;
+      $("#link-revisado").attr('href', novoHref);
     } else {
-      var novoValor = $("#colunas_revisao").val().replace(this.id, '');
+      var novoValor = $("#colunas_revisao").val().replace(this.id + ",", '');
       $("#colunas_revisao").val(novoValor);
+      var novoHref = $("#link-revisado").attr('href').replace('&revisoes%5B%5D=' + this.id, '');
+      $("#link-revisado").attr('href', novoHref);
     }
   });
 });

@@ -5,8 +5,10 @@
       <th>Campo</th>
       <th>Anterior</th>
       <th>Transmitido</th>
-      <th>Revisado</th>
-      <th>Campos da revisão</th>
+      <% if @imovel_controle_atualizacao_cadastral.pode_ser_revisado? %>
+        <th>Revisado</th>
+        <th>Campos da revisão</th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
@@ -16,16 +18,18 @@
         <td><%= coluna.campo %></td>
         <td><%= coluna.valor_anterior %></td>
         <td><%= coluna.valor_atual %></td>
-        <td id="td_<%= coluna.id %>" style="word-wrap: break-word"><%= coluna.try(:valor_revisado) %></td>
-        <td>
-          <label>
-            <input type="checkbox" id="<%= coluna.id %>" name="colunas_checkbox">
-          </label>
-        </td>
+        <% if @imovel_controle_atualizacao_cadastral.pode_ser_revisado? %>
+          <td id="td_<%= coluna.id %>" style="word-wrap: break-word"><%= coluna.try(:valor_revisado) %></td>
+          <td>
+            <label>
+              <input type="checkbox" id="<%= coluna.id %>" name="colunas_checkbox">
+            </label>
+          </td>
+        <% end %>
       </tr>
     <% end %>
     <% if smart_listing.empty? %>
-      <tr><th colspan="4"><center>Nenhum registro encontrado</center></th></tr>
+      <tr><th colspan="<%= qnt_colspan @imovel_controle_atualizacao_cadastral.pode_ser_revisado? %>"><center>Nenhum registro encontrado</center></th></tr>
     <% end %>
   </tbody>
 </table>
