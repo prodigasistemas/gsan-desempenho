@@ -4,7 +4,7 @@ class RecadastramentosController < ApplicationController
 
   before_action :find_empresas, :find_leituristas, :find_cadastro_ocorrencias, only: [:index]
   before_action :find_coluna_atualizacao_cadastrais, :find_imovel, only: [:show]
-  before_action :find_imovel_atualizacao_cadastral, only: [:show, :update]
+  before_action :find_imovel_controle_atualizacao_cadastral, only: [:show, :update]
 
   def index
     atualizacao_cadastrais = []
@@ -30,13 +30,13 @@ class RecadastramentosController < ApplicationController
   end
 
   def update
-    @imovel_atualizacao_cadastral = @imovel_atualizacao_cadastral.update({ situacao_cadastral_id: params[:situacao] })
+    @imovel_controle_atualizacao_cadastral = @imovel_controle_atualizacao_cadastral.update({ situacao_atualizacao_cadastral_id: params[:situacao] })
     if params[:situacao] == "7"
       msgm = "Imóvel Pré-avaliado com sucesso"
     else
       msgm = "Imóvel enviado para Revisão"
     end
-    redirect_to recadastramento_path(@imovel_atualizacao_cadastral.id), notice: msgm
+    redirect_to recadastramento_path(@imovel_controle_atualizacao_cadastral.id), notice: msgm
   end
 
   def pre_aprovar_em_lote
@@ -64,8 +64,8 @@ class RecadastramentosController < ApplicationController
       @cadastro_ocorrencias = CadastroOcorrencia.all
     end
 
-    def find_imovel_atualizacao_cadastral
-      @imovel_atualizacao_cadastral = ImovelAtualizacaoCadastral.find params[:id]
+    def find_imovel_controle_atualizacao_cadastral
+      @imovel_controle_atualizacao_cadastral = ImovelControleAtualizacaoCadastral.find params[:id]
     end
 
     def find_leituristas

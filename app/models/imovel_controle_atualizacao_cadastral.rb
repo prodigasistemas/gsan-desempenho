@@ -7,7 +7,8 @@ class ImovelControleAtualizacaoCadastral < ClienteAPI::Model
                 :situacao_atualizacao_cadastral_id,
                 :imovel_retorno_id,
                 :tempo_processamento,
-                :cadastro_imovel_id
+                :cadastro_imovel_id,
+                :data_hora_pre_aprovacao
 
   belongs_to :cadastro_ocorrencia
   belongs_to :imovel
@@ -16,5 +17,9 @@ class ImovelControleAtualizacaoCadastral < ClienteAPI::Model
 
   def descricao_ocorrencia
     cadastro_ocorrencia.try(:descricao)
+  end
+
+  def situacao_cadastral_id
+    situacao_atualizacao_cadastral.try(:id)
   end
 end

@@ -45,11 +45,11 @@
   </form>
 
   <div class="pull-right">
-    <% if @imovel_atualizacao_cadastral.situacao_cadastral_id.to_i != 7 %>
-      <%= link_to "Pré-Aprovar", recadastramento_path(id: @imovel.id, situacao: 7), method: :put, class: "btn btn-success", role: "button" %>
+    <% if @imovel_controle_atualizacao_cadastral.situacao_cadastral_id.to_i != 7 %>
+      <%= link_to "Pré-Aprovar", recadastramento_path(id: @imovel_controle_atualizacao_cadastral.imovel_id, situacao: 7), method: :put, class: "btn btn-success", role: "button" %>
     <% end %>
-    <% if @imovel_atualizacao_cadastral.situacao_cadastral_id.to_i != 8 %>
-      <%= link_to "Revisar", recadastramento_path(id: @imovel.id, situacao: 8), method: :put, class: "btn btn-primary", role: "button" %>
+    <% if @imovel_controle_atualizacao_cadastral.situacao_cadastral_id.to_i != 8 %>
+      <%= link_to "Revisar", recadastramento_path(id: @imovel_controle_atualizacao_cadastral.imovel_id, situacao: 8), method: :put, class: "btn btn-primary", role: "button" %>
     <% end %>
   </div>
 
