@@ -3,8 +3,8 @@ class RecadastramentosController < ApplicationController
   helper  SmartListing::Helper
 
   before_action :find_empresas, :find_leituristas, :find_cadastro_ocorrencias, only: [:index]
-  before_action :find_coluna_atualizacao_cadastrais, :verificar_se_houve_revisao, :find_imovel, only: [:show]
   before_action :find_imovel_controle_atualizacao_cadastral, only: [:show, :update]
+  before_action :find_imovel, :find_coluna_atualizacao_cadastrais, :verificar_se_houve_revisao, only: [:show]
 
   def index
     atualizacao_cadastrais = []
@@ -19,14 +19,18 @@ class RecadastramentosController < ApplicationController
     @atualizacao_cadastrais = smart_listing_create :atualizacao_cadastrais,
                                                    atualizacao_cadastrais,
                                                    partial: 'list',
-                                                   page_sizes: [25, 50]
+                                                   page_sizes: [50]
   end
 
   def show
-    @campos = smart_listing_create :campos,
-                                   @coluna_atualizacao_cadastrais,
-                                   partial: 'campos_list',
-                                   page_sizes: [100]
+    unless @imovel_controle_atualizacao_cadastral.is_transmitido_revisao_ou_pre_aprovado?
+      raise ActionController::RoutingError.new('Cadastro não encontrado')
+    else
+      @campos = smart_listing_create :campos,
+                                     @coluna_atualizacao_cadastrais,
+                                     partial: 'campos_list',
+                                     page_sizes: [100]
+    end
   end
 
   def update
