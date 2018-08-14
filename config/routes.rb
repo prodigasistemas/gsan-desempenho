@@ -26,5 +26,5 @@ Rails.application.routes.draw do
 
   resources :recadastramentos, only: [:index, :show, :update]
   put "/pre_aprovar_em_lote", controller: :recadastramentos, action: :pre_aprovar_em_lote
-  put "/revisar_em_lote", controller: :recadastramentos, action: :revisar_em_lote
+  put "/enviar_para_revisao_em_lote", controller: :recadastramentos, action: :revisar_em_lote
 end

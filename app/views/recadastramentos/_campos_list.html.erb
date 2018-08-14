@@ -19,11 +19,15 @@
         <td><%= coluna.campo %></td>
         <td><%= coluna.valor_anterior %></td>
         <td><%= coluna.valor_atual %></td>
-        <td class="td_<%= coluna.id %>" id="td_revisado_<%= coluna.id %>" style="word-wrap: break-word" >
+        <input type="hidden" id="hidden_<%= coluna.id %>" value="<%= coluna.try(:valor_atual) %>">
+        <td class="td_<%= coluna.id %>" id="td_revisado_<%= coluna.id %>" >
           <%= coluna.try(:valor_revisado) %>
         </td>
-        <input type="hidden" id="hidden_<%= coluna.id %>" value="<%= coluna.try(:valor_atual) %>">
-        <td class="td_<%= coluna.id %>" style="word-wrap: break-word" id="td_<%= coluna.id %>"><%= coluna.try(:valor_pre_aprovado) %></td>
+        <% if @imovel_controle_atualizacao_cadastral.is_pre_aprovado? or @imovel_controle_atualizacao_cadastral.is_revisado? %>
+          <td class="td_<%= coluna.id %>" id="td_<%= coluna.id %>"><%= coluna.try(:valor_pre_aprovado) %></td>
+        <% else %>
+          <td class="td_<%= coluna.id %>" id="td_<%= coluna.id %>"><%= coluna.try(:valor_pre_aprovado) || coluna.try(:valor_atual) %></td>
+        <% end %>
         <% if @imovel_controle_atualizacao_cadastral.pode_ser_revisado? %>
           <td>
             <label>

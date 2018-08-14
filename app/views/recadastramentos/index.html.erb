@@ -11,7 +11,7 @@
       <%= link_to "Pre-aprovar Em Lote", pre_aprovar_em_lote_path(query: params[:query]), class: "btn btn-warning",
           data: { confirm: "Tem certeza que deseja pre-aprovar todos esses registros?" },
           method: :put, role: 'button' %>
-      <%= link_to "Revisar Em Lote", revisar_em_lote_path(query: params[:query]), class: "btn btn-danger",
+      <%= link_to "Revisar Em Lote", enviar_para_revisao_em_lote_path(query: params[:query]), class: "btn btn-danger",
           data: { confirm: "Tem certeza que deseja enviar para revisão todos esses registros?" },
           method: :put, role: 'button' %>
     </div>

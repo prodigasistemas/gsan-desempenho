@@ -47,7 +47,7 @@ class RecadastramentosController < ApplicationController
     end
   end
 
-  def revisar_em_lote
+  def enviar_para_revisao_em_lote
     params[:query][:situacao_cadastral_id] = SituacaoAtualizacaoCadastral::SITUACOES[:"EM REVISAO"]
     if AtualizacaoCadastral.put([], params)
       redirect_to recadastramentos_path, flash: { notice: "Revisão em Lote ocorreu com sucesso" }
@@ -76,7 +76,11 @@ class RecadastramentosController < ApplicationController
 
     def find_coluna_atualizacao_cadastrais
       atualizacao_cadastrais = AtualizacaoCadastral.where(codigo_imovel: params[:id])
-      @coluna_atualizacao_cadastrais = ColunaAtualizacaoCadastral.where(atualizacao_cadastral_id: atualizacao_cadastrais.map(&:id))
+      if atualizacao_cadastrais.empty?
+        @coluna_atualizacao_cadastrais = []
+      else
+        @coluna_atualizacao_cadastrais = ColunaAtualizacaoCadastral.where(atualizacao_cadastral_id: atualizacao_cadastrais.map(&:id))
+      end
     end
 
     def find_imovel

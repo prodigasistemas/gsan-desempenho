@@ -23,6 +23,14 @@ class ImovelControleAtualizacaoCadastral < ClienteAPI::Model
     situacao_atualizacao_cadastral.try(:id)
   end
 
+  def is_pre_aprovado?
+    SituacaoAtualizacaoCadastral::SITUACOES[:"PRE APROVADO"] == situacao_atualizacao_cadastral_id
+  end
+
+  def is_revisado?
+    SituacaoAtualizacaoCadastral::SITUACOES[:"REVISADO"] == situacao_atualizacao_cadastral_id
+  end
+
   def pode_ser_pre_aprovado?
     SituacaoAtualizacaoCadastral.pode_ser_pre_aprovado? situacao_atualizacao_cadastral_id
   end
