@@ -33,8 +33,8 @@ class RecadastramentosController < ApplicationController
     parametros = { situacao_atualizacao_cadastral_id: params[:situacao] }
     parametros[:revisoes] = params[:revisoes] unless params[:revisoes].blank?
     @imovel_controle_atualizacao_cadastral = @imovel_controle_atualizacao_cadastral.update(parametros)
-    redirect_to recadastramento_path(@imovel_controle_atualizacao_cadastral.id),
-                  notice: "Imóvel colocado na situação '#{SituacaoAtualizacaoCadastral.descricao_situacao(params[:situacao])}' com sucesso"
+    redirect_to recadastramento_path(@imovel_controle_atualizacao_cadastral.imovel_id),
+                  notice: "Imóvel colocado na situação '#{SituacaoAtualizacaoCadastral.descricao_situacao(params[:situacao].try(:to_i))}' com sucesso"
   end
 
   def pre_aprovar_em_lote

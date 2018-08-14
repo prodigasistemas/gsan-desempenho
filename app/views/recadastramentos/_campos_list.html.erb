@@ -5,9 +5,9 @@
       <th>Campo</th>
       <th>Anterior</th>
       <th>Transmitido</th>
+      <th>Revisado</th>
+      <th>Resultado</th>
       <% if @imovel_controle_atualizacao_cadastral.pode_ser_revisado? %>
-        <th>Revisado</th>
-        <th>Resultado</th>
         <th>Campos da revisão</th>
       <% end %>
     </tr>
@@ -19,12 +19,12 @@
         <td><%= coluna.campo %></td>
         <td><%= coluna.valor_anterior %></td>
         <td><%= coluna.valor_atual %></td>
+        <td class="td_<%= coluna.id %>" id="td_revisado_<%= coluna.id %>" style="word-wrap: break-word" >
+          <%= coluna.try(:valor_revisado) %>
+        </td>
+        <input type="hidden" id="hidden_<%= coluna.id %>" value="<%= coluna.try(:valor_atual) %>">
+        <td class="td_<%= coluna.id %>" style="word-wrap: break-word" id="td_<%= coluna.id %>"><%= coluna.try(:valor_pre_aprovado) %></td>
         <% if @imovel_controle_atualizacao_cadastral.pode_ser_revisado? %>
-          <td class="td_<%= coluna.id %>" id="td_revisado_<%= coluna.id %>" style="word-wrap: break-word" >
-            <%= coluna.try(:valor_revisado) %>
-          </td>
-          <input type="hidden" id="hidden_<%= coluna.id %>" value="<%= coluna.try(:valor_atual) %>">
-          <td class="td_<%= coluna.id %>" style="word-wrap: break-word" id="td_<%= coluna.id %>"><%= coluna.try(:valor_atual) %></td>
           <td>
             <label>
               <input type="checkbox" id="<%= coluna.id %>" name="colunas_checkbox">
