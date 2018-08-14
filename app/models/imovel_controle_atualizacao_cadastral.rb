@@ -32,7 +32,7 @@ class ImovelControleAtualizacaoCadastral < ClienteAPI::Model
   end
 
   def is_transmitido_revisao_ou_pre_aprovado?
-    pode_ser_pre_aprovado? or pode_ser_revisado?
+    pode_ser_pre_aprovado? or pode_ser_revisado? or is_pre_aprovado?
   end
 
   def pode_ser_pre_aprovado?
