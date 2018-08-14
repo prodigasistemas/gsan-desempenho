@@ -3,7 +3,7 @@ class RecadastramentosController < ApplicationController
   helper  SmartListing::Helper
 
   before_action :find_empresas, :find_leituristas, :find_cadastro_ocorrencias, only: [:index]
-  before_action :find_coluna_atualizacao_cadastrais, :find_imovel, only: [:show]
+  before_action :find_coluna_atualizacao_cadastrais, :verificar_se_houve_revisao, :find_imovel, only: [:show]
   before_action :find_imovel_controle_atualizacao_cadastral, only: [:show, :update]
 
   def index
@@ -85,6 +85,10 @@ class RecadastramentosController < ApplicationController
 
     def find_imovel
       @imovel = Imovel.where(id: params[:id], page: 1, per_page: 10).try(:first)
+    end
+
+    def verificar_se_houve_revisao
+      @teve_revisao = !(@coluna_atualizacao_cadastrais.select { |c| !c.valor_revisado.blank? }).empty?
     end
 
     def find_empresas

@@ -50,6 +50,9 @@
       <%= @imovel_controle_atualizacao_cadastral.try(:situacao) %>
     </div>
   </form>
+  <% unless @teve_revisao %>
+    <div class="text-center text-danger">Não houve nenhuma informação vinda da fase de revisão para esse cadastro!</div>
+  <% end %>
 
   <div class="pull-right">
     <% if @imovel_controle_atualizacao_cadastral.pode_ser_pre_aprovado? %>
@@ -62,7 +65,7 @@
                                                   situacao: SituacaoAtualizacaoCadastral::SITUACOES[:"EM REVISAO"]),
                              method: :put, class: "btn btn-primary", role: "button" %>
     <% end %>
-    <% if @imovel_controle_atualizacao_cadastral.pode_ser_revisado? %>
+    <% if @imovel_controle_atualizacao_cadastral.pode_ser_revisado? and @teve_revisao %>
       <%= link_to "Revisado", recadastramento_path(id: @imovel_controle_atualizacao_cadastral.imovel_id,
                                                           situacao: SituacaoAtualizacaoCadastral::SITUACOES[:"REVISADO"]),
                              method: :put, class: "btn btn-info", role: "button", id: "link-revisado" %>
