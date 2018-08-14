@@ -50,7 +50,7 @@
       <%= @imovel_controle_atualizacao_cadastral.try(:situacao) %>
     </div>
   </form>
-  <% unless @teve_revisao %>
+  <% if @imovel_controle_atualizacao_cadastral.pode_ser_revisado? and not @teve_revisao %>
     <div class="text-center text-danger">Não houve nenhuma informação vinda da fase de revisão para esse cadastro!</div>
   <% end %>
 

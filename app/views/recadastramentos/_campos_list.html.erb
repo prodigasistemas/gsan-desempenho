@@ -7,9 +7,7 @@
       <th>Transmitido</th>
       <th>Revisado</th>
       <th>Resultado</th>
-      <% if @imovel_controle_atualizacao_cadastral.pode_ser_revisado? %>
-        <th>Campos da revisão</th>
-      <% end %>
+      <th>Campos da revisão</th>
     </tr>
   </thead>
   <tbody>
@@ -28,13 +26,13 @@
         <% else %>
           <td class="td_<%= coluna.id %>" id="td_<%= coluna.id %>"><%= coluna.try(:valor_pre_aprovado) || coluna.try(:valor_atual) %></td>
         <% end %>
-        <% if @imovel_controle_atualizacao_cadastral.pode_ser_revisado? %>
-          <td>
+        <td>
+          <% if @imovel_controle_atualizacao_cadastral.pode_ser_revisado? and @teve_revisao %>
             <label>
               <input type="checkbox" id="<%= coluna.id %>" name="colunas_checkbox">
             </label>
-          </td>
-        <% end %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
     <% if smart_listing.empty? %>
