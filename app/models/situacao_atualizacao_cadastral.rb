@@ -14,8 +14,8 @@ class SituacaoAtualizacaoCadastral < ClienteAPI::Model
                "EM FISCALIZACAO": 5,
                "ATUALIZADO": 6,
                "PRE APROVADO": 7,
-               "REVISADO": 8,
-               "EM REVISAO": 9,
+               "REVISADO": 9,
+               "EM REVISAO": 8,
                "A REVISAR": 10 }
 
   def self.pode_ser_pre_aprovado?(situacao)
