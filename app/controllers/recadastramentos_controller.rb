@@ -44,7 +44,7 @@ class RecadastramentosController < ApplicationController
   def pre_aprovar_em_lote
     params[:query][:situacao_cadastral_id] = SituacaoAtualizacaoCadastral::SITUACOES[:"PRE APROVADO"]
     if AtualizacaoCadastral.put([], params)
-      redirect_to recadastramentos_path, flash: { notice: "Pre-aprovação em Lote ocorreu com sucesso" }
+      redirect_to recadastramentos_path, flash: { notice: "A Pre-aprovação em Lote ocorrá em um processamento posterior, em até 24 horas" }
     else
       flash[:error] = "Falha na Pre-aprovação em Lote, tente novamente mais tarde"
       redirect_to recadastramentos_path(query: params[:query])
