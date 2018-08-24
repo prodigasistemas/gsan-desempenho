@@ -2,7 +2,7 @@
 
   <%= build_breadcrumb [
     { title: "Recadastramentos", link: recadastramentos_path },
-    { title: "#{@imovel.try(:id)}", active: true }
+    { title: "#{@imovel.try(:id) || 'Novo Imóvel'}", active: true }
   ] %>
 
 </div>
@@ -13,7 +13,7 @@
   <form class="form-inline">
     <div class="form-group">
       <%= label_tag "Matrícula:" %>
-      <%= @imovel.try(:id) %>
+      <%= @imovel.try(:id) || "Novo Imóvel" %>
     </div>
     <div class="form-group">
       <%= label_tag "Localidade:" %>
