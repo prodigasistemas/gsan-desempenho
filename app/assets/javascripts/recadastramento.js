@@ -269,4 +269,12 @@ $(function(){
   var trocarValor = function(idTd, novoValor) {
     $(idTd).html(novoValor);
   }
+
+  $("#selecionar-todos-checkbox").change(function() {
+    if (this.checked) {
+      $("input:checkbox[name=colunas_checkbox]").prop("checked", true).change();
+    } else {
+      $("input:checkbox[name=colunas_checkbox]").prop("checked", false).change();
+    }
+  });
 });

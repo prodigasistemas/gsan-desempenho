@@ -7,7 +7,17 @@
       <th>Transmitido</th>
       <th>Revisado</th>
       <th>Resultado</th>
-      <th>Campos da revisão</th>
+      <th>
+        <% if @imovel_controle_atualizacao_cadastral.is_em_revisao? and @teve_revisao %>
+          <label>
+            <input type="checkbox" id="selecionar-todos-checkbox">
+            &nbsp;Todos da Revisão
+          </label>
+        <% else %>
+          Campos da revisão
+        <% end %>
+      </th>
+
     </tr>
   </thead>
   <tbody>
