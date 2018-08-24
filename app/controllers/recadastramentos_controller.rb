@@ -29,7 +29,7 @@ class RecadastramentosController < ApplicationController
       @campos = smart_listing_create :campos,
                                      @coluna_atualizacao_cadastrais,
                                      partial: 'campos_list',
-                                     page_sizes: [100]
+                                     page_sizes: [10000]
     end
   end
 
