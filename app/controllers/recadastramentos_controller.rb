@@ -4,7 +4,8 @@ class RecadastramentosController < ApplicationController
 
   before_action :find_empresas, :find_leituristas, :find_cadastro_ocorrencias, only: [:index]
   before_action :find_imovel_controle_atualizacao_cadastral, only: [:show, :update]
-  before_action :find_imovel, :find_coluna_atualizacao_cadastrais, :verificar_se_houve_revisao, only: [:show]
+  before_action :find_imovel, :find_coluna_atualizacao_cadastrais, :verificar_se_houve_revisao,
+                  :find_imagens, only: [:show]
 
   def index
     atualizacao_cadastrais = []
@@ -103,5 +104,9 @@ class RecadastramentosController < ApplicationController
         @empresas = []
         @empresas << empresa
       end
+    end
+
+    def find_imagens
+      @imagens = ImagemRetorno.where(imovel_id: params[:id])
     end
 end

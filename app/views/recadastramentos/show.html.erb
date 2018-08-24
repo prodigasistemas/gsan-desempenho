@@ -50,6 +50,18 @@
       <%= @imovel_controle_atualizacao_cadastral.try(:situacao) %>
     </div>
   </form>
+  <% if @imagens.any? %>
+    <form class="form-inline">
+      <div class="form-group">
+        <label>Imagens:</label>
+        <ul>
+        <% @imagens.each do |imagem| %>
+          <li><%= link_to imagem.nome_imagem, imagens_path(caminho: imagem.caminho_imagem), class: 'btn btn-link', target: '_blank' %></li>
+        <% end %>
+        </ul>
+      </div>
+    </form>
+  <% end %>
   <% if @imovel_controle_atualizacao_cadastral.pode_ser_revisado? and not @teve_revisao %>
     <div class="text-center text-danger">Não houve nenhuma informação vinda da fase de revisão para esse cadastro!</div>
   <% end %>
