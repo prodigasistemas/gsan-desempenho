@@ -6,17 +6,18 @@ class SituacaoAtualizacaoCadastral < ClienteAPI::Model
 
   has_many :imovel_controle_atualizacao_cadastral
 
-  SITUACOES = {"DISPONIVEL": 0,
-               "BLOQUEADO": 1,
-               "EM CAMPO": 2,
-               "TRANSMITIDO": 3,
-               "APROVADO": 4,
-               "EM FISCALIZACAO": 5,
-               "ATUALIZADO": 6,
-               "PRE APROVADO": 7,
-               "REVISADO": 9,
-               "EM REVISAO": 8,
-               "A REVISAR": 10 }
+  SITUACOES = { "DISPONIVEL": 0,
+                "BLOQUEADO": 1,
+                "EM CAMPO": 2,
+                "TRANSMITIDO": 3,
+                "APROVADO": 4,
+                "EM FISCALIZACAO": 5,
+                "ATUALIZADO": 6,
+                "PRE APROVADO": 7,
+                "REVISADO": 9,
+                "EM REVISAO": 8,
+                "A REVISAR": 10,
+                "REVISITA": 11 }
 
   def self.pode_ser_pre_aprovado?(situacao)
     [SITUACOES[:"REVISADO"], SITUACOES[:"TRANSMITIDO"]].include?(situacao)
