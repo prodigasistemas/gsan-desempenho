@@ -110,18 +110,9 @@
       <div class="form-group">
         <label for="exibir_imoveis" class="col-sm-3 control-label">Exibir Imóveis:</label>
         <div class="col-sm-6">
-          <label class="radio-inline">
-            <input type="radio" name="query[exibir_imoveis]" id="exibir_imoveis_pendentes" value="3" <%= @filtro.exibir_imoveis == "3" ? 'checked' : '' %>> Pendentes
-          </label>
-          <label class="radio-inline">
-            <input type="radio" name="query[exibir_imoveis]" id="exibir_imoveis_aprovados" value="7" <%= @filtro.exibir_imoveis == "7" ? 'checked' : '' %>> Pré-aprovados
-          </label>
-          <label class="radio-inline">
-            <input type="radio" name="query[exibir_imoveis]" id="exibir_imoveis_aprovar_em_lote" value="-2" <%= @filtro.exibir_imoveis == "-2" ? 'checked' : '' %>> Pré-aprovar em Lote
-          </label>
-           <label class="radio-inline">
-            <input type="radio" name="query[exibir_imoveis]" id="exibir_imoveis_todos" value="-1" <%= @filtro.exibir_imoveis == "-1" ? 'checked' : '' %>> Todos
-          </label>
+          <%= select_tag "query[exibir_imoveis]",
+                options_for_select(exibir_imoveis_options, @filtro.exibir_imoveis),
+                class: "form-control",  prompt: 'Escolha' %>
         </div>
       </div>
       <hr>
