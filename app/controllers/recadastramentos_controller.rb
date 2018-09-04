@@ -24,7 +24,7 @@ class RecadastramentosController < ApplicationController
   end
 
   def show
-    unless @imovel_controle_atualizacao_cadastral.is_transmitido_revisao_ou_pre_aprovado?
+    unless @imovel_controle_atualizacao_cadastral.pode_ser_visualizado?
       raise ActionController::RoutingError.new('Cadastro não encontrado')
     else
       @campos = smart_listing_create :campos,
@@ -37,9 +37,13 @@ class RecadastramentosController < ApplicationController
   def update
     parametros = { situacao_atualizacao_cadastral_id: params[:situacao] }
     parametros[:revisoes] = params[:revisoes] unless params[:revisoes].blank?
-    @imovel_controle_atualizacao_cadastral = @imovel_controle_atualizacao_cadastral.update(parametros)
-    redirect_to recadastramento_path(@imovel_controle_atualizacao_cadastral.imovel_id),
-                  notice: "Imóvel colocado na situação '#{SituacaoAtualizacaoCadastral.descricao_situacao(params[:situacao].try(:to_i))}' com sucesso"
+    begin
+      @imovel_controle_atualizacao_cadastral = @imovel_controle_atualizacao_cadastral.update(parametros)
+      redirect_to recadastramento_path(@imovel_controle_atualizacao_cadastral.imovel_id),
+                    notice: "Imóvel colocado na situação '#{SituacaoAtualizacaoCadastral.descricao_situacao(params[:situacao].try(:to_i))}' com sucesso"
+    rescue RestClient::BadRequest => e
+      redirect_to recadastramento_path(@imovel_controle_atualizacao_cadastral.imovel_id), alert: "Imóvel não pode ser alterado"
+    end
   end
 
   def pre_aprovar_em_lote

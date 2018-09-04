@@ -4,10 +4,11 @@ module RecadastramentosHelper
   end
 
   def exibir_imoveis_options
-    [["Pendentes", 3],
-     ["Em Revisão", 8],
-     ["Revisados", 9],
-     ["Pré-Aprovados", 7],
+    [["Pendentes", SituacaoAtualizacaoCadastral::SITUACOES[:"TRANSMITIDO"]],
+     ["Em Revisão", SituacaoAtualizacaoCadastral::SITUACOES[:"EM REVISAO"]],
+     ["Revisados", SituacaoAtualizacaoCadastral::SITUACOES[:"REVISADO"]],
+     ["Pré-Aprovados", SituacaoAtualizacaoCadastral::SITUACOES[:"PRE APROVADO"]],
+     ["Revisita", SituacaoAtualizacaoCadastral::SITUACOES[:"REVISITA"]],
      ["Pré-Aprovar em Lote", -2],
      ["Todos", -1]
     ]
