@@ -4,13 +4,10 @@ module RecadastramentosHelper
   end
 
   def exibir_imoveis_options
-    [["Pendentes", SituacaoAtualizacaoCadastral::SITUACOES[:"TRANSMITIDO"]],
-     ["Em Revisão", SituacaoAtualizacaoCadastral::SITUACOES[:"EM REVISAO"]],
-     ["Revisados", SituacaoAtualizacaoCadastral::SITUACOES[:"REVISADO"]],
-     ["Pré-Aprovados", SituacaoAtualizacaoCadastral::SITUACOES[:"PRE APROVADO"]],
-     ["Revisita", SituacaoAtualizacaoCadastral::SITUACOES[:"REVISITA"]],
-     ["Pré-Aprovar em Lote", -2],
-     ["Todos", -1]
-    ]
+    opcoes = SituacaoAtualizacaoCadastral::SITUACOES.map {|s, a| [s.to_s.titlecase, a]}
+    opcoes << ["Pendentes", SituacaoAtualizacaoCadastral::SITUACOES[:"TRANSMITIDO"]]
+    opcoes << ["Pré-Aprovar em Lote", -2]
+    opcoes << ["Todos", -1]
+    opcoes
   end
 end
