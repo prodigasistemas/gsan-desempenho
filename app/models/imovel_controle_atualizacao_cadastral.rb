@@ -1,4 +1,6 @@
 class ImovelControleAtualizacaoCadastral < ClienteAPI::Model
+  include ClienteAPI::Integracao::Requisicao
+
   attr_accessor :id,
                 :imovel_id,
                 :tempo_geracao,
@@ -14,6 +16,7 @@ class ImovelControleAtualizacaoCadastral < ClienteAPI::Model
   belongs_to :imovel
   belongs_to :imovel_retorno
   belongs_to :situacao_atualizacao_cadastral
+  has_many :visitas
 
   def descricao_ocorrencia
     cadastro_ocorrencia.try(:descricao)
