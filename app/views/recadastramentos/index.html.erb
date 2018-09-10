@@ -118,6 +118,25 @@
       <hr>
 
       <div class="form-group">
+        <label for="quantidade_visitas" class="col-sm-3 control-label">Quantidade de visitas:</label>
+        <div class="col-sm-6">
+          <label class="radio-inline">
+            <input type="radio" name="query[quantidade_visitas]" id="query_quantidade_visitas_>yes" value="0" <%= @filtro.quantidade_visitas == "0" ? 'checked' : '' %>> 0
+          </label>
+          <label class="radio-inline">
+            <input type="radio" name="query[quantidade_visitas]" id="query_quantidade_visitas_>no" value="1" <%= @filtro.quantidade_visitas == "1" ? 'checked' : '' %>> 1
+          </label>
+          <label class="radio-inline">
+            <input type="radio" name="query[quantidade_visitas]" id="query_quantidade_visitas_>all" value="2" <%= @filtro.quantidade_visitas == "2" ? 'checked' : '' %>> 2
+          </label>
+          <label class="radio-inline">
+            <input type="radio" name="query[quantidade_visitas]" id="query_quantidade_visitas_>all" value="3" <%= @filtro.quantidade_visitas == "3" ? 'checked' : '' %>> 3
+          </label>
+        </div>
+      </div>
+      <hr>
+
+      <div class="form-group">
         <label for="alteracao_cpf" class="col-sm-3 control-label">Com alteração no CPF:</label>
         <div class="col-sm-6">
           <%= render partial: 'radio', locals: { input_name: 'query[alteracao_cpf]', selected: @filtro.alteracao_cpf } %>

@@ -23,7 +23,8 @@ class FiltroRecadastramento
                 :empresa_id,
                 :leiturista_id,
                 :alteracao_cpf,
-                :cadastro_ocorrencia_id
+                :cadastro_ocorrencia_id,
+                :quantidade_visitas
 
   def initialize(params)
     if params[:query].present?
@@ -52,6 +53,7 @@ class FiltroRecadastramento
         @leiturista_id =                    params[:query][:leiturista_id]
         @alteracao_cpf =                    params[:query][:alteracao_cpf]
         @cadastro_ocorrencia_id =           params[:query][:cadastro_ocorrencia_id]
+        @quantidade_visitas  =              params[:query][:quantidade_visitas]
     end
   end
 end
