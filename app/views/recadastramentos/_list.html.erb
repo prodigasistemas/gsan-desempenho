@@ -1,3 +1,9 @@
+
+<% unless smart_listing.empty? %>
+<p class="text-center">
+  <%= "Total #{smart_listing.try(:count)}" %>
+</p>
+<% end %>
 <table class="table table-hover table-striped">
   <thead>
     <tr>
