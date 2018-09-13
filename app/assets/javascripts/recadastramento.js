@@ -1,6 +1,12 @@
 $(function(){
   $('#query_periodo_inicial').mask('00/00/0000');
   $('#query_periodo_final').mask('00/00/0000');
+  
+  if ($("#query_ocorrencias_cadastro_yes").is(':checked')) {
+    $("#cadastro_ocorrencia_sem_validacao_id").hide();
+  } else {
+    $("#cadastro_ocorrencia_com_validacao_id").hide();
+  }
 
   var cache = {},
   $localidade_id_inicial = $("#localidade_id_inicial"),
@@ -234,16 +240,32 @@ $(function(){
     $("input:radio[name='query[alteracao_agua]']").prop('disabled', true);
     $("input:radio[name='query[alteracao_esgoto]']").prop('disabled', true);
     $("input:radio[name='query[alteracao_categoria_subcategoria]']").prop('disabled', true);
-  }
+  };
 
   $("input:radio[name='query[ocorrencias_cadastro]']").change(function() {
-    if ($(this).is(':checked') && $(this).val() == '2') {
-      $("#query_cadastro_ocorrencia_id").removeAttr('disabled');
+    if ($(this).is(':checked')) {
+      if ($(this).val() == '1') {
+        $("#cadastro_ocorrencia_com_validacao_id").show();
+        $("#cadastro_ocorrencia_com_validacao_id").removeAttr('disabled');
+        $("#cadastro_ocorrencia_sem_validacao_id").hide();
+      } else if ($(this).val() == '2') {
+        $("#cadastro_ocorrencia_sem_validacao_id").show();
+        $("#cadastro_ocorrencia_sem_validacao_id").removeAttr('disabled');
+        $("#cadastro_ocorrencia_com_validacao_id").hide();
+      } else {
+        limparCombosOcorrencia();
+      }
     } else {
-      $('#query_cadastro_ocorrencia_id').val('');
-      $("#query_cadastro_ocorrencia_id").prop('disabled', true);
+      limparCombosOcorrencia();
     }
   });
+
+  function limparCombosOcorrencia() {
+    $("#cadastro_ocorrencia_com_validacao_id").val('');
+    $("#cadastro_ocorrencia_com_validacao_id").prop('disabled', true);
+    $("#cadastro_ocorrencia_sem_validacao_id").val('');
+    $("#cadastro_ocorrencia_sem_validacao_id").prop('disabled', true);
+  };
 
   // Selecao de colunas para alteracao
   $("input:checkbox[name=colunas_checkbox]").change(function() {

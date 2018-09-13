@@ -69,6 +69,8 @@ class RecadastramentosController < ApplicationController
   private
     def find_cadastro_ocorrencias
       @cadastro_ocorrencias = CadastroOcorrencia.all
+      @ocorrencias_com_validacao = CadastroOcorrencia.com_indicador_validacao(@cadastro_ocorrencias)
+      @ocorrencias_sem_validacao = CadastroOcorrencia.sem_indicador_validacao(@cadastro_ocorrencias)
     end
 
     def find_imovel_controle_atualizacao_cadastral
