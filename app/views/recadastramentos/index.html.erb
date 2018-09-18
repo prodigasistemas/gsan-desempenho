@@ -39,6 +39,12 @@
         </div>
       </div>
       <div class="form-group">
+        <label for="matricula" class="col-sm-3 control-label">Matrícula Imóvel: </label>
+        <div class="col-sm-6">
+          <%= text_field_tag 'query[matricula]', @filtro.matricula, class: "form-control", required: false %>
+        </div>
+      </div>
+      <div class="form-group">
         <label for="periodo_inicial" class="col-sm-3 control-label">Período: </label>
         <div class="col-sm-3">
           <%= text_field_tag 'query[periodo_inicial]', @filtro.periodo_inicial, class: "form-control datepicker", required: false %>
@@ -153,9 +159,6 @@
       <div class="form-group">
         <label for="cadastro_ocorrencia_id" class="col-sm-3 control-label">Ocorrência:</label>
         <div class="col-sm-6">
-          <%# <%= select_tag "query[cadastro_ocorrencia_id]",
-                options_from_collection_for_select(@cadastro_ocorrencias, "id", "descricao", @filtro.cadastro_ocorrencia_id),
-                class: "form-control",  prompt: 'Escolha', disabled: @filtro.cadastro_ocorrencia_id.nil? %>
           <%= select_tag "query[cadastro_ocorrencia_id]",
                 options_from_collection_for_select(@ocorrencias_com_validacao, "id", "descricao", @filtro.cadastro_ocorrencia_id),
                 class: "form-control",  prompt: 'Escolha', disabled: @filtro.cadastro_ocorrencia_id.nil?,
