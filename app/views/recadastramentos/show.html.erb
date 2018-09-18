@@ -49,6 +49,10 @@
       <%= label_tag "Situação" %>
       <%= @imovel_controle_atualizacao_cadastral.try(:situacao) %>
     </div>
+    <div class="form-group">
+      <%= label_tag "Data processamento" %>
+      <%= l(Time.parse(@imovel_controle_atualizacao_cadastral.tempo_retorno), format: :short_time) unless @imovel_controle_atualizacao_cadastral.tempo_retorno.blank? %>
+    </div>
   </form>
   <% if @imagens.any? %>
     <form class="form-inline">
