@@ -24,14 +24,10 @@ class RecadastramentosController < ApplicationController
   end
 
   def show
-    unless @imovel_controle_atualizacao_cadastral.pode_ser_visualizado?
-      raise ActionController::RoutingError.new('Cadastro não encontrado')
-    else
-      @campos = smart_listing_create :campos,
-                                     @coluna_atualizacao_cadastrais,
-                                     partial: 'campos_list',
-                                     page_sizes: [10000]
-    end
+    @campos = smart_listing_create :campos,
+                                    @coluna_atualizacao_cadastrais,
+                                    partial: 'campos_list',
+                                    page_sizes: [10000]
   end
 
   def update

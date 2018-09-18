@@ -46,10 +46,6 @@ class ImovelControleAtualizacaoCadastral < ClienteAPI::Model
     pode_ser_pre_aprovado? or pode_ser_revisado? or is_pre_aprovado?
   end
 
-  def pode_ser_visualizado?
-    is_transmitido_revisao_ou_pre_aprovado? or is_revisita?
-  end
-
   def pode_ser_pre_aprovado?
     SituacaoAtualizacaoCadastral.pode_ser_pre_aprovado? situacao_atualizacao_cadastral_id
   end
