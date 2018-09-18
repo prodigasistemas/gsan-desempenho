@@ -143,7 +143,13 @@
       <hr>
 
       <div class="form-group">
-        <label for="alteracao_cpf" class="col-sm-3 control-label">Com alteração no CPF:</label>
+        <label for="cpf_ja_cadastrado" class="col-sm-3 control-label">Com CPF cadastrado:</label>
+        <div class="col-sm-6">
+          <%= render partial: 'radio', locals: { input_name: 'query[cpf_ja_cadastrado]', selected: @filtro.cpf_ja_cadastrado } %>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="alteracao_cpf" class="col-sm-3 control-label">Com CPF transmitido:</label>
         <div class="col-sm-6">
           <%= render partial: 'radio', locals: { input_name: 'query[alteracao_cpf]', selected: @filtro.alteracao_cpf } %>
         </div>
