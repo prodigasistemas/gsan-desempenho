@@ -2,7 +2,7 @@
 
   <%= build_breadcrumb [
     { title: "Recadastramentos", link: recadastramentos_path },
-    { title: "#{@imovel.try(:id) || 'Novo Imóvel'}", active: true }
+    { title: "#{@atualizacao_cadastral.imovel_novo? ? "Novo Imóvel" : @imovel.try(:id)}", active: true }
   ] %>
 
 </div>
@@ -13,34 +13,34 @@
   <form class="form-inline">
     <div class="form-group">
       <%= label_tag "Matrícula:" %>
-      <%= @imovel.try(:id) || "Novo Imóvel" %>
+      <%= @atualizacao_cadastral.imovel_novo? ? "Novo Imóvel" : @imovel.try(:id) %>
     </div>
     <div class="form-group">
       <%= label_tag "Localidade:" %>
-      <%= @imovel.try(:localidade).try(:nome) %>
+      <%= @atualizacao_cadastral.imovel_novo? ? '' : @imovel.try(:localidade).try(:nome) %>
     </div>
     <div class="form-group">
       <%= label_tag "Setor Comercial:" %>
-      <%= @imovel.try(:setor_comercial).try(:nome) %>
+      <%= @atualizacao_cadastral.imovel_novo? ? '' : @imovel.try(:setor_comercial).try(:nome) %>
     </div>
     <div class="form-group">
       <%= label_tag "Quadra:" %>
-      <%= @imovel.try(:quadra).try(:numero_quadra) %>
+      <%= @atualizacao_cadastral.imovel_novo? ? '' : @imovel.try(:quadra).try(:numero_quadra) %>
     </div>
   </form>
 
   <form class="form-inline">
     <div class="form-group">
       <%= label_tag "Situação Ligação da Água:" %>
-      <%= @imovel.try(:situacao_agua) %>
+      <%= @atualizacao_cadastral.imovel_novo? ? '' : @imovel.try(:situacao_agua) %>
     </div>
     <div class="form-group">
       <%= label_tag "Situação Ligação do Esgoto:" %>
-      <%= @imovel.try(:situacao_esgoto) %>
+      <%= @atualizacao_cadastral.imovel_novo? ? '' : @imovel.try(:situacao_esgoto) %>
     </div>
     <div class="form-group">
       <%= label_tag "Quantidade de Economias:" %>
-      <%= @imovel.try(:economias) %>
+      <%= @atualizacao_cadastral.imovel_novo? ? '' : @imovel.try(:economias) %>
     </div>
   </form>
 

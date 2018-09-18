@@ -14,6 +14,10 @@ class AtualizacaoCadastral < ClienteAPI::Model
 
   def descricao_imovel
     return "Exclusão" if tipo_alteracao.to_i == 3
-    tipo_alteracao.to_i == 2 ? "Novo Imóvel" : "#{codigo_imovel}"
+    imovel_novo? ? "Novo Imóvel" : "#{codigo_imovel}"
+  end
+
+  def imovel_novo?
+    tipo_alteracao.to_i == 2
   end
 end

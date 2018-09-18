@@ -86,6 +86,7 @@ class RecadastramentosController < ApplicationController
       if atualizacao_cadastrais.empty?
         @coluna_atualizacao_cadastrais = []
       else
+        @atualizacao_cadastral = atualizacao_cadastrais.first
         @coluna_atualizacao_cadastrais = ColunaAtualizacaoCadastral.where(atualizacao_cadastral_id: atualizacao_cadastrais.map(&:id))
       end
     end
