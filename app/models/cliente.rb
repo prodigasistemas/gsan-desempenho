@@ -30,4 +30,5 @@ class Cliente < ClienteAPI::Model
 
   has_many :imoveis
   has_many :cliente_contas
+  has_many :cliente_imoveis
 end
