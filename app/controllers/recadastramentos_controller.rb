@@ -24,6 +24,9 @@ class RecadastramentosController < ApplicationController
   end
 
   def show
+    if @atualizacao_cadastral.present? and !@atualizacao_cadastral.imovel_novo?
+      @subcategorias = Subcategoria.where(imov_id: params[:id])
+    end
     @campos = smart_listing_create :campos,
                                     @coluna_atualizacao_cadastrais,
                                     partial: 'campos_list',

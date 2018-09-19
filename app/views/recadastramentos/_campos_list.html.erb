@@ -21,6 +21,19 @@
     </tr>
   </thead>
   <tbody>
+    <% unless @subcategorias.nil? or @subcategorias.empty? %>
+      <% @subcategorias.each do |subcategoria| %>
+      <tr style="background: #E9E0E2">
+        <td><%= subcategoria.descricao_completa %></td>
+        <td><%= "Quantidade de Economias" %></td>
+        <td><%= subcategoria.quantidade %></td>
+        <% 4.times do %>
+          <td></td>
+        <% end %> 
+      </tr>
+      <% end %>
+    <% end %>
+    
     <% smart_listing.collection.each do |coluna| %>
       <tr>
         <td><%= coluna.tabela %></td>
