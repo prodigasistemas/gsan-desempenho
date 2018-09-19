@@ -25,7 +25,9 @@ class RecadastramentosController < ApplicationController
 
   def show
     if @atualizacao_cadastral.present? and !@atualizacao_cadastral.imovel_novo?
-      @subcategorias = Subcategoria.where(imov_id: params[:id])
+      @subcategorias = Subcategoria.where({imov_id: params[:id]})
+      @cliente = ClienteAtualizacaoCadastral.where(imov_id: params[:id]).try(:first)
+      @subcategorias << Subcategoria.criar_subcategoria_fake_cpf(@cliente.cpf) if @cliente
     end
     @campos = smart_listing_create :campos,
                                     @coluna_atualizacao_cadastrais,
