@@ -17,7 +17,23 @@ class Subcategoria < ClienteAPI::Model
                 :quantidade,
                 :descricao_categoria
 
-  def descricao_completa
-    "Subcateg. #{descricao_categoria} - #{abreviacao}"
+  def descricao_tabela
+      eh_fake? ? "Cliente" : "Subcateg. #{descricao_categoria} - #{abreviacao}"
+  end
+
+  def descricao_campo
+    eh_fake? ? "Numero CPF/CNPJ" : "Quantidade de Economias"
+  end
+
+  def valor
+    quantidade
+  end
+
+  def eh_fake?
+    id.nil?
+  end
+
+  def self.criar_subcategoria_fake_cpf(cpf_cnpj)
+    Subcategoria.new(quantidade: cpf_cnpj)
   end
 end

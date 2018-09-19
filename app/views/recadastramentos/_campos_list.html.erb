@@ -23,10 +23,10 @@
   <tbody>
     <% unless @subcategorias.nil? or @subcategorias.empty? %>
       <% @subcategorias.each do |subcategoria| %>
-      <tr style="background: #E9E0E2">
-        <td><%= subcategoria.descricao_completa %></td>
-        <td><%= "Quantidade de Economias" %></td>
-        <td><%= subcategoria.quantidade %></td>
+      <tr style="background: #E9E0E2">  
+        <td><%= subcategoria.descricao_tabela %></td>
+        <td><%= subcategoria.descricao_campo %></td>
+        <td><%= subcategoria.valor %></td>
         <% 4.times do %>
           <td></td>
         <% end %> 
