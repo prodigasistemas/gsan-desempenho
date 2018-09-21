@@ -4,7 +4,7 @@ module RecadastramentosHelper
   end
 
   def exibir_imoveis_options
-    opcoes = SituacaoAtualizacaoCadastral::SITUACOES.map {|s, a| [s.to_s.titlecase, a]}
+    opcoes = SituacaoAtualizacaoCadastral::SITUACOES.sort.map {|s, a| [s.to_s.titlecase, a]}
     opcoes << ["Pendentes", -3]
     opcoes << ["Todos", -1]
     opcoes
