@@ -81,7 +81,7 @@ $(function(){
       });
     },
     select: function(event, ui){
-      $setor_comercial_id_inicial.val(ui.item.codigo);
+      $setor_comercial_id_inicial.val(ui.item.id);
       $rota_inicial.attr("disabled", false);
       carregarRotasInicial();
     }
