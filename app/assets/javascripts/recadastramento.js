@@ -176,7 +176,7 @@ $(function(){
       });
     },
     select: function(event, ui){
-      $setor_comercial_id_final.val(ui.item.codigo);
+      $setor_comercial_id_final.val(ui.item.id);
       $rota_final.attr("disabled", false);
 
       carregarRotas();
