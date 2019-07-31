@@ -55,6 +55,6 @@ class AcoesController < ApplicationController
       :contrato_medicao_id,
       :titulo,
       :descricao
-    )
+    ).to_h rescue {}
   end
 end
