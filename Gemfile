@@ -1,8 +1,9 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.10'
+gem 'rails', '5.2.3'
 gem 'sass-rails', '~> 5.0.6'
 gem 'uglifier', '>= 1.3.0'
+gem 'bootsnap'
 
 gem 'smart_listing'
 gem 'jquery-rails'
@@ -32,15 +33,17 @@ group :development, :test do
 end
 
 group :development do
-  gem 'web-console', '~> 2.0'
+  gem 'web-console', '>= 3.3.0'
+  gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'spring'
-  gem 'quiet_assets'
+  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'byebug'
   gem 'thin'
 end
 
 group :test do
   gem 'rspec-mocks'
-  gem 'shoulda-matchers', '~> 3.1'
+  gem 'shoulda-matchers', '4.0.1'
 end
 
 group :production do

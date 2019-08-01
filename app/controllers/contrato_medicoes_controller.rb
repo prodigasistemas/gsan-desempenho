@@ -74,6 +74,6 @@ class ContratoMedicoesController < ApplicationController
       :vigencia_final, :data_assinatura,
       :empresa_id,
       :atualizado_em
-    )
+    ).to_h rescue {}
   end
 end

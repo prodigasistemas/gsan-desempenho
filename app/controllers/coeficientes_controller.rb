@@ -57,8 +57,10 @@ class CoeficientesController < ApplicationController
 
   def coeficiente_params
     params.require(:coeficiente).map do |hash|
-      hash.merge!(contrato_medicao_id: params[:contrato_medicao_id], usuario_id: @usuario_logado.id)
-      ActionController::Parameters.new(hash).permit(:id, :contrato_medicao_id, :ligacao_agua_id, :coeficiente, :usuario_id)
+      hash
+        .merge(contrato_medicao_id: params[:contrato_medicao_id], usuario_id: @usuario_logado.id)
+        .permit(:id, :contrato_medicao_id, :ligacao_agua_id, :coeficiente, :usuario_id)
+        .to_h rescue {}
     end
   end
 end

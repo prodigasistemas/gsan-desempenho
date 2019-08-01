@@ -13,7 +13,9 @@ class AbrangenciasController < ApplicationController
     @filtro = FiltroImovelPresenter.new(params)
 
     if params[:query].present?
-      @imoveis = Imovel.where(params[:query].merge(page: params[:page]))
+      query = (params[:query].permit! || {}).merge(page: params[:page])
+
+      @imoveis = Imovel.where(query)
     end
   end
 
@@ -55,6 +57,6 @@ class AbrangenciasController < ApplicationController
   private
 
   def abrangencia_params
-    params.require(:abrangencia).permit(imoveis: [])
+    params.require(:abrangencia).permit(imoveis: []).to_h rescue {}
   end
 end
